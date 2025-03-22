@@ -1,0 +1,15 @@
+# www.jyothidiagnosticsmpl.com robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.jyothidiagnosticsmpl.com/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 1
+
+# Block specific paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*?*
