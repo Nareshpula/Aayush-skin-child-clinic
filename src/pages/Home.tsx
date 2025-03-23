@@ -1,6 +1,5 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import OrganTests from '../components/OrganTests';
 import Services from '../components/Services';
 import MriTesla from '../components/MriTesla';
 import UltrasoundServices from '../components/UltrasoundServices';
@@ -10,13 +9,14 @@ import GoogleReviews from '../components/GoogleReviews';
 import VisitUs from '../components/VisitUs';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
+import FindDoctor from '../components/FindDoctor';
 
 const Home = () => {
   return (
     <>
       <SEO />
       <Hero />
-      <OrganTests />
+      <FindDoctor />
       <Services />
       <MriTesla />
       <UltrasoundServices />

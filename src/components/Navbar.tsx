@@ -162,7 +162,7 @@ const Navbar = () => {
                 <img 
                   src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/emergency-call.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvZW1lcmdlbmN5LWNhbGwucG5nIiwiaWF0IjoxNzQyNjQ2NzYxLCJleHAiOjE5MDAzMjY3NjF9.uTwUHtPGSv3Hr4ejMdtf525dEIhyPiH4-EJrQ9H2Gyw"
                   alt="Emergency"
-                  className="w-4 h-4"
+                  className="w-6 h-6 animate-pulse"
                 />
                 <span>Pediatric Emergency</span>
               </a>
@@ -331,7 +331,7 @@ const Navbar = () => {
                 <img 
                   src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/emergency-call.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvZW1lcmdlbmN5LWNhbGwucG5nIiwiaWF0IjoxNzQyNjQ2NzYxLCJleHAiOjE5MDAzMjY3NjF9.uTwUHtPGSv3Hr4ejMdtf525dEIhyPiH4-EJrQ9H2Gyw"
                   alt="Emergency"
-                  className="w-4 h-4 mr-2"
+                  className="w-6 h-6 mr-2 animate-pulse"
                 />
                 Pediatric Emergency
               </span>
