@@ -122,16 +122,20 @@ const Navbar = () => {
               />
             </div>
             <div>
-              <h1 className={`font-['Montserrat'] text-lg md:text-xl font-bold tracking-wide drop-shadow-sm ${
-                'text-[#685392]'
-              }`}>
-                Aayush Child&Skin Clinic
-              </h1>
-              <p className={`font-['Open_Sans'] text-[10px] md:text-sm font-light mt-0.5 ${
-                'text-[#7e3a93]'
-              }`}>
-                
-              </p>
+              <div className="flex items-center gap-3">
+                <h1 className="font-['Montserrat'] text-lg md:text-2xl font-extrabold tracking-wider text-[#685392] drop-shadow-sm">
+                  AAYUSH
+                </h1>
+                <div className="h-8 w-px bg-[#685392]/30"></div>
+                <div className="flex flex-col w-max">
+                  <span className="font-['Open_Sans'] text-base md:text-lg font-semibold text-[#7e3a93] tracking-wide">
+                    Child & Skin
+                  </span>
+                  <span className="font-['Open_Sans'] text-sm md:text-base text-[#7e3a93]/90 tracking-wide w-full text-center">
+                    Hospital
+                  </span>
+                </div>
+              </div>
             </div>
           </Link>
           
