@@ -125,12 +125,12 @@ const Navbar = () => {
               <h1 className={`font-['Montserrat'] text-lg md:text-xl font-bold tracking-wide drop-shadow-sm ${
                 'text-[#685392]'
               }`}>
-                Jyothi Diagnostics
+                Aayush Child&Skin Clinic
               </h1>
               <p className={`font-['Open_Sans'] text-[10px] md:text-sm font-light mt-0.5 ${
                 'text-[#7e3a93]'
               }`}>
-                The Best Comprehensive Diagnostics
+                
               </p>
             </div>
           </Link>
@@ -149,16 +149,23 @@ const Navbar = () => {
             {/* Desktop buttons */}
             <div className="hidden md:flex items-center space-x-3">
               <a 
-                href="tel:9100752753" 
+                href="tel:9676079516" 
                 className="flex items-center space-x-2 bg-purple-600 text-white px-6 py-2.5 rounded-full hover:bg-purple-700 transition duration-300"
               >
                 <Phone className="w-4 h-4" />
                 <span>Contact Us</span>
               </a>
-              <button className="flex items-center space-x-2 bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 whitespace-nowrap">
-                <ScanLine className="w-4 h-4" />
-                <span>24/7 CT & MRI Scans Available</span>
-              </button>
+              <a 
+                href="tel:9676079516"
+                className="flex items-center space-x-2 bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 whitespace-nowrap"
+              >
+                <img 
+                  src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/emergency-call.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvZW1lcmdlbmN5LWNhbGwucG5nIiwiaWF0IjoxNzQyNjQ2NzYxLCJleHAiOjE5MDAzMjY3NjF9.uTwUHtPGSv3Hr4ejMdtf525dEIhyPiH4-EJrQ9H2Gyw"
+                  alt="Emergency"
+                  className="w-4 h-4"
+                />
+                <span>Pediatric Emergency</span>
+              </a>
             </div>
             {/* Mobile icons */}
             <div className="md:hidden flex items-center space-x-3">
@@ -177,7 +184,7 @@ const Navbar = () => {
                 )}
               </div>
               <a 
-                href="tel:9100752753"
+                href="tel:9676079516"
                 className="flex items-center justify-center w-10 h-10 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300"
               >
                 <Phone className="w-5 h-5 text-white" />
@@ -308,7 +315,7 @@ const Navbar = () => {
             })}
             <div className="mt-4 space-y-2">
             <a 
-              href="tel:9100752753"
+              href="tel:9676079516"
               className="block w-full bg-purple-600 text-white px-6 py-2.5 rounded-full hover:bg-purple-700 transition duration-300 text-center shadow-md"
             >
               <span className="flex items-center justify-center">
@@ -316,12 +323,19 @@ const Navbar = () => {
                 Contact Us
               </span>
             </a>
-            <button className="w-full bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 shadow-md">
+            <a
+              href="tel:9676079516" 
+              className="w-full bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 shadow-md text-center"
+            >
               <span className="flex items-center justify-center">
-                <ScanLine className="w-4 h-4 mr-2" />
-                24/7 CT & MRI Scans Available
+                <img 
+                  src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/emergency-call.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvZW1lcmdlbmN5LWNhbGwucG5nIiwiaWF0IjoxNzQyNjQ2NzYxLCJleHAiOjE5MDAzMjY3NjF9.uTwUHtPGSv3Hr4ejMdtf525dEIhyPiH4-EJrQ9H2Gyw"
+                  alt="Emergency"
+                  className="w-4 h-4 mr-2"
+                />
+                Pediatric Emergency
               </span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
