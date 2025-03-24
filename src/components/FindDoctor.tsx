@@ -29,8 +29,8 @@ const DoctorCard = ({ doctor }: { doctor: {
           />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-bold text-gray-900 mb-1">{doctor.name}</h3>
-          <p className="text-sm text-gray-900 mb-3">{doctor.designation}</p>
+          <h3 className="text-xl font-bold text-gray-900 mb-1">{doctor.name}</h3>
+          <p className="text-base text-gray-900 mb-3">{doctor.designation}</p>
           
           <div className="space-y-2 mb-4">
             <div className="flex items-center gap-2 text-gray-600 text-sm">

@@ -33,7 +33,9 @@ const CentersOfExcellence = () => {
               <img
                 src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/child-care-images.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvY2hpbGQtY2FyZS1pbWFnZXMuanBnIiwiaWF0IjoxNzQyNzQ4OTEzLCJleHAiOjE5MDA0Mjg5MTN9.wQtyUQ_WfUdQNz3ewt4xLZMzt7y06EgB9Whg1zaVuco"
                 alt="Child Care"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover image-rendering-crisp transform-gpu will-change-transform transition-transform duration-700 group-hover:scale-110"
+                loading="eager"
+                decoding="async"
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-[#7E42A2] py-3 px-4">
@@ -52,7 +54,9 @@ const CentersOfExcellence = () => {
               <img
                 src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/skin-care-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvc2tpbi1jYXJlLWltYWdlLmpwZyIsImlhdCI6MTc0Mjc0OTQyNCwiZXhwIjoxOTAwNDI5NDI0fQ.jWW3BxqeES8A5XwOPLWnkTn0TQPSaSRnRUvRxicOd_w"
                 alt="Skin Care"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-center image-rendering-crisp transform-gpu will-change-transform transition-transform duration-700 group-hover:scale-110"
+                loading="eager"
+                decoding="async"
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-[#EBDCFB] py-3 px-4">

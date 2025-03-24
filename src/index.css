@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Image Rendering Optimizations */
+.image-rendering-crisp {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
 /* Performance optimizations */
 @layer utilities {
   .gpu-accelerated {
@@ -40,6 +49,33 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Text Mask Effect Optimizations */
+  .masked-letter {
+    display: inline-block;
+    position: relative;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  .masked-letter::after {
+    content: attr(data-letter);
+    position: absolute;
+    inset: 0;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.1);
+    color: transparent;
+    pointer-events: none;
+  }
+
+  /* Text Mask Effect Optimizations */
+  .text-mask {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    -webkit-font-smoothing: subpixel-antialiased;
   }
 
   /* Improve text clarity on mobile */

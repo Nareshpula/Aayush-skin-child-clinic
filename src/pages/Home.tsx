@@ -1,8 +1,8 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import CentersOfExcellence from '../components/CentersOfExcellence';
-import MriTesla from '../components/MriTesla';
-import UltrasoundServices from '../components/UltrasoundServices';
+import DermatologySection from '../components/DermatologySection';
+import MillionsSection from '../components/MillionsSection';
 import StatisticsSection from '../components/StatisticsSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import GoogleReviews from '../components/GoogleReviews';
@@ -18,8 +18,8 @@ const Home = () => {
       <Hero />
       <FindDoctor />
       <CentersOfExcellence />
-      <MriTesla />
-      <UltrasoundServices />
+      <DermatologySection />
+      <MillionsSection />
       <StatisticsSection />
       <WhyChooseUs />
       <GoogleReviews />
