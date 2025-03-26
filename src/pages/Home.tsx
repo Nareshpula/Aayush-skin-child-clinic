@@ -6,6 +6,7 @@ import MillionsSection from '../components/MillionsSection';
 import StatisticsSection from '../components/StatisticsSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import GoogleReviews from '../components/GoogleReviews';
+import BlogSection from '../components/BlogSection';
 import VisitUs from '../components/VisitUs';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
@@ -22,9 +23,10 @@ const Home = () => {
       <MillionsSection />
       <StatisticsSection />
       <WhyChooseUs />
-      <GoogleReviews />
+      <GoogleReviews />  
       <VisitUs />
       <ContactForm />
+      <BlogSection />
     </>
   );
 };

@@ -11,6 +11,7 @@ import DigitalXrays from './pages/DigitalXrays.tsx';
 import UltrasoundPregnancyScanning from './pages/UltrasoundPregnancyScanning';
 import UltrasoundScanning from './pages/UltrasoundScanning';
 import TeslaMriScan from './pages/TeslaMriScan';
+import BlogArticle from './pages/BlogArticle';
 import ScrollToTop from '@/components/ScrollToTop';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path="/ultrasound-pregnancy-scanning" element={<UltrasoundPregnancyScanning />} />
               <Route path="/ultrasound-scanning" element={<UltrasoundScanning />} />
               <Route path="/tesla-mri-scan" element={<TeslaMriScan />} />
+              <Route path="/blog/understanding-ear-infections" element={<BlogArticle />} />
             </Routes>
           </main>
           <Footer />

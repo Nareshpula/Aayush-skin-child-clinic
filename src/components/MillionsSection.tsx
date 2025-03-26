@@ -14,25 +14,27 @@ const letterImages = {
 
 const MaskedLetter = ({ letter, image }: { letter: string; image: string }) => (
   <span
-    className="inline-block relative"
+    className="inline-block relative gpu-accelerated"
     style={{
       WebkitTextFillColor: 'transparent',
       WebkitBackgroundClip: 'text',
       backgroundClip: 'text',
       backgroundImage: `url(${image})`,
       backgroundPosition: '50% 50%',
-      backgroundSize: 'cover',
-      filter: 'contrast(1.5) brightness(1.3)',
+      backgroundSize: '150% 150%',
+      imageRendering: '-webkit-optimize-contrast',
+      filter: 'contrast(1.2) brightness(1.1)',
       textShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      transform: 'translateZ(0)',
-      willChange: 'transform'
+      willChange: 'transform, background-position',
+      backfaceVisibility: 'hidden',
+      perspective: '1000px'
     }}
   >
     {letter}
     <span
       className="absolute inset-0 pointer-events-none"
       style={{
-        WebkitTextStroke: '1px rgba(0,0,0,0.1)',
+        WebkitTextStroke: '1px rgba(0,0,0,0.15)',
         color: 'transparent'
       }}
     >
@@ -54,7 +56,7 @@ const MillionsSection = () => {
         >
           <div className="relative mb-8 overflow-hidden">
             <motion.h2
-              className="text-[120px] md:text-[180px] font-bold leading-none relative"
+              className="text-[120px] md:text-[180px] font-bold leading-none relative gpu-accelerated"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
@@ -62,6 +64,7 @@ const MillionsSection = () => {
               {'MILLIONS'.split('').map((letter, index) => (
                 <motion.span
                   key={index}
+                  className="gpu-accelerated"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}

@@ -31,21 +31,21 @@ const generateRandomDate = () => {
 };
 
 const reviews = [
-  "Exceptional service and professional care. Highly recommended!",
-  "The staff was very courteous and the diagnostic process was smooth.",
-  "Quick service and accurate reports. Would definitely return.",
-  "Expert radiologist and excellent facilities with professional staff.",
-  "Felt comfortable and well taken care of during my visit.",
-  "Efficient service with timely report delivery.",
-  "Highly skilled technicians and friendly reception.",
-  "Clean environment and prompt service.",
-  "Detailed explanation of the procedures helped me stay calm.",
-  "They provided clear instructions and made the process stress-free.",
-  "Wonderful experience with compassionate staff members.",
-  "The MRI scan was conducted with utmost professionalism.",
-  "Reports were delivered promptly and accurately.",
-  "Appreciate the cleanliness and timely appointment handling.",
-  "Top-notch service and advanced equipment usage."
+  "Dr. Sridhar's expertise in pediatric care is exceptional. My child's health improved significantly under his treatment.",
+  "The dermatology team provided excellent care for my acne issues. Very happy with the results!",
+  "Outstanding pediatric emergency care. The staff was quick and attentive to my child's needs.",
+  "Dr. Himabindhu's skin treatment plan worked wonders for my pigmentation problems.",
+  "Friendly and patient doctors who know how to handle children. My kids love visiting here!",
+  "Great experience with the skin care treatments. Saw visible improvements in just a few sessions.",
+  "The pediatric team is highly skilled and makes children feel comfortable during visits.",
+  "Professional dermatology care with personalized attention to my skin concerns.",
+  "Excellent child healthcare facility with a warm and welcoming environment.",
+  "The anti-aging treatments have given amazing results. Very satisfied with the care.",
+  "Dr. Sridhar is amazing with kids. Makes the whole experience stress-free for parents.",
+  "Comprehensive skin care solutions with modern treatment approaches.",
+  "Best pediatric care in Madanapalle. The doctors are knowledgeable and caring.",
+  "The dermatology procedures were explained thoroughly. Great results for my skin issues.",
+  "Child-friendly atmosphere and expert medical care. Highly recommend!"
 ];
 
 const generateRandomRating = () => (Math.random() < 0.3 ? 4 : 5); // 30% 4-star, 70% 5-star
@@ -53,7 +53,7 @@ const generateRandomRating = () => (Math.random() < 0.3 ? 4 : 5); // 30% 4-star,
 const generateReviews = () => {
   return names.map((name) => ({
     name,
-    scan: scans[Math.floor(Math.random() * scans.length)],
+    service: Math.random() < 0.5 ? "Pediatric Care" : "Dermatology",
     date: generateRandomDate(),
     review: reviews[Math.floor(Math.random() * reviews.length)],
     rating: generateRandomRating(),
@@ -143,9 +143,9 @@ const GoogleReviews = () => {
                   <FcGoogle className="w-10 h-10" />
                   <div className="text-left">
                     <p className="font-semibold text-gray-800 text-base">{review.name}</p>
-                    <p className="text-sm text-gray-500">{review.date} | {review.scan}</p>
-                  </div>
+                  <p className="text-sm text-gray-500">{review.date} | {review.service}</p>
                 </div>
+              </div>
                 <StarRating rating={review.rating} />
                 <p className="text-gray-700 italic leading-relaxed text-sm line-clamp-3">"{review.review}"</p>
               </div>

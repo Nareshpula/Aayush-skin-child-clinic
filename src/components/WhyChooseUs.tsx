@@ -5,23 +5,23 @@ import { User, ScanLine, HeartPulse, FileText } from 'lucide-react';
 const features = [
   {
     icon: <User className="w-8 h-8 text-blue-600" aria-label="Expert Radiologist Icon" />, 
-    title: "Expert Radiologists",
-    description: "Experienced professionals providing top-quality care and diagnostics."
+    title: "Pediatric & Dermatology Experts",
+    description: "Specialized doctors providing compassionate care for children's health and advanced skin treatments."
   },
   {
     icon: <ScanLine className="w-8 h-8 text-pink-600" aria-label="MRI Scan Icon" />, 
-    title: "Cutting-Edge Technology",
-    description: "Advanced equipment and modern infrastructure for accurate diagnostics."
+    title: "State-of-the-Art Technology",
+    description: "Modern medical equipment ensuring precise diagnosis and effective treatment for pediatric and skin conditions."
   },
   {
     icon: <HeartPulse className="w-8 h-8 text-red-600" aria-label="Patient-Centric Approach Icon" />,
     title: "Patient-Centric Approach",
-    description: "Focusing on comfort, clarity, and individualized patient care throughout."
+    description: "Personalized treatment plans with a warm and friendly approach, ensuring comfort for both kids and adults."
   },
   {
     icon: <FileText className="w-8 h-8 text-green-600" aria-label="Rapid Reporting Icon" />,
-    title: "Rapid Reporting",
-    description: "Providing fast, accurate results to facilitate timely clinical decisions."
+    title: "Fast & Accurate Diagnosis",
+    description: "Quick and reliable test results for early intervention and effective treatment planning."
   }
 ];
 
@@ -50,7 +50,7 @@ const WhyChooseUs = () => {
               viewport={{ once: true, margin: "-20%" }}
               transition={{ duration: 0.6 }}
             >
-              Why Choose Jyothi Diagnostic Centre?
+              Why Choose Aayush ?
             </motion.h2>
             <motion.p
               className="text-base md:text-lg text-gray-600 mb-8"
@@ -59,7 +59,7 @@ const WhyChooseUs = () => {
               viewport={{ once: true, margin: "-20%" }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Jyothi Diagnostic Centre is committed to providing accurate, timely, and affordable diagnostic services with a patient-first approach.
+              Experience top-tier pediatric and dermatology care with expert doctors, advanced treatments, and compassionate service at Aayush Child & Skin Hospital.
             </motion.p>
             <motion.div className="space-y-6">
               {features.map((feature, index) => ( 
@@ -95,11 +95,13 @@ const WhyChooseUs = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/sahasra-hospital-images/Jyothi-Diagnosis/Medical-Team.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzYWhhc3JhLWhvc3BpdGFsLWltYWdlcy9KeW90aGktRGlhZ25vc2lzL01lZGljYWwtVGVhbS53ZWJwIiwiaWF0IjoxNzQwMjEyNTI1LCJleHAiOjE4OTc4OTI1MjV9.Lz6ySfGE7DBDIiyRzbnv89gorl23BF2PMoOTgvxIPQo"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Team-Image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1UZWFtLUltYWdlLmpwZyIsImlhdCI6MTc0Mjg5NDIzMiwiZXhwIjoxOTAwNTc0MjMyfQ.qlX0wTgH-P1cS3BnoZxXRtTUTW9K9mgPB9USTWf6cPw"
                 alt="Medical team providing diagnostic services"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover image-rendering-crisp transform-gpu will-change-transform"
+                loading="eager"
+                decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent backdrop-filter backdrop-brightness-105 backdrop-contrast-105"></div>
             </div>
           </motion.div>
         </div>

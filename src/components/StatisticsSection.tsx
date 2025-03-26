@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { Stethoscope, Brain, HeartPulse, Radiation } from "lucide-react";
+import { Clock, Users, UserCheck, Stethoscope } from "lucide-react";
 import { useInView } from "framer-motion";
 
 const stats = [
-  { icon: <Stethoscope className="w-10 h-10 text-indigo-600" />, label: "CT Scans", value: 20000, showPlus: true },
-  { icon: <Brain className="w-10 h-10 text-rose-500" />, label: "MRI Scans", value: 30000, showPlus: true },
-  { icon: <HeartPulse className="w-10 h-10 text-teal-500" />, label: "Ultrasound Scans", value: 50000, showPlus: true },
-  { icon: <Radiation className="w-10 h-10 text-amber-500" />, label: "Digital X-rays", value: 40000, showPlus: true },
+  { icon: <Clock className="w-10 h-10 text-indigo-600" />, label: "Years of Experience", value: 15, showPlus: true },
+  { icon: <Users className="w-10 h-10 text-rose-500" />, label: "Doctors", value: 2, showPlus: false },
+  { icon: <UserCheck className="w-10 h-10 text-teal-500" />, label: "Patients Served", value: 1, showPlus: true, suffix: "M" },
+  { icon: <Stethoscope className="w-10 h-10 text-amber-500" />, label: "Specialties", value: 20, showPlus: true },
 ];
 
 const StatisticsSection = () => {
@@ -36,18 +36,19 @@ const StatisticsSection = () => {
       <div 
         className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-90"
         style={{
-          backgroundImage: 'url("https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/sahasra-hospital-images/Jyothi-Diagnosis/statistics-image.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzYWhhc3JhLWhvc3BpdGFsLWltYWdlcy9KeW90aGktRGlhZ25vc2lzL3N0YXRpc3RpY3MtaW1hZ2Uud2VicCIsImlhdCI6MTc0MDI4NzA1OCwiZXhwIjoxODk3OTY3MDU4fQ.5baXc8cIHO-djXqK-izHtsCITX6boNSZ5hWRJb7Tm24")'
+          backgroundImage: 'url("https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/childrens-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvY2hpbGRyZW5zLWltYWdlLmpwZyIsImlhdCI6MTc0Mjg0MzA1OCwiZXhwIjoxOTAwNTIzMDU4fQ.pls1SZZrmICnohKUya153nK-NJRHnXfE7dR0qtNx11k")',
+          filter: 'brightness(1.1) contrast(1.05)'
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center backdrop-blur-sm bg-[#e7e7e7]/30 py-16 rounded-3xl mx-4 shadow-xl">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center backdrop-blur-[2px] bg-white/10 py-16 rounded-3xl mx-4 shadow-lg">
         <motion.h2
           className="text-5xl font-extrabold text-gray-800 mb-16 tracking-tight drop-shadow-lg"
           initial={{ opacity: 0, y: 40 }}
           animate={controls}
           transition={{ duration: 1 }}
         >
-          Numbers That Speak: Our Diagnostic Achievements
+          Clinical Excellence
         </motion.h2>
 
         <motion.div
@@ -59,14 +60,14 @@ const StatisticsSection = () => {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="flex flex-col items-center justify-center bg-white/40 rounded-2xl shadow-xl w-44 h-44 md:w-48 md:h-48 backdrop-blur-md border border-white/20"
+              className="flex flex-col items-center justify-center bg-white/20 hover:bg-white/30 rounded-2xl shadow-lg hover:shadow-xl w-44 h-44 md:w-48 md:h-48 backdrop-blur-[4px] border border-white/30 transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
               animate={controls}
               transition={{ delay: 0.2 * index, duration: 0.6 }}
             >
               <div className="mb-4">{stat.icon}</div>
               <span className="text-3xl font-bold text-gray-800 drop-shadow-sm">
-                {counts[index].toLocaleString()}{stat.showPlus && '+'}
+                {counts[index].toLocaleString()}{stat.suffix || ''}{stat.showPlus && '+'}
               </span>
               <p className="text-sm font-medium text-gray-700 mt-1">{stat.label}</p>
             </motion.div>
