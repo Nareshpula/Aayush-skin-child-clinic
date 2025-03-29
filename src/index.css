@@ -9,6 +9,18 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translateZ(0);
+  perspective: 1000;
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform;
+  filter: contrast(1.02);
+}
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 /* Performance optimizations */

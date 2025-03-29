@@ -128,10 +128,10 @@ const Navbar = () => {
                 </h1>
                 <div className="h-8 w-px bg-[#685392]/30"></div>
                 <div className="flex flex-col w-max">
-                  <span className="font-['Open_Sans'] text-base md:text-lg font-semibold text-[#7e3a93] tracking-wide">
+                  <span className="font-['Montserrat'] text-base md:text-lg font-extrabold text-[#7e3a93] tracking-wide">
                     Child & Skin
                   </span>
-                  <span className="font-['Open_Sans'] text-sm md:text-base text-[#7e3a93]/90 tracking-wide w-full text-center">
+                  <span className="font-['Montserrat'] text-sm md:text-base font-bold text-[#7e3a93]/90 tracking-wide w-full text-center">
                     Hospital
                   </span>
                 </div>

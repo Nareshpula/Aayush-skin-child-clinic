@@ -23,7 +23,6 @@ export default function ContactForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Clear messages when user starts typing again
     setSuccess(false);
     setError(null);
   };
@@ -49,7 +48,6 @@ export default function ContactForm() {
       .then(() => {
         setSuccess(true);
         setFormData({ name: "", email: "", phone: "", message: "" });
-        // Keep success message visible for 5 seconds
         setTimeout(() => setSuccess(false), 5000);
       })
       .catch((err) => {
@@ -62,111 +60,138 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="w-full py-16 px-6 md:px-20 bg-[#f9fbff] relative overflow-hidden rounded-2xl shadow-2xl">
-      {/* Decorative background elements */}
+    <section className="w-full py-16 px-6 md:px-20 bg-gradient-to-br from-[#f8f9ff] via-[#f0f4ff] to-[#f5f0ff] relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#f0f4ff]/50 via-transparent to-[#f5f0ff]/50 pointer-events-none" />
       
+      {/* Animated Illustration */}
       <motion.div 
-        id="contact-form"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="max-w-3xl mx-auto text-gray-800 text-center"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="absolute left-0 bottom-0 w-[600px] h-full hidden lg:block pointer-events-none"
       >
-        <motion.h2 
-          className="text-4xl font-extrabold mb-5 text-gray-900"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          Get in Touch with Us
-        </motion.h2>
-        <motion.p 
-          className="text-lg mb-10 text-gray-700"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Appointments, queries, or feedback – we're here to help with all your diagnostic needs.
-        </motion.p>
-        <Card className="bg-white rounded-2xl shadow-xl border border-gray-100">
-          <CardContent className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <motion.input
-                type="text" 
-                name="name" 
-                value={formData.name} 
-                onChange={handleChange} 
-                placeholder="Your Name" 
-                required 
-                className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1c1c2b] focus:border-transparent outline-none text-gray-900 placeholder-gray-500 transition-all duration-300" 
-                disabled={isSubmitting}
-              />
-              <motion.input 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-                placeholder="Your Email" 
-                type="email" 
-                required 
-                className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#f9fbff] focus:border-transparent outline-none text-gray-900 placeholder-gray-500 transition-all duration-300" 
-                disabled={isSubmitting}
-              />
-              <motion.input 
-                name="phone" 
-                value={formData.phone} 
-                onChange={handleChange} 
-                placeholder="Your Phone Number" 
-                required 
-                className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#f9fbff] focus:border-transparent outline-none text-gray-900 placeholder-gray-500 transition-all duration-300" 
-                disabled={isSubmitting}
-              />
-              <motion.textarea 
-                name="message" 
-                value={formData.message} 
-                onChange={handleChange} 
-                placeholder="Your Message" 
-                rows={4} 
-                required 
-                className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#f9fbff] focus:border-transparent outline-none resize-none text-gray-900 placeholder-gray-500 transition-all duration-300" 
-                disabled={isSubmitting}
-              ></motion.textarea>
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-[#1c1c2b] to-[#38384f] text-white hover:from-[#f9fbff] hover:to-[#2b2b3d] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transition-all duration-300"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
-              </motion.div>
-              {success && (
-                <motion.p 
-                  initial={{ opacity: 0, y: 10 }} 
-                  animate={{ opacity: 1, y: 0 }} 
-                  className="text-green-600 font-semibold mt-2 p-3 bg-green-50 rounded-lg shadow-sm"
-                >
-                  ✅ Message sent successfully! We'll get back to you soon.
-                </motion.p>
-              )}
-              {error && (
-                <motion.p 
-                  initial={{ opacity: 0, y: 10 }} 
-                  animate={{ opacity: 1, y: 0 }} 
-                  className="text-red-500 font-semibold mt-2 p-3 bg-red-50 rounded-lg shadow-sm"
-                >
-                  ❌ {error}
-                </motion.p>
-              )}
-            </form>
-          </CardContent>
-        </Card>
+        <div className="relative w-full h-full flex items-center">
+          <img
+            src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Enquiry-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRW5xdWlyeS1pbWFnZS5zdmciLCJpYXQiOjE3NDMyNzE4MzQsImV4cCI6MTkwMDk1MTgzNH0.BLwyWfjifLrq2S_A081xHulZOJkZanc6f7xS1sP0JBo"
+            alt="Customer Support"
+            className="w-full h-auto max-h-[80%] object-contain transform scale-110"
+            style={{
+              filter: 'contrast(1.05) brightness(1.02)',
+              imageRendering: '-webkit-optimize-contrast'
+            }}
+          />
+        </div>
       </motion.div>
+      
+      {/* Content Container */}
+      <div className="container mx-auto relative">
+        <div className="lg:w-1/2 lg:ml-auto">
+          <motion.div 
+            id="contact-form"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <motion.h2 
+              className="text-4xl font-extrabold mb-5 bg-clip-text text-transparent bg-gradient-to-r from-[#7a3a95] to-[#3a4595]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Get in Touch with Us
+            </motion.h2>
+            <motion.p 
+              className="text-lg mb-10 text-gray-600"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Appointments, queries, or feedback – we're here to help with all your diagnostic needs.
+            </motion.p>
+
+            <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20">
+              <CardContent className="p-8 space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <motion.input
+                    type="text" 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={handleChange} 
+                    placeholder="Your Name" 
+                    required 
+                    className="w-full p-4 rounded-xl bg-white/80 border-2 border-gray-100 focus:border-[#7a3a95] focus:ring-2 focus:ring-[#7a3a95]/20 outline-none text-gray-800 placeholder-gray-400 transition-all duration-300" 
+                    disabled={isSubmitting}
+                  />
+                  <motion.input 
+                    name="email" 
+                    value={formData.email} 
+                    onChange={handleChange} 
+                    placeholder="Your Email" 
+                    type="email" 
+                    required 
+                    className="w-full p-4 rounded-xl bg-white/80 border-2 border-gray-100 focus:border-[#7a3a95] focus:ring-2 focus:ring-[#7a3a95]/20 outline-none text-gray-800 placeholder-gray-400 transition-all duration-300" 
+                    disabled={isSubmitting}
+                  />
+                  <motion.input 
+                    name="phone" 
+                    value={formData.phone} 
+                    onChange={handleChange} 
+                    placeholder="Your Phone Number" 
+                    required 
+                    className="w-full p-4 rounded-xl bg-white/80 border-2 border-gray-100 focus:border-[#7a3a95] focus:ring-2 focus:ring-[#7a3a95]/20 outline-none text-gray-800 placeholder-gray-400 transition-all duration-300" 
+                    disabled={isSubmitting}
+                  />
+                  <motion.textarea 
+                    name="message" 
+                    value={formData.message} 
+                    onChange={handleChange} 
+                    placeholder="Your Message" 
+                    rows={4} 
+                    required 
+                    className="w-full p-4 rounded-xl bg-white/80 border-2 border-gray-100 focus:border-[#7a3a95] focus:ring-2 focus:ring-[#7a3a95]/20 outline-none resize-none text-gray-800 placeholder-gray-400 transition-all duration-300" 
+                    disabled={isSubmitting}
+                  ></motion.textarea>
+                  <motion.div 
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-[#7a3a95] to-[#3a4595] text-white text-lg font-semibold py-4 rounded-xl hover:from-[#6a2a85] hover:to-[#2a3585] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
+                  </motion.div>
+                  {success && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      className="text-green-600 font-semibold mt-2 p-4 bg-green-50/80 backdrop-blur-sm rounded-xl shadow-sm"
+                    >
+                      ✅ Message sent successfully! We'll get back to you soon.
+                    </motion.p>
+                  )}
+                  {error && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      className="text-red-500 font-semibold mt-2 p-4 bg-red-50/80 backdrop-blur-sm rounded-xl shadow-sm"
+                    >
+                      ❌ {error}
+                    </motion.p>
+                  )}
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

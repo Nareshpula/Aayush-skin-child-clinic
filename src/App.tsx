@@ -12,6 +12,11 @@ import UltrasoundPregnancyScanning from './pages/UltrasoundPregnancyScanning';
 import UltrasoundScanning from './pages/UltrasoundScanning';
 import TeslaMriScan from './pages/TeslaMriScan';
 import BlogArticle from './pages/BlogArticle';
+import NutritionArticle from './pages/NutritionArticle';
+import FeverArticle from './pages/FeverArticle';
+import AcneArticle from './pages/AcneArticle';
+import PigmentationArticle from './pages/PigmentationArticle';
+import AgingArticle from './pages/AgingArticle';
 import ScrollToTop from '@/components/ScrollToTop';
 
 function App() {
@@ -35,6 +40,11 @@ function App() {
               <Route path="/ultrasound-scanning" element={<UltrasoundScanning />} />
               <Route path="/tesla-mri-scan" element={<TeslaMriScan />} />
               <Route path="/blog/understanding-ear-infections" element={<BlogArticle />} />
+              <Route path="/blog/nutritional-deficiencies-impact" element={<NutritionArticle />} />
+              <Route path="/blog/when-is-fever-a-concern" element={<FeverArticle />} />
+              <Route path="/blog/causes-of-acne-scars" element={<AcneArticle />} />
+              <Route path="/blog/understanding-pigmentation" element={<PigmentationArticle />} />
+              <Route path="/blog/understanding-aging-face" element={<AgingArticle />} />
             </Routes>
           </main>
           <Footer />

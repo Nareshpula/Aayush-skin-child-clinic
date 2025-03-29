@@ -106,11 +106,11 @@ const CentersOfExcellence = () => {
               "Children's Nutrition",
               "Pediatric Infectious Disease",
               "Developmental & Behavioral Pediatrics",
-              "Speech & Language Therapy",
-              "Occupational Therapy",
-              "Physiotherapy & Rehabilitation",
-              "Child Psychology",
-              "Radiology"
+              "Vaccinations & Immunizations",
+              "Expert NICU & PICU Services",
+              "Growth&Development Monitoring",
+              "Newborn Care & Well-Baby Checkups",
+              "Advanced Lab Services"
             ].map((specialty, index) => (
               <motion.button
                 key={specialty}
