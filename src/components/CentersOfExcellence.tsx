@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Baby, Stethoscope } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const CentersOfExcellence = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -82,15 +85,6 @@ const CentersOfExcellence = () => {
             <p className="text-base md:text-[16px] text-[#1b1a1b] leading-relaxed">
               Every child is unique, and at Aayush Hospital, we are committed to fostering their overall growth and well-being through a comprehensive range of specialized and personalized pediatric services. As India's leading multi-specialty pediatric healthcare provider, our dedication to excellence is upheld by a team of highly trained and certified pediatricians, along with a compassionate support staff, available around the clock to ensure the best possible care.
             </p>
-            <motion.a
-              href="#"
-              className="inline-flex items-center text-black hover:text-gray-700 transition-colors duration-300 group"
-              whileHover={{ x: 10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              <span className="font-semibold">Know More</span>
-              <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </motion.a>
           </motion.div>
 
           {/* Right Column - Specialties Grid */}
@@ -117,6 +111,36 @@ const CentersOfExcellence = () => {
                 className={`py-2.5 px-3 rounded-full bg-[#895ab8] text-white text-xs md:text-sm font-medium 
                   hover:bg-[#7a3a95] transition-all duration-300 shadow-md hover:shadow-lg
                   text-center leading-tight min-w-[120px] h-[42px] flex items-center justify-center`}
+                onClick={() => {
+                  if (specialty === "General Pediatrics") {
+                    navigate('/general-pediatrics');
+                    window.scrollTo(0, 0);
+                  } else if (specialty === "Children's Nutrition") {
+                    navigate('/childrens-nutrition');
+                    window.scrollTo(0, 0);
+                 } else if (specialty === "Pediatric Infectious Disease") {
+                   navigate('/pediatric-infectious-diseases');
+                   window.scrollTo(0, 0);
+                  } else if (specialty === "Developmental & Behavioral Pediatrics") {
+                    navigate('/developmental-behavioral-pediatrics');
+                    window.scrollTo(0, 0);
+                  } else if (specialty === "Vaccinations & Immunizations") {
+                    navigate('/vaccinations-immunizations');
+                    window.scrollTo(0, 0);
+                  } else if (specialty === "Expert NICU & PICU Services") {
+                    navigate('/picu-nicu');
+                    window.scrollTo(0, 0);
+                  } else if (specialty === "Advanced Lab Services") {
+                    navigate('/advanced-lab-services');
+                    window.scrollTo(0, 0);
+                  } else if (specialty === "Growth&Development Monitoring") {
+                    navigate('/growth-development-monitoring');
+                    window.scrollTo(0, 0);
+                  } else if (specialty === "Newborn Care & Well-Baby Checkups") {
+                    navigate('/newborn-care-well-baby-checkups');
+                    window.scrollTo(0, 0);
+                  }
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
