@@ -26,6 +26,8 @@ import NewbornCareWellBabyCheckups from './pages/NewbornCareWellBabyCheckups';
 import GrowthDevelopmentMonitoring from './pages/GrowthDevelopmentMonitoring';
 import AcneArticle from './pages/AcneArticle';
 import PigmentationArticle from './pages/PigmentationArticle';
+import Pigmentation from './pages/Pigmentation';
+import Acne from './pages/Acne';
 import AgingArticle from './pages/AgingArticle';
 import ScrollToTop from '@/components/ScrollToTop';
 
@@ -58,6 +60,8 @@ function App() {
             <Route path="/growth-development-monitoring" element={<GrowthDevelopmentMonitoring />} />
             <Route path="/advanced-lab-services" element={<AdvancedLabServices />} />
             <Route path="/newborn-care-well-baby-checkups" element={<NewbornCareWellBabyCheckups />} />
+            <Route path="/pigmentation" element={<Pigmentation />} />
+            <Route path="/acne" element={<Acne />} />
               <Route path="/blog/understanding-ear-infections" element={<BlogArticle />} />
               <Route path="/blog/nutritional-deficiencies-impact" element={<NutritionArticle />} />
               <Route path="/blog/when-is-fever-a-concern" element={<FeverArticle />} />
