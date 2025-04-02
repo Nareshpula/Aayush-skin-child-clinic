@@ -64,6 +64,7 @@ const DermatologySection = () => {
                 if (concern.path) {
                   navigate(concern.path);
                   window.scrollTo(0, 0);
+                  window.scrollTo(0, 0);
                 }
               }}
               key={concern.title}

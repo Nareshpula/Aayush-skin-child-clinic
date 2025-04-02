@@ -28,6 +28,9 @@ import AcneArticle from './pages/AcneArticle';
 import PigmentationArticle from './pages/PigmentationArticle';
 import Pigmentation from './pages/Pigmentation';
 import Acne from './pages/Acne';
+import Dullness from './pages/Dullness';
+import Dryness from './pages/Dryness';
+import AntiAgeing from './pages/AntiAgeing';
 import AgingArticle from './pages/AgingArticle';
 import ScrollToTop from '@/components/ScrollToTop';
 
@@ -61,6 +64,9 @@ function App() {
             <Route path="/advanced-lab-services" element={<AdvancedLabServices />} />
             <Route path="/newborn-care-well-baby-checkups" element={<NewbornCareWellBabyCheckups />} />
             <Route path="/pigmentation" element={<Pigmentation />} />
+            <Route path="/dullness" element={<Dullness />} />
+            <Route path="/anti-ageing" element={<AntiAgeing />} />
+            <Route path="/dryness" element={<Dryness />} />
             <Route path="/acne" element={<Acne />} />
               <Route path="/blog/understanding-ear-infections" element={<BlogArticle />} />
               <Route path="/blog/nutritional-deficiencies-impact" element={<NutritionArticle />} />
