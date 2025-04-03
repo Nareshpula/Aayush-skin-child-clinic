@@ -45,23 +45,24 @@ const MaskedLetter = ({ letter, image }: { letter: string; image: string }) => (
 
 const MillionsSection = () => {
   return (
-    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f9f2f5 0%, #fdf7f9 100%)' }}>
+    <section className="py-20 relative overflow-visible" style={{ background: 'linear-gradient(135deg, #f9f2f5 0%, #fdf7f9 100%)' }}>
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <div className="relative mb-8 overflow-hidden">
+        <div className="text-center overflow-visible">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-8 overflow-visible px-4"
+          >
             <motion.h2
-              className="text-[120px] md:text-[180px] font-bold leading-none relative gpu-accelerated"
+              className="text-[70px] sm:text-[90px] md:text-[120px] lg:text-[140px] font-bold leading-none relative gpu-accelerated"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              {'MILLIONS'.split('').map((letter, index) => (
+              <div className="whitespace-nowrap overflow-visible w-full">
+                {'MILLIONS'.split('').map((letter, index) => (
                 <motion.span
                   key={index}
                   className="gpu-accelerated"
@@ -75,16 +76,17 @@ const MillionsSection = () => {
                                                     letter === 'L' ? (index === 2 ? '1' : '2') : '1'}`]}
                   />
                 </motion.span>
-              ))}
+                ))}
+              </div>
             </motion.h2>
-          </div>
+          </motion.div>
 
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl md:text-4xl font-bold text-black mb-6"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black mb-6 whitespace-nowrap px-4"
           >
             of lives changed and counting
           </motion.h3>
@@ -99,7 +101,7 @@ const MillionsSection = () => {
             Our team of experts is making a difference through the world-renowned care 
             they provide and the countless lives that have been changed as a result.
           </motion.p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Decorative Elements */}

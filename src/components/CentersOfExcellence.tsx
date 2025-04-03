@@ -24,15 +24,15 @@ const CentersOfExcellence = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group"
+            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group mx-auto"
           >
-            <div className="aspect-[3/2] w-full h-48 overflow-hidden">
+            <div className="aspect-[3/2] w-full max-w-sm h-48 overflow-hidden">
               <img
                 src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/child-care-images.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvY2hpbGQtY2FyZS1pbWFnZXMuanBnIiwiaWF0IjoxNzQyNzQ4OTEzLCJleHAiOjE5MDA0Mjg5MTN9.wQtyUQ_WfUdQNz3ewt4xLZMzt7y06EgB9Whg1zaVuco"
                 alt="Child Care"
@@ -51,9 +51,9 @@ const CentersOfExcellence = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group"
+            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group mx-auto"
           >
-            <div className="aspect-[3/2] w-full h-48 overflow-hidden">
+            <div className="aspect-[3/2] w-full max-w-sm h-48 overflow-hidden">
               <img
                 src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/skin-care-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvc2tpbi1jYXJlLWltYWdlLmpwZyIsImlhdCI6MTc0Mjc0OTQyNCwiZXhwIjoxOTAwNDI5NDI0fQ.jWW3BxqeES8A5XwOPLWnkTn0TQPSaSRnRUvRxicOd_w"
                 alt="Skin Care"
@@ -79,7 +79,7 @@ const CentersOfExcellence = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="space-y-6 pr-12"
+            className="space-y-6 md:pr-12 mb-12 md:mb-0"
           >
             <h2 className="text-3xl font-bold text-[#000000]">Child Care</h2>
             <p className="text-base md:text-[16px] text-[#1b1a1b] leading-relaxed">
@@ -93,7 +93,7 @@ const CentersOfExcellence = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-3 gap-x-3 gap-y-2 pl-12"
+            className="grid grid-cols-2 md:grid-cols-3 gap-3 md:pl-12"
           >
             {[
               "General Pediatrics",

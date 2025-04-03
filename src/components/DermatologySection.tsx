@@ -57,7 +57,7 @@ const DermatologySection = () => {
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {skinConcerns.map((concern, index) => (
             <motion.div
               onClick={() => {
@@ -72,11 +72,11 @@ const DermatologySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center group cursor-pointer"
+              className="flex flex-col items-center group cursor-pointer mx-auto"
             >
               <motion.div
                 className={cn(
-                  "relative w-40 h-40 rounded-full overflow-hidden mb-4",
+                  "relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden mb-4",
                   "shadow-lg hover:shadow-xl transition-shadow duration-300",
                   "transform-gpu backface-hidden"
                 )}
@@ -98,10 +98,10 @@ const DermatologySection = () => {
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300" />
               </motion.div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 text-center group-hover:text-[#7a3a95] transition-colors duration-300">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 text-center group-hover:text-[#7a3a95] transition-colors duration-300">
                 {concern.title}
               </h3>
-              <p className="text-sm text-gray-600 text-center">
+              <p className="text-xs sm:text-sm text-gray-600 text-center px-2">
                 {concern.description}
               </p>
             </motion.div>

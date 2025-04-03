@@ -1,34 +1,56 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Search, Phone, ScanLine } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-// Define menu items once to avoid duplication
 const menuItems = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About Us' },
   {
-    path: '#services',
-    label: 'Services',
+    path: '#skin-care',
+    label: 'Skin Care',
     dropdown: [
-      { label: 'Digital X-rays', path: '/digital-xrays' },
-      { label: 'Pregnancy Scans', path: '/ultrasound-pregnancy-scanning' },
-      { label: 'Ultrasound & Color Doppler', path: '/ultrasound-scanning' },
-      { label: 'CT Scan', path: '/ct-scan' },
-      { label: '3.0 Tesla Open Flare MRI', path: '/tesla-mri-scan' }
+      { label: 'Dullness', path: '/dullness' },
+      { label: 'Acne & Acne Scars', path: '/acne' },
+      { label: 'Pigmentation', path: '/pigmentation' },
+      { label: 'Anti-Ageing', path: '/anti-ageing' },
+      { label: 'Dryness', path: '/dryness' }
     ]
   },
-  { path: '/doctors', label: 'Doctors' },
-  { path: '#contact-form', label: 'Appointments & Queries' },
+  {
+    path: '#child-care',
+    label: 'Child Care',
+    dropdown: [
+      { label: 'General Pediatrics', path: '/general-pediatrics' },
+      { label: 'Children Nutrition', path: '/childrens-nutrition' },
+      { label: 'Pediatric Infectious Disease', path: '/pediatric-infectious-diseases' },
+      { label: 'Developmental & Behavioral Pediatrics', path: '/developmental-behavioral-pediatrics' },
+      { label: 'Vaccinations & Immunizations', path: '/vaccinations-immunizations' },
+      { label: 'NICU & PICU', path: '/picu-nicu' },
+      { label: 'Growth & Development Monitoring', path: '/growth-development-monitoring' },
+      { label: 'Newborn Care & Well-Baby Checkups', path: '/newborn-care-well-baby-checkups' },
+      { label: 'Advanced Lab Services', path: '/advanced-lab-services' }
+    ]
+  },
+  { path: '#contact-form', label: 'Enquiries & Queries' },
   { path: '#visit-us', label: 'Visit Us' }
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileOpenCategory, setMobileOpenCategory] = useState<string | null>(null);
   const [showScanTooltip, setShowScanTooltip] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  
+  const toggleMobileCategory = (category: string) => {
+    if (mobileOpenCategory === category) {
+      setMobileOpenCategory(null);
+    } else {
+      setMobileOpenCategory(category);
+    }
+  };
   
   const handleVisitUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -113,28 +135,26 @@ const Navbar = () => {
         <div className={`flex justify-between items-center h-24 ${
           isScrolled ? 'border-b border-gray-200/50' : 'border-b border-black/50'
         }`}>
-          <Link to="/" className="flex items-center gap-4 flex-1 group">
-            <div className="relative w-auto h-16 flex items-center">
+          <Link to="/" className="flex items-center gap-1 md:gap-4 flex-1 group">
+            <div className="relative w-auto h-10 md:h-16 flex items-center">
               <img 
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/sahasra-hospital-images/Jyothi-Diagnosis/Jyohi-diagnostics-logo.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzYWhhc3JhLWhvc3BpdGFsLWltYWdlcy9KeW90aGktRGlhZ25vc2lzL0p5b2hpLWRpYWdub3N0aWNzLWxvZ28uc3ZnIiwiaWF0IjoxNzQxMDc5MjgzLCJleHAiOjE4OTg3NTkyODN9.3-uIY78ikzZkxuKgYiDzssJqw2ErUA7SoXx2AnpkH-U"
-                alt="Jyothi Diagnostics Logo"
-                className="h-full w-auto object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-500"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Aayush-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BYXl1c2gtbG9nby5wbmciLCJpYXQiOjE3NDM2OTk3MzAsImV4cCI6MTkwMTM3OTczMH0.pg25T9SRSiXE0jn46_vxVzTK_vlJGURYwbeRpbjnIF0"
+                alt="Aayush Logo"
+                className="h-full w-auto object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-500 max-h-10 md:max-h-16 min-w-[32px]"
               />
             </div>
-            <div>
-              <div className="flex items-center gap-3">
-                <h1 className="font-['Montserrat'] text-lg md:text-2xl font-extrabold tracking-wider text-[#685392] drop-shadow-sm">
-                  AAYUSH
-                </h1>
-                <div className="h-8 w-px bg-[#685392]/30"></div>
-                <div className="flex flex-col w-max">
-                  <span className="font-['Montserrat'] text-base md:text-lg font-extrabold text-[#7e3a93] tracking-wide">
-                    Child & Skin
-                  </span>
-                  <span className="font-['Montserrat'] text-sm md:text-base font-bold text-[#7e3a93]/90 tracking-wide w-full text-center">
-                    Hospital
-                  </span>
-                </div>
+            <div className="flex items-center">
+              <h1 className="font-['Montserrat'] text-sm md:text-2xl font-extrabold tracking-wider text-[#685392] drop-shadow-sm">
+                AAYUSH
+              </h1>
+              <div className="mx-2 h-8 md:h-12 w-0.5 bg-[#685392]/70 rounded-full"></div>
+              <div className="flex flex-col">
+                <span className="font-['Montserrat'] text-xs md:text-lg font-extrabold text-[#7e3a93] tracking-wide">
+                  Child & Skin
+                </span>
+                <span className="font-['Montserrat'] text-xs md:text-base font-bold text-[#7e3a93]/90 tracking-wide">
+                  Hospital
+                </span>
               </div>
             </div>
           </Link>
@@ -173,28 +193,28 @@ const Navbar = () => {
             </div>
             {/* Mobile icons */}
             <div className="md:hidden flex items-center space-x-3">
-              <div className="relative">
+              <div className="relative z-20 hidden xs:block">
                 <button 
                   onMouseEnter={() => setShowScanTooltip(true)}
                   onMouseLeave={() => setShowScanTooltip(false)}
-                  className="flex items-center justify-center w-10 h-10 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300"
+                  className="flex items-center justify-center w-8 h-8 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300 visible"
                 >
-                  <ScanLine className="w-5 h-5 text-white" />
+                  <ScanLine className="w-4 h-4 text-white" />
                 </button>
                 {showScanTooltip && (
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-gray-800 text-white text-xs rounded whitespace-nowrap shadow-lg z-50">
-                    24/7 CT & MRI Scans Available
+                    24/7 NICU & PICU Services Available
                   </div>
                 )}
               </div>
               <a 
                 href="tel:9676079516"
-                className="flex items-center justify-center w-10 h-10 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300"
+                className="flex items-center justify-center w-8 h-8 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300 z-20"
               >
-                <Phone className="w-5 h-5 text-white" />
+                <Phone className="w-4 h-4 text-white" />
               </a>
-              <button onClick={() => setIsOpen(!isOpen)} className="p-2">
-                {isOpen ? <X className="w-6 h-6 text-gray-900" /> : <Menu className="w-6 h-6 text-gray-900" />}
+              <button onClick={() => setIsOpen(!isOpen)} className="p-1 z-20 visible">
+                {isOpen ? <X className="w-5 h-5 text-gray-900" /> : <Menu className="w-5 h-5 text-gray-900" />}
               </button>
             </div>
           </div>
@@ -230,7 +250,9 @@ const Navbar = () => {
                             <Link 
                               to={dropItem.path}
                               onClick={handleMenuClick}
-                             className="block px-4 py-3 text-sm text-gray-700 hover:bg-[#dfcde7] transition-all duration-300 hover:translate-x-2"
+                             className={`block px-4 py-3 text-sm text-gray-700 hover:text-white transition-all duration-300 hover:translate-x-2 ${
+                               item.label === 'Skin Care' ? 'hover:bg-[#ffc0cb]' : 'hover:bg-[#50b8b9]'
+                             }`}
                             >
                               {dropItem.label}
                             </Link>
@@ -265,36 +287,38 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden fixed top-24 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300 ease-in-out ${
+      <div className={`md:hidden fixed top-24 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300 ease-in-out z-10 ${
         isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
       }`}>
         <div className="px-2 pt-2 pb-20 space-y-1 sm:px-3 max-h-[calc(100vh-96px)] overflow-y-auto border-t border-gray-200">
             {menuItems.map((item, index) => {
               if (item.dropdown) {
                 return (
-                  <div key={index} className="space-y-1">
-                    <button
-                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className="w-full flex items-center justify-between px-3 py-2.5 text-gray-900 font-medium hover:bg-gray-100/80 rounded-lg transition-colors duration-200"
-                    >
-                      <span>{item.label}</span>
-                      <span className={`transform transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`}>▼</span>
-                    </button>
-                    <div className={`pl-6 space-y-1 transition-all duration-200 ${mobileServicesOpen ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'}`}>
-                      {item.dropdown.map((dropItem, dropIndex) => (
-                        <Link
-                          key={dropIndex}
-                          to={dropItem.path}
-                          className="block px-3 py-2.5 text-gray-700 hover:bg-gray-100/80 rounded-lg transition-colors duration-200"
-                          onClick={() => {
-                            handleMenuClick();
-                            setMobileServicesOpen(false);
-                          }}
-                        >
-                          {dropItem.label}
-                        </Link>
-                      ))}
-                    </div>
+                  <div key={index} className="space-y-1 mb-2">
+                   <button
+                     onClick={() => toggleMobileCategory(item.label)}
+                     className="w-full flex items-center justify-between px-3 py-2.5 text-gray-900 font-medium hover:bg-gray-100/80 rounded-lg transition-colors duration-200"
+                   >
+                     <span>{item.label}</span>
+                     <span className={`transform transition-transform duration-200 ${mobileOpenCategory === item.label ? 'rotate-180' : ''}`}>▼</span>
+                   </button>
+                   <div className={`pl-6 space-y-1 transition-all duration-200 ${mobileOpenCategory === item.label ? 'opacity-100 max-h-[500px]' : 'opacity-0 max-h-0 overflow-hidden'}`}>
+                     {item.dropdown.map((dropItem, dropIndex) => (
+                       <Link
+                         key={dropIndex}
+                         to={dropItem.path}
+                         className={`block px-3 py-2.5 text-gray-700 hover:text-white rounded-lg transition-colors duration-200 relative z-20 ${
+                           item.label === 'Skin Care' ? 'hover:bg-[#ffc0cb]' : 'hover:bg-[#50b8b9]'
+                         }`}
+                         onClick={() => {
+                           handleMenuClick();
+                           setMobileOpenCategory(null);
+                         }}
+                       >
+                         {dropItem.label}
+                       </Link>
+                     ))}
+                   </div>
                   </div>
                 );
               }
@@ -305,19 +329,23 @@ const Navbar = () => {
                   className={`block px-3 py-2.5 hover:bg-gray-100/80 rounded-lg transition-colors duration-200 ${
                     location.pathname === item.path && item.path !== '/' ? 'text-blue-600' : 'text-gray-900'
                   }`}
+                  style={{ position: 'relative', zIndex: 20 }}
                   onClick={
                     item.path === '/' ? handleHomeClick :
                     item.path === '#visit-us' ? handleVisitUsClick : 
                     item.path === '#contact-form' ? handleContactClick : 
                     () => {
                       handleMenuClick();
-                      window.scrollTo(0, 0);
+                      setMobileOpenCategory(null);
+                      if (item.path !== '#') {
+                        window.scrollTo(0, 0);
+                      }
                     }
                   }
                 >{item.label}</Link>
               );
             })}
-            <div className="mt-4 space-y-2">
+            <div className="mt-4 space-y-2 relative z-20">
             <a 
               href="tel:9676079516"
               className="block w-full bg-purple-600 text-white px-6 py-2.5 rounded-full hover:bg-purple-700 transition duration-300 text-center shadow-md"
@@ -327,9 +355,9 @@ const Navbar = () => {
                 Contact Us
               </span>
             </a>
-            <a
+            <a 
               href="tel:9676079516" 
-              className="w-full bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 shadow-md text-center"
+              className="block w-full bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 shadow-md text-center"
             >
               <span className="flex items-center justify-center">
                 <img 
@@ -337,7 +365,7 @@ const Navbar = () => {
                   alt="Emergency"
                   className="w-6 h-6 mr-2 animate-pulse"
                 />
-                Pediatric Emergency
+                <span className="whitespace-normal">Pediatric Emergency</span>
               </span>
             </a>
           </div>

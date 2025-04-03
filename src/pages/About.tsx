@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Rocket, Heart, Lightbulb, Shield, Building2, History, Stethoscope, Microscope, Guitar as Hospital, Calendar, Stethoscope as UltrasoundIcon, Building, Cpu, ChevronDown } from 'lucide-react';
+import { Target, Rocket, Heart, Lightbulb, Shield, Building2, History, Stethoscope, Baby, Calendar, Users, Building, Star, ChevronDown } from 'lucide-react';
 
 const HeroSection = () => {
   const words = "JYOTHI Diagnostics Center".split(" ");
@@ -10,8 +10,8 @@ const HeroSection = () => {
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0">
         <img
-          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/sahasra-hospital-images/Jyothi-Diagnosis/Hospital-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzYWhhc3JhLWhvc3BpdGFsLWltYWdlcy9KeW90aGktRGlhZ25vc2lzL0hvc3BpdGFsLWltYWdlLmpwZyIsImlhdCI6MTc0MTg3Nzk1OCwiZXhwIjoxODk5NTU3OTU4fQ.KArRjKowowCAc7KMLOqrXwwuOZHsHM7hbFWyqAhww5s"
-          alt="Hospital Building"
+          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Team-Image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1UZWFtLUltYWdlLmpwZyIsImlhdCI6MTc0Mjg5NDIzMiwiZXhwIjoxOTAwNTc0MjMyfQ.qlX0wTgH-P1cS3BnoZxXRtTUTW9K9mgPB9USTWf6cPw"
+          alt="Aayush Hospital Team"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></div>
@@ -26,25 +26,38 @@ const HeroSection = () => {
           className="max-w-5xl mx-auto"
         >
           <div className="flex flex-wrap justify-center gap-x-4 text-5xl md:text-7xl font-bold text-white">
-            {words.map((word, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="inline-block drop-shadow-lg"
-              >
-                {word}
-              </motion.span>
-            ))}
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-block drop-shadow-lg"
+            >
+              AAYUSH
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-block drop-shadow-lg"
+            >
+              Child & Skin
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="inline-block drop-shadow-lg"
+            >
+              Hospital
+            </motion.span>
           </div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: words.length * 0.1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-8 text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-lg"
           >
-            Pioneering Excellence in Advanced Diagnostic Healthcare with Cutting-Edge Technology and Expert Care
+            Pioneering Excellence in Child Care and Skin Care with Specialized Expertise and Compassionate Treatment
           </motion.p>
         </motion.div>
 
@@ -73,10 +86,10 @@ const ZoomBox = () => {
     <div className="flex justify-center items-center h-[60vh] bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="zoom-box w-[90%] max-w-4xl bg-gradient-to-br from-green-50 to-blue-50 border border-green-100/50 rounded-2xl shadow-xl backdrop-blur-sm p-8 text-center">
         <h1 className="text-3xl font-bold text-sky-600 mb-4 antialiased">
-          No. 1 Diagnostic Center in Madanapalle!
+          No. 1 Child & Skin Hospital in Madanapalle!
         </h1>
         <p className="text-lg text-sky-500/90 antialiased font-medium">
-          Advanced MRI, CT, Ultrasound, and Digital X-Ray scans—all under one roof.
+          Specialized pediatric care and advanced dermatology treatments—all under one roof.
         </p>
       </div>
     </div>
@@ -98,7 +111,7 @@ const About = () => {
             Our Vision & Mission
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Vision */}
+            {/* Vision for Child & Skin Hospital */}
             <div className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
               <div className="flex items-center mb-6">
                 <div className="p-3 rounded-lg bg-pink-50">
@@ -107,14 +120,15 @@ const About = () => {
                 <h2 className="ml-4 text-2xl font-bold text-[#e41d4c]">Our Vision</h2>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                To be the leading diagnostic center that sets new standards in healthcare
-                through accurate, affordable, and compassionate diagnostic services. We
-                envision a future where quality healthcare is accessible to all, powered
-                by cutting-edge technology and delivered with utmost care.
+                To be the leading specialized healthcare facility that sets new standards in 
+                pediatric and dermatological care through comprehensive, compassionate, and 
+                personalized treatment. We envision a future where quality healthcare for 
+                children and skin conditions is accessible to all, delivered with expertise 
+                and empathy.
               </p>
             </div>
 
-            {/* Mission */}
+            {/* Mission for Child & Skin Hospital */}
             <div className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
               <div className="flex items-center mb-6">
                 <div className="p-3 rounded-lg bg-pink-50">
@@ -123,10 +137,11 @@ const About = () => {
                 <h2 className="ml-4 text-2xl font-bold text-[#e41d4c]">Our Mission</h2>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                To leverage advanced technology and expertise in providing comprehensive
-                diagnostic solutions that enable better healthcare decisions. We are
-                committed to maintaining the highest standards of accuracy, reliability,
-                and patient care while making our services accessible and affordable.
+                To provide exceptional healthcare services for children and skin conditions 
+                through a team of specialized doctors, advanced treatment methods, and a 
+                patient-centered approach. We are committed to maintaining the highest 
+                standards of medical excellence, continuous innovation, and compassionate 
+                care while ensuring our services are accessible to all families in need.
               </p>
             </div>
           </div>
@@ -152,7 +167,8 @@ const About = () => {
               </div>
               <p className="text-gray-600 leading-relaxed">
                 We prioritize patient comfort and trust, ensuring a supportive and
-                caring environment throughout their diagnostic journey.
+                caring environment throughout their healthcare journey, with special 
+                attention to children's needs and skin sensitivities.
               </p>
             </div>
 
@@ -167,8 +183,9 @@ const About = () => {
                 </h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                We stay at the forefront of diagnostic technology, continuously
-                upgrading our capabilities to provide the most accurate results.
+                We stay at the forefront of pediatric and dermatological advancements, 
+                continuously upgrading our capabilities to provide the most effective 
+                treatments for children's health and skin conditions.
               </p>
             </div>
 
@@ -184,7 +201,8 @@ const About = () => {
               </div>
               <p className="text-gray-600 leading-relaxed">
                 We maintain the highest standards of professional integrity and
-                excellence in every aspect of our service delivery.
+                excellence in every aspect of our healthcare delivery, ensuring 
+                ethical practices and optimal outcomes for all our patients.
               </p>
             </div>
           </div>
@@ -218,7 +236,7 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Collaborating with Madanapalle's leading healthcare institutions to deliver
-            comprehensive diagnostic solutions and enhance patient care.
+            comprehensive healthcare solutions and enhance patient care.
           </motion.p>
         </div>
 
@@ -243,8 +261,8 @@ const About = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-[#000000] mb-4">Our Journey</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Since our establishment in 2015 by Dr. JYOTHI R.G, we have been committed
-              to delivering excellence in diagnostic healthcare.
+              Since our establishment as Aayush Child & Skin Hospital, we have been committed
+              to delivering excellence in specialized healthcare for children and skin conditions.
             </p>
           </div>
 
@@ -261,45 +279,45 @@ const About = () => {
             <div className="space-y-12">
               {[
                 {
-                  year: "2015",
+                  year: "2020",
                   title: "Foundation",
-                  description: "Founded by Dr. JYOTHI R.G with a vision to provide advanced diagnostic services in Madanapalle.",
-                  icon: <Calendar className="w-8 h-8 text-[#e15294]" />
-                },
-                {
-                  year: "2017",
-                  title: "Advanced Ultrasound",
-                  description: "Installation of Advanced Ultrasound machines improving diagnostic accuracy.",
-                  icon: <UltrasoundIcon className="w-8 h-8 text-[#e15294]" />
-                },
-                {
-                  year: "2019",
-                  title: "Hospital Collaborations",
-                  description: "Collaboration with leading hospitals in Madanapalle to extend diagnostic services.",
+                  description: "Established Aayush Child & Skin Hospital with a vision to provide specialized healthcare services in Madanapalle.",
                   icon: <Building className="w-8 h-8 text-[#e15294]" />
                 },
                 {
                   year: "2021",
-                  title: "Digital MRI Installation",
-                  description: "Acquired Digital MRI with 3 Tesla Platform offering high-resolution imaging.",
-                  icon: <Cpu className="w-8 h-8 text-[#e15294]" />
+                  title: "Pediatric Department Expansion",
+                  description: "Expanded our pediatric services to include specialized care for various childhood conditions.",
+                  icon: <Baby className="w-8 h-8 text-[#e15294]" />
+                },
+                {
+                  year: "2022",
+                  title: "Dermatology Excellence",
+                  description: "Introduced advanced dermatological treatments and technologies for comprehensive skin care.",
+                  icon: <Star className="w-8 h-8 text-[#e15294]" />
+                },
+                {
+                  year: "2022",
+                  title: "NICU & PICU Launch",
+                  description: "Launched state-of-the-art Neonatal and Pediatric Intensive Care Units for critical care.",
+                  icon: <Heart className="w-8 h-8 text-[#e15294]" />
                 },
                 {
                   year: "2023",
-                  title: "Equipment Upgrade",
-                  description: "Upgraded with High-performance CT Scanners and Modern Digital X-rays.",
-                  icon: <Microscope className="w-8 h-8 text-[#e15294]" />
+                  title: "Advanced Treatment Methods",
+                  description: "Introduced cutting-edge treatments for both pediatric conditions and dermatological issues.",
+                  icon: <Stethoscope className="w-8 h-8 text-[#e15294]" />
                 },
                 {
                   year: "2024",
                   title: "Expanded Partnerships",
-                  description: "Expanded partnerships with more hospitals to enhance patient care access.",
+                  description: "Expanded partnerships with more healthcare institutions to enhance specialized care access.",
                   icon: <Building2 className="w-8 h-8 text-[#e15294]" />
                 },
                 {
                   year: "2025",
-                  title: "Elevating Healthcare Standards",
-                  description: "Leveraging advanced technology and the expertise of top-tier doctors, Jyothi Diagnostic Center is emerging as Madanapalle's No.1 diagnostics provider.",
+                  title: "Elevating Specialized Healthcare",
+                  description: "Leveraging specialized expertise and advanced treatment methods, Aayush Child & Skin Hospital is emerging as Madanapalle's premier healthcare provider for children and skin conditions.",
                   icon: <History className="w-8 h-8 text-[#e15294]" />
                 }
               ].map((milestone, index) => (
@@ -359,6 +377,186 @@ const About = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Specialized Services Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl font-bold text-[#000000] mb-4">Our Specialized Services</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              At Aayush Child & Skin Hospital, we offer comprehensive healthcare services focused on two key specialties.
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Child Care Services */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-[#f0f7ff] rounded-2xl p-8 shadow-lg"
+            >
+              <div className="flex items-center mb-6">
+                <div className="p-3 rounded-lg bg-blue-100">
+                  <Baby className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="ml-4 text-2xl font-bold text-blue-600">Child Care</h3>
+              </div>
+              
+              <p className="text-gray-700 mb-6">
+                Our comprehensive pediatric services are designed to support children's health from infancy through adolescence, 
+                with specialized care for various conditions and developmental needs.
+              </p>
+              
+              <ul className="space-y-3">
+                {[
+                  "General Pediatrics",
+                  "Children's Nutrition",
+                  "Pediatric Infectious Diseases",
+                  "Developmental & Behavioral Pediatrics",
+                  "Vaccinations & Immunizations",
+                  "NICU & PICU Services",
+                  "Growth & Development Monitoring",
+                  "Newborn Care & Well-Baby Checkups",
+                  "Advanced Lab Services"
+                ].map((service, idx) => (
+                  <motion.li 
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    className="flex items-start"
+                  >
+                    <span className="text-blue-500 mr-2">•</span>
+                    <span className="text-gray-700">{service}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+            
+            {/* Skin Care Services */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-[#fff5f8] rounded-2xl p-8 shadow-lg"
+            >
+              <div className="flex items-center mb-6">
+                <div className="p-3 rounded-lg bg-pink-100">
+                  <Shield className="w-8 h-8 text-pink-600" />
+                </div>
+                <h3 className="ml-4 text-2xl font-bold text-pink-600">Skin Care</h3>
+              </div>
+              
+              <p className="text-gray-700 mb-6">
+                Our dermatology department offers advanced treatments for all skin conditions, 
+                helping patients achieve healthy, radiant skin through personalized care plans.
+              </p>
+              
+              <ul className="space-y-3">
+                {[
+                  "Dullness Treatment",
+                  "Acne & Acne Scars Management",
+                  "Pigmentation Solutions",
+                  "Anti-Ageing Therapies",
+                  "Dryness & Hydration Treatments"
+                ].map((service, idx) => (
+                  <motion.li 
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    className="flex items-start"
+                  >
+                    <span className="text-pink-500 mr-2">•</span>
+                    <span className="text-gray-700">{service}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Our Team Section */}
+      <section className="py-16 bg-[#f5f5f5]">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl font-bold text-[#000000] mb-4">Our Expert Team</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              Our dedicated team of specialists brings years of experience and expertise to provide the highest quality care.
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Pediatric Specialist */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <img 
+                  src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Dinesh-Kumar-Chirla.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1EaW5lc2gtS3VtYXItQ2hpcmxhLmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
+                  alt="Dr. G Sridhar"
+                  className="w-20 h-20 rounded-full object-cover"
+                />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Dr. G Sridhar</h3>
+                  <p className="text-gray-600">Senior Consultant in Pediatrics</p>
+                  <div className="flex items-center mt-2 text-sm text-gray-500">
+                    <Users className="w-4 h-4 mr-1" />
+                    <span>15+ Years Experience</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Dermatology Specialist */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <img 
+                  src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
+                  alt="Dr. G Himabindhu"
+                  className="w-20 h-20 rounded-full object-cover"
+                />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Dr. G Himabindhu</h3>
+                  <p className="text-gray-600">Senior Consultant in Dermatology</p>
+                  <div className="flex items-center mt-2 text-sm text-gray-500">
+                    <Users className="w-4 h-4 mr-1" />
+                    <span>15+ Years Experience</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

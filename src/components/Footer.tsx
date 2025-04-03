@@ -2,6 +2,37 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
+// Define menu items to match NavBar
+const quickLinks = [
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About Us' },
+  { path: '/#skin-care', label: 'Skin Care' },
+  { path: '/#child-care', label: 'Child Care' },
+  { path: '#contact-form', label: 'Enquiries & Queries' },
+  { path: '#visit-us', label: 'Visit Us' }
+];
+
+// Define service items from NavBar
+const skinCareServices = [
+  { path: '/dullness', label: 'Dullness' },
+  { path: '/acne', label: 'Acne & Acne Scars' },
+  { path: '/pigmentation', label: 'Pigmentation' },
+  { path: '/anti-ageing', label: 'Anti-Ageing' },
+  { path: '/dryness', label: 'Dryness' }
+];
+
+const childCareServices = [
+  { path: '/general-pediatrics', label: 'General Pediatrics' },
+  { path: '/childrens-nutrition', label: 'Children Nutrition' },
+  { path: '/pediatric-infectious-diseases', label: 'Pediatric Infectious Disease' },
+  { path: '/developmental-behavioral-pediatrics', label: 'Developmental & Behavioral Pediatrics' },
+  { path: '/vaccinations-immunizations', label: 'Vaccinations & Immunizations' },
+  { path: '/picu-nicu', label: 'NICU & PICU' },
+  { path: '/growth-development-monitoring', label: 'Growth & Development Monitoring' },
+  { path: '/newborn-care-well-baby-checkups', label: 'Newborn Care & Well-Baby Checkups' },
+  { path: '/advanced-lab-services', label: 'Advanced Lab Services' }
+];
+
 const Footer = () => {
   const location = useLocation();
 
@@ -28,14 +59,24 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#fdf6ff] text-black">
+    <footer className="bg-[#fdf6ff]">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Jyothi Diagnostics</h3>
-            <p className="text-black/90 mb-4">
-              Providing quality diagnostic services with advanced technology and expert care.
-            </p>
+            <div className="flex items-center mb-4">
+              <h3 className="font-['Montserrat'] text-lg md:text-2xl font-extrabold tracking-wider text-[#685392]">
+                AAYUSH
+              </h3>
+              <div className="mx-2 h-8 md:h-12 w-0.5 bg-[#685392]/70 rounded-full"></div>
+              <div className="flex flex-col">
+                <span className="font-['Montserrat'] text-base md:text-lg font-extrabold text-[#7e3a93] tracking-wide">
+                  Child & Skin
+                </span>
+                <span className="font-['Montserrat'] text-sm md:text-base font-bold text-[#7e3a93]/90 tracking-wide">
+                  Hospital
+                </span>
+              </div>
+            </div>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-black/70 transition duration-300">
                 <Facebook size={24} />
@@ -53,31 +94,72 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4 text-[#7969a5]">Quick Links</h4>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-black/90 hover:text-black transition duration-300">Home</Link></li>
-              <li><Link to="/about" className="text-black/90 hover:text-black transition duration-300">About Us</Link></li>
-              <li><Link to="/#services" className="text-black/90 hover:text-black transition duration-300">Services</Link></li>
-              <li><a href="#contact-form" onClick={handleContactClick} className="text-black/90 hover:text-black transition duration-300">Contact</a></li>
-              <li><a href="#visit-us" onClick={handleVisitUsClick} className="text-black/90 hover:text-black transition duration-300">Visit Us</a></li>
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  {link.path.startsWith('#') ? (
+                    <a 
+                      href={link.path} 
+                      onClick={
+                        link.path === '#contact-form' ? handleContactClick : 
+                        link.path === '#visit-us' ? handleVisitUsClick : 
+                        undefined
+                      }
+                      className="text-black/90 hover:text-black transition duration-300"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link 
+                      to={link.path} 
+                      className="text-black/90 hover:text-black transition duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Our Services</h4>
-            <ul className="space-y-2">
-              <li><Link to="/digital-xrays" className="text-black/90 hover:text-black transition duration-300">Digital X-rays</Link></li>
-              <li><Link to="/ultrasound-pregnancy-scanning" className="text-black/90 hover:text-black transition duration-300">Pregnancy Scans</Link></li>
-              <li><Link to="/ultrasound-scanning" className="text-black/90 hover:text-black transition duration-300">Ultrasound & Color Doppler</Link></li>
-              <li><Link to="/ct-scan" className="text-black/90 hover:text-black transition duration-300">CT Scan</Link></li>
-              <li><Link to="/tesla-mri-scan" className="text-black/90 hover:text-black transition duration-300">3.0 Tesla Open Flare MRI</Link></li>
-            </ul>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <h4 className="text-lg font-semibold mb-4 text-[#7969a5]">Skin Care</h4>
+              <ul className="space-y-2">
+                {skinCareServices.map((service, index) => (
+                  <li key={index}>
+                    <Link 
+                      to={service.path} 
+                      className="text-black/90 hover:text-black transition duration-300"
+                    >
+                      {service.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4 text-[#7969a5]">Child Care</h4>
+              <ul className="space-y-2 max-h-48 overflow-y-auto scrollbar-hide">
+                {childCareServices.map((service, index) => (
+                  <li key={index}>
+                    <Link 
+                      to={service.path} 
+                      className="text-black/90 hover:text-black transition duration-300"
+                    >
+                      {service.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Working Hours</h4>
+            <h4 className="text-lg font-semibold mb-4 text-[#7969a5]">Working Hours</h4>
             <ul className="space-y-2">
-              <li className="text-black/90">CT & MRI Scans Emergency</li>
+              <li className="text-black/90">NICU & PICU Emergency</li>
               <li className="font-semibold">24/7 Hours</li>
               <li className="text-black/90 mt-4">OPD Mon-Sat</li>
               <li className="font-semibold">09:00 AM IST – 09:00 PM IST</li>             
@@ -87,9 +169,10 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-black/20 mt-12 pt-8 text-center text-black/90">
-          <p>&copy; {new Date().getFullYear()} Jyothi Diagnostics. All rights reserved.</p>
-        </div>
+        
+      </div>
+      <div className="bg-[#7a3a95] py-4 text-center text-white">
+        <p>Copyright ©{new Date().getFullYear()}. All Rights Reserved by Aayush Child & Skin Hospital</p>
       </div>
     </footer>
   );

@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fix for mobile menu visibility */
+@media (max-width: 768px) {
+  .fixed.z-[9999] {
+    z-index: 9999 !important;
+  }
+  
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Extra small screen adjustments */
+@media (max-width: 375px) {
+  .xs\:block {
+    display: block;
+  }
+  
+  .xs\:hidden {
+    display: none;
+  }
+}
+
 /* Image Rendering Optimizations */
 .image-rendering-crisp {
   image-rendering: -webkit-optimize-contrast;
@@ -90,6 +112,31 @@
     -webkit-font-smoothing: subpixel-antialiased;
   }
 
+  /* Responsive text sizing for MILLIONS section */
+  @media (max-width: 1280px) {
+    .text-[140px] {
+      font-size: 120px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .text-[120px] {
+      font-size: 100px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .text-[90px] {
+      font-size: 75px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .text-[70px] {
+      font-size: 55px;
+    }
+  }
+
   /* Improve text clarity on mobile */
   @media (max-width: 768px) {
     body {
@@ -98,6 +145,38 @@
       text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
     }
+  }
+}
+
+/* Mobile Logo Adjustments */
+@media (max-width: 767px) {
+  .h-24 {
+    height: 4rem;
+  }
+  
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Extra small screen adjustments */
+@media (max-width: 374px) {
+  .container {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  
+  .h-10 {
+    height: 2rem !important;
+  }
+  
+  .text-sm {
+    font-size: 0.75rem !important;
+  }
+  
+  .text-xs {
+    font-size: 0.65rem !important;
   }
 }
 

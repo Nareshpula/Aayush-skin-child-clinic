@@ -30,7 +30,7 @@ const VisitUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Located in the heart of Madanapalle, our diagnostic center is easily accessible and equipped with modern facilities
+            Located in the heart of Madanapalle, our Aayush Child & Skin Hospital is easily accessible and equipped with modern facilities
           </motion.p>
         </div>
 
@@ -58,7 +58,7 @@ const VisitUs = () => {
                 <div className="transform-gpu">
                   <h3 className="font-bold text-base text-gray-900">Our Address</h3>
                   <p className="text-sm text-gray-700">
-                    Jyothi Diagnostic Center,<br />
+                    Aayush Child & Skin Hospital,<br />
                     Balaji Commercial Complex,<br />
                     Opp. RTC Bus Stand, Near Desai Hospital,<br />
                     Madanapalle - 517325
@@ -82,9 +82,9 @@ const VisitUs = () => {
                 <div className="transform-gpu">
                   <h3 className="font-bold text-base text-gray-900">Contact Us</h3>
                   <p className="text-sm text-gray-700">
-                    Reception: 08571-224789<br />
-                    Mobile: 9100752753<br />
-                    Email: jyothidiagnosticsmpl@gmail.com
+                    Reception: 08571-226111<br />
+                    Mobile: 9676079516<br />
+                    Email: aayushchildskincare@gmail.com
                   </p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ const VisitUs = () => {
                 <div className="transform-gpu">
                   <h3 className="font-bold text-base text-gray-900">Working Hours</h3>
                   <p className="text-sm text-gray-700">
-                    CT & MRI Scans Emergency: 24/7 Hours<br />
+                    PICU & NICU Emergency: 24/7 Hours<br />
                     OPD Mon-Sat: 09:00 AM IST – 09:00 PM IST<br />
                     Sun: 10:30 AM IST – 01:00 PM IST
                   </p>
