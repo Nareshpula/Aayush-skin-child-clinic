@@ -12,9 +12,17 @@ const menuItems = [
     dropdown: [
       { label: 'Dullness', path: '/dullness' },
       { label: 'Acne & Acne Scars', path: '/acne' },
+      { label: 'Laser Hair Removal', path: '/laser-hair-removal' },
+      { label: 'Hair Loss Treatment', path: '/hair-loss-treatment' },
+      { label: 'PRP Hair Therapy', path: '/prp-hair-therapy' },
+      { label: 'Mesotherapy Treatment', path: '/mesotherapy-treatment' },
       { label: 'Pigmentation', path: '/pigmentation' },
       { label: 'Anti-Ageing', path: '/anti-ageing' },
-      { label: 'Dryness', path: '/dryness' }
+      { label: 'Dryness', path: '/dryness' },
+      { label: 'Stretch Mark Removal', path: '/stretch-mark-removal' },
+      { label: 'Tattoo Removal', path: '/tattoo-removal' },
+      { label: 'Mole Removal', path: '/mole-removal' },
+      { label: 'Wart Removal', path: '/wart-removal' }
     ]
   },
   {
@@ -30,6 +38,16 @@ const menuItems = [
       { label: 'Growth & Development Monitoring', path: '/growth-development-monitoring' },
       { label: 'Newborn Care & Well-Baby Checkups', path: '/newborn-care-well-baby-checkups' },
       { label: 'Advanced Lab Services', path: '/advanced-lab-services' }
+    ]
+  },
+  {
+    path: '#hair-care',
+    label: 'Hair Care',
+    dropdown: [
+      { label: 'Laser Hair Removal', path: '/laser-hair-removal' },
+      { label: 'Hair Loss Treatment', path: '/hair-loss-treatment' },
+      { label: 'PRP Hair Therapy', path: '/prp-hair-therapy' },
+      { label: 'Mesotherapy Treatment', path: '/mesotherapy-treatment' }
     ]
   },
   { path: '#contact-form', label: 'Enquiries & Queries' },
@@ -251,7 +269,9 @@ const Navbar = () => {
                               to={dropItem.path}
                               onClick={handleMenuClick}
                              className={`block px-4 py-3 text-sm text-gray-700 hover:text-white transition-all duration-300 hover:translate-x-2 ${
-                               item.label === 'Skin Care' ? 'hover:bg-[#ffc0cb]' : 'hover:bg-[#50b8b9]'
+                               item.label === 'Skin Care' ? 'hover:bg-[#ffc0cb]' : 
+                               item.label === 'Hair Care' ? 'hover:bg-[#D8BFD8]' : 
+                               'hover:bg-[#50b8b9]'
                              }`}
                             >
                               {dropItem.label}
@@ -302,13 +322,15 @@ const Navbar = () => {
                      <span>{item.label}</span>
                      <span className={`transform transition-transform duration-200 ${mobileOpenCategory === item.label ? 'rotate-180' : ''}`}>▼</span>
                    </button>
-                   <div className={`pl-6 space-y-1 transition-all duration-200 ${mobileOpenCategory === item.label ? 'opacity-100 max-h-[500px]' : 'opacity-0 max-h-0 overflow-hidden'}`}>
+                   <div className={`pl-6 space-y-1 transition-all duration-200 ${mobileOpenCategory === item.label ? 'opacity-100 max-h-[60vh] overflow-y-auto' : 'opacity-0 max-h-0 overflow-hidden'}`}>
                      {item.dropdown.map((dropItem, dropIndex) => (
                        <Link
                          key={dropIndex}
                          to={dropItem.path}
                          className={`block px-3 py-2.5 text-gray-700 hover:text-white rounded-lg transition-colors duration-200 relative z-20 ${
-                           item.label === 'Skin Care' ? 'hover:bg-[#ffc0cb]' : 'hover:bg-[#50b8b9]'
+                           item.label === 'Skin Care' ? 'hover:bg-[#ffc0cb]' : 
+                           item.label === 'Hair Care' ? 'hover:bg-[#D8BFD8]' : 
+                           'hover:bg-[#50b8b9]'
                          }`}
                          onClick={() => {
                            handleMenuClick();
@@ -345,7 +367,7 @@ const Navbar = () => {
                 >{item.label}</Link>
               );
             })}
-            <div className="mt-4 space-y-2 relative z-20">
+            <div className="mt-4 space-y-2 relative z-10">
             <a 
               href="tel:9676079516"
               className="block w-full bg-purple-600 text-white px-6 py-2.5 rounded-full hover:bg-purple-700 transition duration-300 text-center shadow-md"

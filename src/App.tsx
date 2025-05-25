@@ -31,6 +31,14 @@ import Acne from './pages/Acne';
 import Dullness from './pages/Dullness';
 import Dryness from './pages/Dryness';
 import AntiAgeing from './pages/AntiAgeing';
+import LaserHairRemoval from './pages/LaserHairRemoval';
+import HairLossTreatment from './pages/HairLossTreatment';
+import PRPHairTherapy from './pages/PRPHairTherapy';
+import MesotherapyTreatment from './pages/MesotherapyTreatment';
+import StretchMarkRemoval from './pages/StretchMarkRemoval';
+import TattooRemoval from './pages/TattooRemoval';
+import MoleRemoval from './pages/MoleRemoval';
+import WartRemoval from './pages/WartRemoval';
 import AgingArticle from './pages/AgingArticle';
 import ScrollToTop from '@/components/ScrollToTop';
 
@@ -67,6 +75,14 @@ function App() {
             <Route path="/dullness" element={<Dullness />} />
             <Route path="/anti-ageing" element={<AntiAgeing />} />
             <Route path="/dryness" element={<Dryness />} />
+            <Route path="/laser-hair-removal" element={<LaserHairRemoval />} />
+            <Route path="/hair-loss-treatment" element={<HairLossTreatment />} />
+            <Route path="/prp-hair-therapy" element={<PRPHairTherapy />} />
+            <Route path="/mesotherapy-treatment" element={<MesotherapyTreatment />} />
+            <Route path="/stretch-mark-removal" element={<StretchMarkRemoval />} />
+            <Route path="/tattoo-removal" element={<TattooRemoval />} />
+            <Route path="/mole-removal" element={<MoleRemoval />} />
+            <Route path="/wart-removal" element={<WartRemoval />} />
             <Route path="/acne" element={<Acne />} />
               <Route path="/blog/understanding-ear-infections" element={<BlogArticle />} />
               <Route path="/blog/nutritional-deficiencies-impact" element={<NutritionArticle />} />

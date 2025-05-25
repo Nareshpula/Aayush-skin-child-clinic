@@ -9,8 +9,8 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Acne-Scars-women.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BY25lLVNjYXJzLXdvbWVuLmpwZyIsImlhdCI6MTc0MzUwOTQxNCwiZXhwIjoxOTAxMTg5NDE0fQ.f0KhmTfCYJs_VkRUJj2o7uXonf3KPgsfxLy6beUtBy4"
-          alt="Acne Treatment"
+          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/laser-epilation-hair-removal-therapy.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvbGFzZXItZXBpbGF0aW9uLWhhaXItcmVtb3ZhbC10aGVyYXB5LmpwZyIsImlhdCI6MTc0ODE0NTIzOCwiZXhwIjoxODQyNzUzMjM4fQ.zPAC9deNuzJWSrdFKRpxqFnWVB5z9Ov-PcIjEnar0CE"
+          alt="Laser Hair Removal"
           className="w-full h-full object-cover transform-gpu will-change-transform backface-hidden image-rendering-crisp"
           loading="eager"
           decoding="async"
@@ -31,7 +31,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Clear Skin with Advanced Acne & Acne Scar Treatments
+            Permanent Hair Reduction with Advanced Laser Technology
           </motion.h1>
         </motion.div>
       </div>
@@ -43,7 +43,7 @@ const features = [
   {
     icon: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Technology-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvVGVjaG5vbG9neS1pbWFnZS5zdmciLCJpYXQiOjE3NDMzMzA5OTAsImV4cCI6MTkwMTAxMDk5MH0.rwixTtZlvw-YHCZsr3j00RfZrON_8ak2QVW2c0ysgf0",
     title: "Advanced Technology & Infrastructure",
-    description: "State-of-the-art acne treatment equipment",
+    description: "State-of-the-art laser hair removal equipment",
     color: "bg-gradient-to-br from-blue-50 to-cyan-50"
   },
   {
@@ -55,7 +55,7 @@ const features = [
   {
     icon: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Diagnosis-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRGlhZ25vc2lzLWltYWdlLnN2ZyIsImlhdCI6MTc0MzMzMTEyNCwiZXhwIjoxOTAxMDExMTI0fQ._ogfOsHXAn5-LsN1kRUtS3ERcbiImP_ngZ4IGTtORN8",
     title: "Personalized Treatment Plans",
-    description: "Customized solutions for your unique skin needs",
+    description: "Customized solutions for your unique skin and hair needs",
     color: "bg-gradient-to-br from-green-50 to-emerald-50"
   }
 ];
@@ -93,7 +93,7 @@ const Features = () => {
   );
 };
 
-const AcneTreatmentSection = () => {
+const LaserHairRemovalSection = () => {
   return (
     <section className="py-16 bg-[#eaf7f8]">
       <div className="container mx-auto px-4">
@@ -105,65 +105,47 @@ const AcneTreatmentSection = () => {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold text-black">Advanced Acne & Acne Scar Treatments</h2>
+            <h2 className="text-3xl font-bold text-black">Advanced Laser Hair Removal</h2>
             <div className="space-y-4 text-black">
               <p className="leading-relaxed">
-                At Aayush Child & Skin Hospital, we provide internationally approved treatments for acne and acne scars, helping you achieve clear, healthy, and blemish-free skin. Our expert dermatologists and cutting-edge technology ensure that acne is treated at its root cause, preventing future breakouts and minimizing scars for a smooth, radiant complexion.
+                At Aayush Child & Skin Hospital, we offer state-of-the-art laser hair removal treatments that provide long-lasting results with minimal discomfort. Our advanced technology targets hair follicles precisely, reducing unwanted hair growth while protecting the surrounding skin. Whether you're looking to treat small areas like the upper lip or larger areas like the back or legs, our expert dermatologists will customize a treatment plan to meet your specific needs.
               </p>
 
-              <h3 className="text-xl font-semibold mt-6 mb-3">Understanding Acne & Acne Scars</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-3">How Laser Hair Removal Works</h3>
               <p className="leading-relaxed">
-                Acne is a common skin condition caused by clogged pores, bacteria, oil production, and hormonal changes. Without proper treatment, acne can leave behind stubborn scars that affect skin texture and confidence.
+                Laser hair removal uses concentrated light beams that are absorbed by the pigment in hair follicles. This energy converts to heat, which damages the follicles and inhibits future hair growth. Our advanced laser systems are designed to work effectively on various skin tones and hair types, providing safe and efficient results.
               </p>
               <ul className="list-disc pl-6 space-y-2 mb-6">
-                <li>Types of Acne: Whiteheads, Blackheads, Papules, Pustules, Nodules, and Cystic Acne.</li>
-                <li>Types of Acne Scars: Ice Pick Scars, Boxcar Scars, Rolling Scars, Post-Inflammatory Hyperpigmentation (PIH).</li>
+                <li>Targets hair follicles without damaging surrounding skin</li>
+                <li>Provides long-lasting reduction in hair growth</li>
+                <li>Works on multiple body areas including face, underarms, bikini area, legs, back, and chest</li>
+                <li>Requires multiple sessions for optimal results due to hair growth cycles</li>
               </ul>
 
-              <h3 className="text-xl font-semibold mt-6 mb-3">Our Standard Acne & Scar Treatments</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-3">Our Laser Hair Removal Technology</h3>
+              <ul className="list-disc pl-6 space-y-2 mb-6">
+                <li><span className="font-semibold">Alexandrite Laser</span> – Ideal for fair to olive skin tones with dark hair</li>
+                <li><span className="font-semibold">Nd:YAG Laser</span> – Safe and effective for darker skin tones</li>
+                <li><span className="font-semibold">Diode Laser</span> – Versatile option suitable for most skin types</li>
+                <li><span className="font-semibold">IPL (Intense Pulsed Light)</span> – Effective for larger treatment areas</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mt-6 mb-3">Benefits of Our Laser Hair Removal</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Precision – Targets dark, coarse hairs while leaving surrounding skin undamaged</li>
+                <li>Speed – Each pulse takes a fraction of a second and can treat multiple hairs simultaneously</li>
+                <li>Predictability – Most patients experience permanent hair loss after 3-7 sessions</li>
+                <li>Comfort – Advanced cooling technology minimizes discomfort during treatment</li>
+                <li>Convenience – No more daily shaving, painful waxing, or chemical depilatories</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mt-6 mb-3">What to Expect</h3>
               <p className="leading-relaxed">
-                We follow global dermatology protocols to effectively treat acne and scars with safe and proven methods:
+                Before your treatment, our dermatologists will conduct a thorough consultation to determine the most appropriate laser technology for your skin type and hair color. Most patients require 6-8 sessions spaced 4-6 weeks apart for optimal results. After treatment, you may experience temporary redness and swelling, but these side effects typically resolve within a few hours.
               </p>
               
-              <h4 className="text-lg font-medium mt-4 mb-2">1. Advanced Laser Therapy (FDA-Approved)</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Fractional CO2 Laser & Pico Laser – Stimulates collagen for deep scar healing.</li>
-                <li>IPL (Intense Pulsed Light) Therapy – Reduces active acne, redness, and post-acne marks.</li>
-              </ul>
-              
-              <h4 className="text-lg font-medium mt-4 mb-2">2. Chemical Peels for Acne & Scarring</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Salicylic Acid Peels – Exfoliates clogged pores & controls oil production.</li>
-                <li>Glycolic Acid & TCA Peels – Improves skin texture and fades dark spots.</li>
-              </ul>
-              
-              <h4 className="text-lg font-medium mt-4 mb-2">3. Microneedling & PRP Therapy</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Microneedling with RF (Radiofrequency) – Stimulates collagen to smooth out scars.</li>
-                <li>PRP (Platelet-Rich Plasma) Therapy – Uses your body's natural healing power to rejuvenate skin.</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Why Choose Us?</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Internationally Approved Treatments – We follow global dermatology standards for acne management</li>
-                <li>Expert Dermatologists – Our specialists use evidence-based techniques for safe & effective results</li>
-                <li>Advanced Technology – We offer FDA-approved laser and skincare treatments</li>
-                <li>Personalized Care – Every treatment plan is customized based on skin type, severity, and lifestyle</li>
-                <li>Minimal Downtime – Most of our treatments have quick recovery periods with visible results</li>
-                <li>Holistic Approach – We combine dietary guidance, skincare routines, and medical treatments for the best results</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Prevention & Aftercare for Long-Lasting Results</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Daily Skincare Routine – Gentle cleansers, non-comedogenic moisturizers, and sunscreen</li>
-                <li>Proper Diet – Reducing dairy, sugar, and high-glycemic foods that can trigger acne</li>
-                <li>Avoid Picking – Never squeeze or pick at acne to prevent scarring</li>
-                <li>Regular Follow-Ups – Periodic dermatologist visits to track progress and make necessary adjustments</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Transform Your Skin with Us!</h3>
-              <p className="leading-relaxed">
-                Say goodbye to acne and acne scars! At Aayush Child & Skin Hospital, we are committed to helping you achieve clear, smooth, and healthy skin through scientifically backed acne treatments.
+              <p className="leading-relaxed mt-4">
+                Experience the freedom of smooth, hair-free skin with our advanced laser hair removal treatments at Aayush Child & Skin Hospital.
               </p>
             </div>
           </motion.div>
@@ -177,8 +159,8 @@ const AcneTreatmentSection = () => {
           >
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Acne-Scars-Treatement.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BY25lLVNjYXJzLVRyZWF0ZW1lbnQuanBnIiwiaWF0IjoxNzQzNTEwMzg2LCJleHAiOjE5MDExOTAzODZ9.WaDGlGIUJ9wIe2m-XNGVU-iUH6b06pkdkVb3CwaMhCE"
-                alt="Acne Treatment"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/laser-epilation-hair-removal-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvbGFzZXItZXBpbGF0aW9uLWhhaXItcmVtb3ZhbC1pbWFnZS5qcGciLCJpYXQiOjE3NDgxNDU1NjYsImV4cCI6MTg0Mjc1MzU2Nn0.022WzR84g1PH0qbpxXZVqlONIn7B8H1Bb8tFUXazfew"
+                alt="Laser Hair Removal Treatment"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />
             </div>
@@ -191,8 +173,8 @@ const AcneTreatmentSection = () => {
               className="mt-8 rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Laser-treatment-image.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9MYXNlci10cmVhdG1lbnQtaW1hZ2UucG5nIiwiaWF0IjoxNzQzNTExNTI4LCJleHAiOjE5MDExOTE1Mjh9.p4P4R43HzkkKbZ22i24J_aDO6ZGuNWHqV-M_nxFxRyc"
-                alt="Acne Before and After"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/laser-epilation-hair-removal-therapy.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvbGFzZXItZXBpbGF0aW9uLWhhaXItcmVtb3ZhbC10aGVyYXB5LmpwZyIsImlhdCI6MTc0ODE0NTIzOCwiZXhwIjoxODQyNzUzMjM4fQ.zPAC9deNuzJWSrdFKRpxqFnWVB5z9Ov-PcIjEnar0CE"
+                alt="Laser Hair Removal Results"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />
             </motion.div>
@@ -230,7 +212,7 @@ const FindDoctorSection = () => {
               Find Our Doctor
             </h2>
             <p className="text-base md:text-[16px] text-[#1b1a1b]">
-              Meet our expert dermatologist who brings years of experience in treating acne and acne scars.
+              Meet our expert dermatologist who brings years of experience in laser hair removal treatments.
             </p>
           </motion.div>
 
@@ -246,11 +228,11 @@ const FindDoctorSection = () => {
                 <div className="w-24 h-24 mb-4">
                   <img
                     src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
-                    alt="Dr. G Himabindhu"
+                    alt="Dr. Himabindu Sridhar"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-               <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
                 <p className="text-base text-gray-700 mb-4">Consultant Cosmetologist, Laser & Hair Transplant Surgeon</p>
                 
                 <div className="space-y-2 mb-6">
@@ -270,7 +252,7 @@ const FindDoctorSection = () => {
                 
                 <div className="flex gap-3 w-full">
                   <button
-                   onClick={() => navigate('/doctors/dr-himabindu-sridhar')}
+                    onClick={() => navigate('/doctors/dr-himabindu-sridhar')}
                     className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-[#7a3a95] text-[#7a3a95] text-sm font-bold hover:bg-purple-50 transition-colors duration-300"
                   >
                     View Profile <ArrowRight className="w-4 h-4 ml-1" />
@@ -297,11 +279,11 @@ const SkinCareBlogsSection = () => {
   const blogs = [
     {
       id: 1,
-      title: "Causes of Acne Scars on the Face in Women and Men",
-      date: "February 20",
-      link: "/blog/causes-of-acne-scars",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Acne-Scars-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvQWNuZS1TY2Fycy1pbWFnZS5qcGciLCJpYXQiOjE3NDMyNjU1NjAsImV4cCI6MTkwMDk0NTU2MH0.2qCJzxJIKWpvDx9dX_IIweiSyFtzqX9lsaMnDEFItE0",
-      excerpt: "Modern solutions for treating and minimizing acne scarring."
+      title: "Understanding Aging Face: Causes and Ways to Maintain Youthful Skin",
+      link: "/blog/understanding-aging-face",
+      date: "January 15",
+      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/women-anti-ageing-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvd29tZW4tYW50aS1hZ2VpbmctaW1hZ2UuanBnIiwiaWF0IjoxNzQzMjY3NTA5LCJleHAiOjE5MDA5NDc1MDl9.rnd6d9uPQQr722F6PcYZR1SSXOP7SFKc3xQgPRjBE-g",
+      excerpt: "Exploring modern approaches to maintaining youthful skin."
     },
     {
       id: 2,
@@ -313,11 +295,11 @@ const SkinCareBlogsSection = () => {
     },
     {
       id: 3,
-      title: "Understanding Aging Face: Causes and Ways to Maintain Youthful Skin",
-      link: "/blog/understanding-aging-face",
-      date: "January 15",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/women-anti-ageing-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvd29tZW4tYW50aS1hZ2VpbmctaW1hZ2UuanBnIiwiaWF0IjoxNzQzMjY3NTA5LCJleHAiOjE5MDA5NDc1MDl9.rnd6d9uPQQr722F6PcYZR1SSXOP7SFKc3xQgPRjBE-g",
-      excerpt: "Exploring modern approaches to maintaining youthful skin."
+      title: "Causes of Acne Scars on the Face in Women and Men",
+      date: "February 20",
+      link: "/blog/causes-of-acne-scars",
+      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Acne-Scars-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvQWNuZS1TY2Fycy1pbWFnZS5qcGciLCJpYXQiOjE3NDMyNjU1NjAsImV4cCI6MTkwMDk0NTU2MH0.2qCJzxJIKWpvDx9dX_IIweiSyFtzqX9lsaMnDEFItE0",
+      excerpt: "Modern solutions for treating and minimizing acne scarring."
     }
   ];
 
@@ -408,7 +390,7 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Achieve Clear, Blemish-Free Skin
+            Experience Smooth, Hair-Free Skin
           </motion.h2>
           <motion.p 
             className="text-lg text-white/90 mb-8"
@@ -417,7 +399,7 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Schedule a consultation with our acne treatment specialists today
+            Schedule a consultation with our laser hair removal specialists today
           </motion.p>
           <motion.button
             className="px-8 py-3 bg-white text-purple-600 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
@@ -435,7 +417,7 @@ const CTASection = () => {
   );
 };
 
-const Acne = () => {
+const LaserHairRemoval = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -444,7 +426,7 @@ const Acne = () => {
     <div className="bg-white">
       <HeroSection />
       <Features />
-      <AcneTreatmentSection />
+      <LaserHairRemovalSection />
       <FindDoctorSection />
       <SkinCareBlogsSection />
       <CTASection />
@@ -452,4 +434,4 @@ const Acne = () => {
   );
 };
 
-export default Acne;
+export default LaserHairRemoval;

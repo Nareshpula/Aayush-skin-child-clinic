@@ -544,11 +544,11 @@ const About = () => {
               <div className="flex items-center gap-4">
                 <img 
                   src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
-                  alt="Dr. G Himabindhu"
+                  alt="Dr. Himabindu Sridhar"
                   className="w-20 h-20 rounded-full object-cover"
                 />
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">Dr. G Himabindhu</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Dr. Himabindu Sridhar</h3>
                   <p className="text-gray-600">Senior Consultant in Dermatology</p>
                   <div className="flex items-center mt-2 text-sm text-gray-500">
                     <Users className="w-4 h-4 mr-1" />

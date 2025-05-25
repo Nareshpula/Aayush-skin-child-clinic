@@ -9,8 +9,8 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Acne-Scars-women.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BY25lLVNjYXJzLXdvbWVuLmpwZyIsImlhdCI6MTc0MzUwOTQxNCwiZXhwIjoxOTAxMTg5NDE0fQ.f0KhmTfCYJs_VkRUJj2o7uXonf3KPgsfxLy6beUtBy4"
-          alt="Acne Treatment"
+          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Tatto-Removable-issues-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvVGF0dG8tUmVtb3ZhYmxlLWlzc3Vlcy1pbWFnZS5qcGciLCJpYXQiOjE3NDgxNTYzOTcsImV4cCI6MTg0Mjc2NDM5N30.KJZ2qBKeQ3GveKNrEmB4GYg69c9V6Hx7-8h0trcU4d4"
+          alt="Tattoo Removal"
           className="w-full h-full object-cover transform-gpu will-change-transform backface-hidden image-rendering-crisp"
           loading="eager"
           decoding="async"
@@ -31,7 +31,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Clear Skin with Advanced Acne & Acne Scar Treatments
+            Advanced Laser Tattoo Removal Solutions
           </motion.h1>
         </motion.div>
       </div>
@@ -43,7 +43,7 @@ const features = [
   {
     icon: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Technology-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvVGVjaG5vbG9neS1pbWFnZS5zdmciLCJpYXQiOjE3NDMzMzA5OTAsImV4cCI6MTkwMTAxMDk5MH0.rwixTtZlvw-YHCZsr3j00RfZrON_8ak2QVW2c0ysgf0",
     title: "Advanced Technology & Infrastructure",
-    description: "State-of-the-art acne treatment equipment",
+    description: "State-of-the-art laser tattoo removal equipment",
     color: "bg-gradient-to-br from-blue-50 to-cyan-50"
   },
   {
@@ -55,7 +55,7 @@ const features = [
   {
     icon: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Diagnosis-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRGlhZ25vc2lzLWltYWdlLnN2ZyIsImlhdCI6MTc0MzMzMTEyNCwiZXhwIjoxOTAxMDExMTI0fQ._ogfOsHXAn5-LsN1kRUtS3ERcbiImP_ngZ4IGTtORN8",
     title: "Personalized Treatment Plans",
-    description: "Customized solutions for your unique skin needs",
+    description: "Customized solutions for your unique tattoo removal needs",
     color: "bg-gradient-to-br from-green-50 to-emerald-50"
   }
 ];
@@ -93,7 +93,7 @@ const Features = () => {
   );
 };
 
-const AcneTreatmentSection = () => {
+const TattooRemovalSection = () => {
   return (
     <section className="py-16 bg-[#eaf7f8]">
       <div className="container mx-auto px-4">
@@ -105,65 +105,47 @@ const AcneTreatmentSection = () => {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold text-black">Advanced Acne & Acne Scar Treatments</h2>
+            <h2 className="text-3xl font-bold text-black">Advanced Laser Tattoo Removal</h2>
             <div className="space-y-4 text-black">
               <p className="leading-relaxed">
-                At Aayush Child & Skin Hospital, we provide internationally approved treatments for acne and acne scars, helping you achieve clear, healthy, and blemish-free skin. Our expert dermatologists and cutting-edge technology ensure that acne is treated at its root cause, preventing future breakouts and minimizing scars for a smooth, radiant complexion.
+                At Aayush Child & Skin Hospital, we offer state-of-the-art laser tattoo removal services for those looking to remove or fade unwanted tattoos. Our advanced laser technology effectively breaks down tattoo ink particles, allowing your body to naturally eliminate them over time. Whether you're looking to completely remove a tattoo or fade it for a cover-up, our expert dermatologists will create a personalized treatment plan to help you achieve your goals with minimal discomfort and downtime.
               </p>
 
-              <h3 className="text-xl font-semibold mt-6 mb-3">Understanding Acne & Acne Scars</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-3">How Laser Tattoo Removal Works</h3>
               <p className="leading-relaxed">
-                Acne is a common skin condition caused by clogged pores, bacteria, oil production, and hormonal changes. Without proper treatment, acne can leave behind stubborn scars that affect skin texture and confidence.
+                Laser tattoo removal works by delivering short pulses of intense light that pass through the skin and are absorbed by the tattoo ink. This energy breaks the ink into tiny fragments, which are then gradually eliminated by the body's immune system. Different wavelengths of light are used to target different ink colors, allowing for effective removal of multicolored tattoos.
               </p>
               <ul className="list-disc pl-6 space-y-2 mb-6">
-                <li>Types of Acne: Whiteheads, Blackheads, Papules, Pustules, Nodules, and Cystic Acne.</li>
-                <li>Types of Acne Scars: Ice Pick Scars, Boxcar Scars, Rolling Scars, Post-Inflammatory Hyperpigmentation (PIH).</li>
+                <li>Non-invasive procedure with minimal risk of scarring</li>
+                <li>Targets tattoo ink while preserving surrounding skin</li>
+                <li>Effective on professional, amateur, traumatic, and cosmetic tattoos</li>
+                <li>Multiple sessions required for complete removal (typically 6-12 sessions)</li>
               </ul>
 
-              <h3 className="text-xl font-semibold mt-6 mb-3">Our Standard Acne & Scar Treatments</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-3">Our Laser Tattoo Removal Technology</h3>
+              <ul className="list-disc pl-6 space-y-2 mb-6">
+                <li><span className="font-semibold">Q-Switched Nd:YAG Laser</span> – Effective for black, blue, and green inks</li>
+                <li><span className="font-semibold">Picosecond Laser</span> – Advanced technology for faster results and fewer sessions</li>
+                <li><span className="font-semibold">Ruby Laser</span> – Ideal for targeting blue and green pigments</li>
+                <li><span className="font-semibold">Alexandrite Laser</span> – Effective for green, blue, and black inks</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mt-6 mb-3">Factors Affecting Tattoo Removal</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Tattoo age – Older tattoos are generally easier to remove</li>
+                <li>Ink colors – Black and dark blue are easier to remove; yellow, green, and fluorescent colors may be more challenging</li>
+                <li>Tattoo location – Tattoos closer to the heart typically fade faster</li>
+                <li>Skin tone – Certain lasers work better on different skin tones</li>
+                <li>Amateur vs. professional tattoos – Amateur tattoos often require fewer sessions</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mt-6 mb-3">What to Expect</h3>
               <p className="leading-relaxed">
-                We follow global dermatology protocols to effectively treat acne and scars with safe and proven methods:
+                During your initial consultation, our dermatologists will evaluate your tattoo and discuss your removal goals. The treatment itself feels similar to a rubber band snapping against your skin. After treatment, you may experience temporary redness, swelling, and blistering. Most patients require multiple sessions spaced 6-8 weeks apart for optimal results. While complete removal cannot be guaranteed for all tattoos, our advanced technology can significantly fade most tattoos, often to the point where they're barely visible.
               </p>
               
-              <h4 className="text-lg font-medium mt-4 mb-2">1. Advanced Laser Therapy (FDA-Approved)</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Fractional CO2 Laser & Pico Laser – Stimulates collagen for deep scar healing.</li>
-                <li>IPL (Intense Pulsed Light) Therapy – Reduces active acne, redness, and post-acne marks.</li>
-              </ul>
-              
-              <h4 className="text-lg font-medium mt-4 mb-2">2. Chemical Peels for Acne & Scarring</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Salicylic Acid Peels – Exfoliates clogged pores & controls oil production.</li>
-                <li>Glycolic Acid & TCA Peels – Improves skin texture and fades dark spots.</li>
-              </ul>
-              
-              <h4 className="text-lg font-medium mt-4 mb-2">3. Microneedling & PRP Therapy</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Microneedling with RF (Radiofrequency) – Stimulates collagen to smooth out scars.</li>
-                <li>PRP (Platelet-Rich Plasma) Therapy – Uses your body's natural healing power to rejuvenate skin.</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Why Choose Us?</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Internationally Approved Treatments – We follow global dermatology standards for acne management</li>
-                <li>Expert Dermatologists – Our specialists use evidence-based techniques for safe & effective results</li>
-                <li>Advanced Technology – We offer FDA-approved laser and skincare treatments</li>
-                <li>Personalized Care – Every treatment plan is customized based on skin type, severity, and lifestyle</li>
-                <li>Minimal Downtime – Most of our treatments have quick recovery periods with visible results</li>
-                <li>Holistic Approach – We combine dietary guidance, skincare routines, and medical treatments for the best results</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Prevention & Aftercare for Long-Lasting Results</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Daily Skincare Routine – Gentle cleansers, non-comedogenic moisturizers, and sunscreen</li>
-                <li>Proper Diet – Reducing dairy, sugar, and high-glycemic foods that can trigger acne</li>
-                <li>Avoid Picking – Never squeeze or pick at acne to prevent scarring</li>
-                <li>Regular Follow-Ups – Periodic dermatologist visits to track progress and make necessary adjustments</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Transform Your Skin with Us!</h3>
-              <p className="leading-relaxed">
-                Say goodbye to acne and acne scars! At Aayush Child & Skin Hospital, we are committed to helping you achieve clear, smooth, and healthy skin through scientifically backed acne treatments.
+              <p className="leading-relaxed mt-4">
+                Start your journey to clear skin with our advanced laser tattoo removal treatments at Aayush Child & Skin Hospital.
               </p>
             </div>
           </motion.div>
@@ -177,8 +159,8 @@ const AcneTreatmentSection = () => {
           >
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Acne-Scars-Treatement.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BY25lLVNjYXJzLVRyZWF0ZW1lbnQuanBnIiwiaWF0IjoxNzQzNTEwMzg2LCJleHAiOjE5MDExOTAzODZ9.WaDGlGIUJ9wIe2m-XNGVU-iUH6b06pkdkVb3CwaMhCE"
-                alt="Acne Treatment"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Tatto-Removable-issues-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvVGF0dG8tUmVtb3ZhYmxlLWlzc3Vlcy1pbWFnZS5qcGciLCJpYXQiOjE3NDgxNTYzOTcsImV4cCI6MTg0Mjc2NDM5N30.KJZ2qBKeQ3GveKNrEmB4GYg69c9V6Hx7-8h0trcU4d4"
+                alt="Tattoo Removal Treatment"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />
             </div>
@@ -191,8 +173,8 @@ const AcneTreatmentSection = () => {
               className="mt-8 rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Laser-treatment-image.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9MYXNlci10cmVhdG1lbnQtaW1hZ2UucG5nIiwiaWF0IjoxNzQzNTExNTI4LCJleHAiOjE5MDExOTE1Mjh9.p4P4R43HzkkKbZ22i24J_aDO6ZGuNWHqV-M_nxFxRyc"
-                alt="Acne Before and After"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Tatto-Removable.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvVGF0dG8tUmVtb3ZhYmxlLmpwZyIsImlhdCI6MTc0ODE1NjUwMCwiZXhwIjoxODQyNzY0NTAwfQ.AZkig0WdVVgOqtKFOZrNGYBwJTMJ3uB1rTK66NmYkk0"
+                alt="Tattoo Removal Results"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />
             </motion.div>
@@ -230,7 +212,7 @@ const FindDoctorSection = () => {
               Find Our Doctor
             </h2>
             <p className="text-base md:text-[16px] text-[#1b1a1b]">
-              Meet our expert dermatologist who brings years of experience in treating acne and acne scars.
+              Meet our expert dermatologist who brings years of experience in laser tattoo removal.
             </p>
           </motion.div>
 
@@ -246,11 +228,11 @@ const FindDoctorSection = () => {
                 <div className="w-24 h-24 mb-4">
                   <img
                     src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
-                    alt="Dr. G Himabindhu"
+                    alt="Dr. Himabindu Sridhar"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-               <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
                 <p className="text-base text-gray-700 mb-4">Consultant Cosmetologist, Laser & Hair Transplant Surgeon</p>
                 
                 <div className="space-y-2 mb-6">
@@ -270,7 +252,7 @@ const FindDoctorSection = () => {
                 
                 <div className="flex gap-3 w-full">
                   <button
-                   onClick={() => navigate('/doctors/dr-himabindu-sridhar')}
+                    onClick={() => navigate('/doctors/dr-himabindu-sridhar')}
                     className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-[#7a3a95] text-[#7a3a95] text-sm font-bold hover:bg-purple-50 transition-colors duration-300"
                   >
                     View Profile <ArrowRight className="w-4 h-4 ml-1" />
@@ -297,11 +279,11 @@ const SkinCareBlogsSection = () => {
   const blogs = [
     {
       id: 1,
-      title: "Causes of Acne Scars on the Face in Women and Men",
-      date: "February 20",
-      link: "/blog/causes-of-acne-scars",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Acne-Scars-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvQWNuZS1TY2Fycy1pbWFnZS5qcGciLCJpYXQiOjE3NDMyNjU1NjAsImV4cCI6MTkwMDk0NTU2MH0.2qCJzxJIKWpvDx9dX_IIweiSyFtzqX9lsaMnDEFItE0",
-      excerpt: "Modern solutions for treating and minimizing acne scarring."
+      title: "Understanding Aging Face: Causes and Ways to Maintain Youthful Skin",
+      link: "/blog/understanding-aging-face",
+      date: "January 15",
+      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/women-anti-ageing-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvd29tZW4tYW50aS1hZ2VpbmctaW1hZ2UuanBnIiwiaWF0IjoxNzQzMjY3NTA5LCJleHAiOjE5MDA5NDc1MDl9.rnd6d9uPQQr722F6PcYZR1SSXOP7SFKc3xQgPRjBE-g",
+      excerpt: "Exploring modern approaches to maintaining youthful skin."
     },
     {
       id: 2,
@@ -313,11 +295,11 @@ const SkinCareBlogsSection = () => {
     },
     {
       id: 3,
-      title: "Understanding Aging Face: Causes and Ways to Maintain Youthful Skin",
-      link: "/blog/understanding-aging-face",
-      date: "January 15",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/women-anti-ageing-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvd29tZW4tYW50aS1hZ2VpbmctaW1hZ2UuanBnIiwiaWF0IjoxNzQzMjY3NTA5LCJleHAiOjE5MDA5NDc1MDl9.rnd6d9uPQQr722F6PcYZR1SSXOP7SFKc3xQgPRjBE-g",
-      excerpt: "Exploring modern approaches to maintaining youthful skin."
+      title: "Causes of Acne Scars on the Face in Women and Men",
+      date: "February 20",
+      link: "/blog/causes-of-acne-scars",
+      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Acne-Scars-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvQWNuZS1TY2Fycy1pbWFnZS5qcGciLCJpYXQiOjE3NDMyNjU1NjAsImV4cCI6MTkwMDk0NTU2MH0.2qCJzxJIKWpvDx9dX_IIweiSyFtzqX9lsaMnDEFItE0",
+      excerpt: "Modern solutions for treating and minimizing acne scarring."
     }
   ];
 
@@ -408,7 +390,7 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Achieve Clear, Blemish-Free Skin
+            Start Your Tattoo Removal Journey Today
           </motion.h2>
           <motion.p 
             className="text-lg text-white/90 mb-8"
@@ -417,7 +399,7 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Schedule a consultation with our acne treatment specialists today
+            Schedule a consultation with our tattoo removal specialists
           </motion.p>
           <motion.button
             className="px-8 py-3 bg-white text-purple-600 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
@@ -435,7 +417,7 @@ const CTASection = () => {
   );
 };
 
-const Acne = () => {
+const TattooRemoval = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -444,7 +426,7 @@ const Acne = () => {
     <div className="bg-white">
       <HeroSection />
       <Features />
-      <AcneTreatmentSection />
+      <TattooRemovalSection />
       <FindDoctorSection />
       <SkinCareBlogsSection />
       <CTASection />
@@ -452,4 +434,4 @@ const Acne = () => {
   );
 };
 
-export default Acne;
+export default TattooRemoval;

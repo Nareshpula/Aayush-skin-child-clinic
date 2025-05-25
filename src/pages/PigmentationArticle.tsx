@@ -56,7 +56,7 @@ const PigmentationArticle = () => {
           <div className="flex items-center text-gray-600 text-sm">
             <span>February 10, 2024</span>
             <span className="mx-2">•</span>
-            <span>By Dr.G Himabindhu</span>
+            <span>By Dr. Himabindu Sridhar</span>
           </div>
         </motion.header>
 
@@ -146,12 +146,12 @@ const PigmentationArticle = () => {
           <div className="flex items-start space-x-4 mt-12">
             <img
               src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
-              alt="Dr. G Himabindhu"
+              alt="Dr. Himabindu Sridhar"
               className="w-16 h-16 rounded-full object-cover"
             />
             <div>
-              <h3 className="text-lg font-bold text-gray-900">Dr. G Himabindhu</h3>
-              <p className="text-gray-600">Senior Consultant Dermatologist</p>
+              <h3 className="text-lg font-bold text-gray-900">Dr. Himabindu Sridhar</h3>
+              <p className="text-gray-600">Consultant Cosmetologist, Laser & Hair Transplant Surgeon</p>
               <p className="text-gray-600">Aayush Child & Skin Hospital</p>
             </div>
           </div>

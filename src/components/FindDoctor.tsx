@@ -83,13 +83,13 @@ const FindDoctor = () => {
       profileLink: "/doctors/dr-sridhar"
     },
     {
-      name: "Dr. G Himabindhu",
-      designation: "Senior Consultant in Dermatology",
+      name: "Dr. Himabindu Sridhar",
+      designation: "Consultant Cosmetologist, Laser & Hair Transplant Surgeon",
       image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE",
       experience: "15+ Years Experience",
       languages: "Telugu, English, Hindi",
       location: "Madanapalle",
-      profileLink: "/doctors/dr-himabindhu"
+      profileLink: "/doctors/dr-himabindu-sridhar"
     }
   ];
 

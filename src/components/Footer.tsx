@@ -16,9 +16,17 @@ const quickLinks = [
 const skinCareServices = [
   { path: '/dullness', label: 'Dullness' },
   { path: '/acne', label: 'Acne & Acne Scars' },
+  { path: '/laser-hair-removal', label: 'Laser Hair Removal' },
+  { path: '/hair-loss-treatment', label: 'Hair Loss Treatment' },
+  { path: '/prp-hair-therapy', label: 'PRP Hair Therapy' },
+  { path: '/mesotherapy-treatment', label: 'Mesotherapy Treatment' },
   { path: '/pigmentation', label: 'Pigmentation' },
   { path: '/anti-ageing', label: 'Anti-Ageing' },
-  { path: '/dryness', label: 'Dryness' }
+  { path: '/dryness', label: 'Dryness' },
+  { path: '/stretch-mark-removal', label: 'Stretch Mark Removal' },
+  { path: '/tattoo-removal', label: 'Tattoo Removal' },
+  { path: '/mole-removal', label: 'Mole Removal' },
+  { path: '/wart-removal', label: 'Wart Removal' }
 ];
 
 const childCareServices = [

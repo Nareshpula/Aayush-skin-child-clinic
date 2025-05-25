@@ -1,10 +1,92 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Baby, Stethoscope } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+// Define the content for each tab
+const tabContent = {
+  childCare: {
+    title: "Child Care",
+    description: "Every child is unique, and at Aayush Hospital, we are committed to fostering their overall growth and well-being through a comprehensive range of specialized and personalized pediatric services. As India's leading multi-specialty pediatric healthcare provider, our dedication to excellence is upheld by a team of highly trained and certified pediatricians, along with a compassionate support staff, available around the clock to ensure the best possible care.",
+    specialties: [
+      "General Pediatrics",
+      "Children's Nutrition",
+      "Pediatric Infectious Disease",
+      "Developmental & Behavioral Pediatrics",
+      "Vaccinations & Immunizations",
+      "Expert NICU & PICU Services",
+      "Growth&Development Monitoring",
+      "Newborn Care & Well-Baby Checkups",
+      "Advanced Lab Services"
+    ],
+    routes: {
+      "General Pediatrics": "/general-pediatrics",
+      "Children's Nutrition": "/childrens-nutrition",
+      "Pediatric Infectious Disease": "/pediatric-infectious-diseases",
+      "Developmental & Behavioral Pediatrics": "/developmental-behavioral-pediatrics",
+      "Vaccinations & Immunizations": "/vaccinations-immunizations",
+      "Expert NICU & PICU Services": "/picu-nicu",
+      "Growth&Development Monitoring": "/growth-development-monitoring",
+      "Newborn Care & Well-Baby Checkups": "/newborn-care-well-baby-checkups",
+      "Advanced Lab Services": "/advanced-lab-services"
+    },
+    bgColor: "#895ab8",
+    hoverBgColor: "#7a3a95"
+  },
+  skinCare: {
+    title: "Skin Care",
+    description: "At Aayush Child & Skin Hospital, our dermatology department offers advanced treatments for all skin conditions, helping patients achieve healthy, radiant skin through personalized care plans. Our expert dermatologists combine innovative technology with personalized care to address a wide range of skin concerns for patients of all ages.",
+    specialties: [
+      "Dullness Treatment",
+      "Acne & Acne Scars",
+      "Pigmentation Solutions",
+      "Anti-Ageing Therapies",
+      "Dryness & Hydration",
+      "Stretch Mark Removal",
+      "Tattoo Removal",
+      "Mole Removal",
+      "Wart Removal"
+    ],
+    routes: {
+      "Dullness Treatment": "/dullness",
+      "Acne & Acne Scars": "/acne",
+      "Pigmentation Solutions": "/pigmentation",
+      "Anti-Ageing Therapies": "/anti-ageing",
+      "Dryness & Hydration": "/dryness",
+      "Stretch Mark Removal": "/stretch-mark-removal",
+      "Tattoo Removal": "/tattoo-removal",
+      "Mole Removal": "/mole-removal",
+      "Wart Removal": "/wart-removal"
+    },
+    bgColor: "#895ab8",
+    hoverBgColor: "#7a3a95"
+  },
+  hairCare: {
+    title: "Hair Care",
+    description: "Our Hair Care Center offers comprehensive solutions for all hair and scalp concerns. From advanced hair loss treatments to scalp therapies, our specialized team provides personalized care using cutting-edge technology and proven methods to help you achieve healthier, stronger hair and restore your confidence.",
+    specialties: [
+      "Hair Loss Treatment",
+      "PRP Hair Therapy",
+      "Mesotherapy Treatment",
+      "Laser Hair Removal",
+      "Tattoo Removal"
+    ],
+    routes: {
+      "Hair Loss Treatment": "/hair-loss-treatment",
+      "PRP Hair Therapy": "/prp-hair-therapy",
+      "Mesotherapy Treatment": "/mesotherapy-treatment",
+      "Laser Hair Removal": "/laser-hair-removal",
+      "Tattoo Removal": "/tattoo-removal"
+    },
+    bgColor: "#895ab8",
+    hoverBgColor: "#7a3a95"
+  }
+};
+
 const CentersOfExcellence = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('childCare');
 
   return (
     <section className="py-20 bg-white">
@@ -24,13 +106,17 @@ const CentersOfExcellence = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          <motion.div
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {/* Child Care Tab */}
+          <motion.button
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group mx-auto"
+            onClick={() => setActiveTab('childCare')}
+            className={`relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group mx-auto cursor-pointer ${
+              activeTab === 'childCare' ? 'ring-4 ring-[#7E42A2]/50' : ''
+            }`}
           >
             <div className="aspect-[3/2] w-full max-w-sm h-48 overflow-hidden">
               <img
@@ -41,17 +127,23 @@ const CentersOfExcellence = () => {
                 decoding="async"
               />
             </div>
-            <div className="absolute bottom-0 left-0 right-0 bg-[#7E42A2] py-3 px-4">
+            <div className={`absolute bottom-0 left-0 right-0 bg-[#7E42A2] py-3 px-4 ${
+              activeTab === 'childCare' ? 'bg-opacity-100' : 'bg-opacity-80'
+            }`}>
               <h3 className="text-xl font-bold text-white text-center">Child Care</h3>
             </div>
-          </motion.div>
+          </motion.button>
 
-          <motion.div
+          {/* Skin Care Tab */}
+          <motion.button
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group mx-auto"
+            onClick={() => setActiveTab('skinCare')}
+            className={`relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group mx-auto cursor-pointer ${
+              activeTab === 'skinCare' ? 'ring-4 ring-[#EBDCFB]/70' : ''
+            }`}
           >
             <div className="aspect-[3/2] w-full max-w-sm h-48 overflow-hidden">
               <img
@@ -62,97 +154,105 @@ const CentersOfExcellence = () => {
                 decoding="async"
               />
             </div>
-            <div className="absolute bottom-0 left-0 right-0 bg-[#EBDCFB] py-3 px-4">
+            <div className={`absolute bottom-0 left-0 right-0 bg-[#EBDCFB] py-3 px-4 ${
+              activeTab === 'skinCare' ? 'bg-opacity-100' : 'bg-opacity-80'
+            }`}>
               <h3 className="text-xl font-bold text-black text-center">Skin Care</h3>
             </div>
-          </motion.div>
-        </div>
-
-        {/* Child Care Section */}
-        <div className="mt-24 grid md:grid-cols-2 max-w-6xl mx-auto relative">
-          {/* Vertical Line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-black/20 transform -translate-x-1/2"></div>
+          </motion.button>
           
-          {/* Left Column - Description */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6 md:pr-12 mb-12 md:mb-0"
-          >
-            <h2 className="text-3xl font-bold text-[#000000]">Child Care</h2>
-            <p className="text-base md:text-[16px] text-[#1b1a1b] leading-relaxed">
-              Every child is unique, and at Aayush Hospital, we are committed to fostering their overall growth and well-being through a comprehensive range of specialized and personalized pediatric services. As India's leading multi-specialty pediatric healthcare provider, our dedication to excellence is upheld by a team of highly trained and certified pediatricians, along with a compassionate support staff, available around the clock to ensure the best possible care.
-            </p>
-          </motion.div>
-
-          {/* Right Column - Specialties Grid */}
-          <motion.div
+          {/* Hair Care Tab */}
+          <motion.button
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-3 md:pl-12"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            onClick={() => setActiveTab('hairCare')}
+            className={`relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group mx-auto cursor-pointer ${
+              activeTab === 'hairCare' ? 'ring-4 ring-[#D8BFD8]/70' : ''
+            }`}
           >
-            {[
-              "General Pediatrics",
-              "Children's Nutrition",
-              "Pediatric Infectious Disease",
-              "Developmental & Behavioral Pediatrics",
-              "Vaccinations & Immunizations",
-              "Expert NICU & PICU Services",
-              "Growth&Development Monitoring",
-              "Newborn Care & Well-Baby Checkups",
-              "Advanced Lab Services"
-            ].map((specialty, index) => (
-              <motion.button
-                key={specialty}
-                className={`py-2.5 px-3 rounded-full bg-[#895ab8] text-white text-xs md:text-sm font-medium 
-                  hover:bg-[#7a3a95] transition-all duration-300 shadow-md hover:shadow-lg
-                  text-center leading-tight min-w-[120px] h-[42px] flex items-center justify-center`}
-                onClick={() => {
-                  if (specialty === "General Pediatrics") {
-                    navigate('/general-pediatrics');
-                    window.scrollTo(0, 0);
-                  } else if (specialty === "Children's Nutrition") {
-                    navigate('/childrens-nutrition');
-                    window.scrollTo(0, 0);
-                 } else if (specialty === "Pediatric Infectious Disease") {
-                   navigate('/pediatric-infectious-diseases');
-                   window.scrollTo(0, 0);
-                  } else if (specialty === "Developmental & Behavioral Pediatrics") {
-                    navigate('/developmental-behavioral-pediatrics');
-                    window.scrollTo(0, 0);
-                  } else if (specialty === "Vaccinations & Immunizations") {
-                    navigate('/vaccinations-immunizations');
-                    window.scrollTo(0, 0);
-                  } else if (specialty === "Expert NICU & PICU Services") {
-                    navigate('/picu-nicu');
-                    window.scrollTo(0, 0);
-                  } else if (specialty === "Advanced Lab Services") {
-                    navigate('/advanced-lab-services');
-                    window.scrollTo(0, 0);
-                  } else if (specialty === "Growth&Development Monitoring") {
-                    navigate('/growth-development-monitoring');
-                    window.scrollTo(0, 0);
-                  } else if (specialty === "Newborn Care & Well-Baby Checkups") {
-                    navigate('/newborn-care-well-baby-checkups');
-                    window.scrollTo(0, 0);
-                  }
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {specialty}
-              </motion.button>
-            ))}
-          </motion.div>
+            <div className="aspect-[3/2] w-full max-w-sm h-48 overflow-hidden">
+              <img
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Hair-care-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvSGFpci1jYXJlLWltYWdlLmpwZyIsImlhdCI6MTc0ODA4MjI1NSwiZXhwIjoxODQyNjkwMjU1fQ.JR3n6aW1FMiEY7mtIAO2_B80DP9j0lx0txp4FIp_gY0"
+                alt="Hair Care"
+                className="w-full h-full object-cover image-rendering-crisp transform-gpu will-change-transform transition-transform duration-700 group-hover:scale-110"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div className={`absolute bottom-0 left-0 right-0 bg-[#D8BFD8] py-3 px-4 ${
+              activeTab === 'hairCare' ? 'bg-opacity-100' : 'bg-opacity-80'
+            }`}>
+              <h3 className="text-xl font-bold text-black text-center">Hair Care</h3>
+            </div>
+          </motion.button>
         </div>
+
+        {/* Content Section - Dynamically changes based on active tab */}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="mt-24 grid md:grid-cols-2 max-w-6xl mx-auto relative"
+          >
+            {/* Vertical Line */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-black/20 transform -translate-x-1/2"></div>
+            
+            {/* Left Column - Description */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="space-y-6 md:pr-12 mb-12 md:mb-0"
+            >
+              <h2 className="text-3xl font-bold text-[#000000]">{tabContent[activeTab].title}</h2>
+              <p className="text-base md:text-[16px] text-[#1b1a1b] leading-relaxed">
+                {tabContent[activeTab].description}
+              </p>
+            </motion.div>
+
+            {/* Right Column - Specialties Grid */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-2 md:grid-cols-3 gap-3 md:pl-12"
+            >
+              {tabContent[activeTab].specialties.map((specialty, index) => (
+                <motion.button
+                  key={specialty}
+                  className={`py-2.5 px-3 rounded-full text-white text-xs md:text-sm font-medium 
+                    transition-all duration-300 shadow-md hover:shadow-lg
+                    text-center leading-tight min-w-[120px] h-[42px] flex items-center justify-center`}
+                  style={{ 
+                    backgroundColor: tabContent[activeTab].bgColor,
+                  }}
+                  onClick={() => {
+                    const route = tabContent[activeTab].routes[specialty];
+                    if (route) {
+                      navigate(route);
+                      window.scrollTo(0, 0);
+                    }
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    backgroundColor: tabContent[activeTab].hoverBgColor 
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {specialty}
+                </motion.button>
+              ))}
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

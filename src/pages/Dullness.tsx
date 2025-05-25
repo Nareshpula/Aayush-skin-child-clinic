@@ -215,8 +215,8 @@ const FindDoctorSection = () => {
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. G Himabindhu</h3>
-                <p className="text-base text-gray-700 mb-4">Senior Consultant in Dermatology</p>
+               <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
+                <p className="text-base text-gray-700 mb-4">Consultant Cosmetologist, Laser & Hair Transplant Surgeon</p>
                 
                 <div className="space-y-2 mb-6">
                   <div className="flex items-center justify-center gap-2 text-gray-600 text-sm">
@@ -235,7 +235,7 @@ const FindDoctorSection = () => {
                 
                 <div className="flex gap-3 w-full">
                   <button
-                    onClick={() => navigate('/doctors/dr-himabindhu')}
+                   onClick={() => navigate('/doctors/dr-himabindu-sridhar')}
                     className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-[#7a3a95] text-[#7a3a95] text-sm font-bold hover:bg-purple-50 transition-colors duration-300"
                   >
                     View Profile <ArrowRight className="w-4 h-4 ml-1" />

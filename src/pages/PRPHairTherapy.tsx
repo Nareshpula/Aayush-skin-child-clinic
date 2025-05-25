@@ -9,8 +9,8 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Acne-Scars-women.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BY25lLVNjYXJzLXdvbWVuLmpwZyIsImlhdCI6MTc0MzUwOTQxNCwiZXhwIjoxOTAxMTg5NDE0fQ.f0KhmTfCYJs_VkRUJj2o7uXonf3KPgsfxLy6beUtBy4"
-          alt="Acne Treatment"
+          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/PRP-Theropy-home-image.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvUFJQLVRoZXJvcHktaG9tZS1pbWFnZS5qcGVnIiwiaWF0IjoxNzQ4MTczMDAyLCJleHAiOjE4NDI3ODEwMDJ9.bi_smLsWPzvzekqzjs0RoGV_62GIiKtm5V77PB5bFNY"
+          alt="PRP Hair Therapy"
           className="w-full h-full object-cover transform-gpu will-change-transform backface-hidden image-rendering-crisp"
           loading="eager"
           decoding="async"
@@ -31,7 +31,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Clear Skin with Advanced Acne & Acne Scar Treatments
+            Advanced PRP Hair Therapy for Natural Hair Restoration
           </motion.h1>
         </motion.div>
       </div>
@@ -43,19 +43,19 @@ const features = [
   {
     icon: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Technology-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvVGVjaG5vbG9neS1pbWFnZS5zdmciLCJpYXQiOjE3NDMzMzA5OTAsImV4cCI6MTkwMTAxMDk5MH0.rwixTtZlvw-YHCZsr3j00RfZrON_8ak2QVW2c0ysgf0",
     title: "Advanced Technology & Infrastructure",
-    description: "State-of-the-art acne treatment equipment",
+    description: "State-of-the-art PRP extraction and application equipment",
     color: "bg-gradient-to-br from-blue-50 to-cyan-50"
   },
   {
     icon: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Service%2024_7-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2VydmljZSAyNF83LWltYWdlLnN2ZyIsImlhdCI6MTc0MzMzMTA1NSwiZXhwIjoxOTAxMDExMDU1fQ.OLOPsCy8uwjMyL-uR5xJXsxvNkvPahH3iLKwEmHJ0G0",
-    title: "Expert Dermatologists",
-    description: "Specialized care from experienced skin specialists",
+    title: "Expert Hair Specialists",
+    description: "Specialized care from experienced trichologists",
     color: "bg-gradient-to-br from-red-50 to-pink-50"
   },
   {
     icon: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Diagnosis-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRGlhZ25vc2lzLWltYWdlLnN2ZyIsImlhdCI6MTc0MzMzMTEyNCwiZXhwIjoxOTAxMDExMTI0fQ._ogfOsHXAn5-LsN1kRUtS3ERcbiImP_ngZ4IGTtORN8",
     title: "Personalized Treatment Plans",
-    description: "Customized solutions for your unique skin needs",
+    description: "Customized PRP protocols for your unique hair needs",
     color: "bg-gradient-to-br from-green-50 to-emerald-50"
   }
 ];
@@ -93,7 +93,7 @@ const Features = () => {
   );
 };
 
-const AcneTreatmentSection = () => {
+const PRPHairTherapySection = () => {
   return (
     <section className="py-16 bg-[#eaf7f8]">
       <div className="container mx-auto px-4">
@@ -105,65 +105,53 @@ const AcneTreatmentSection = () => {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold text-black">Advanced Acne & Acne Scar Treatments</h2>
+            <h2 className="text-3xl font-bold text-black">PRP Hair Therapy: Natural Hair Restoration</h2>
             <div className="space-y-4 text-black">
               <p className="leading-relaxed">
-                At Aayush Child & Skin Hospital, we provide internationally approved treatments for acne and acne scars, helping you achieve clear, healthy, and blemish-free skin. Our expert dermatologists and cutting-edge technology ensure that acne is treated at its root cause, preventing future breakouts and minimizing scars for a smooth, radiant complexion.
+                At Aayush Child & Skin Hospital, we offer advanced Platelet-Rich Plasma (PRP) therapy for hair restoration, a cutting-edge treatment that harnesses your body's natural healing abilities to stimulate hair growth. This minimally invasive procedure uses your own blood-derived growth factors to revitalize hair follicles, making it an ideal solution for those seeking natural hair restoration without surgery or synthetic chemicals.
               </p>
 
-              <h3 className="text-xl font-semibold mt-6 mb-3">Understanding Acne & Acne Scars</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-3">How PRP Hair Therapy Works</h3>
               <p className="leading-relaxed">
-                Acne is a common skin condition caused by clogged pores, bacteria, oil production, and hormonal changes. Without proper treatment, acne can leave behind stubborn scars that affect skin texture and confidence.
+                PRP therapy involves a simple three-step process that utilizes your body's own regenerative capabilities:
               </p>
               <ul className="list-disc pl-6 space-y-2 mb-6">
-                <li>Types of Acne: Whiteheads, Blackheads, Papules, Pustules, Nodules, and Cystic Acne.</li>
-                <li>Types of Acne Scars: Ice Pick Scars, Boxcar Scars, Rolling Scars, Post-Inflammatory Hyperpigmentation (PIH).</li>
+                <li><span className="font-semibold">Blood Collection</span> – A small amount of blood is drawn from your arm, similar to a routine blood test</li>
+                <li><span className="font-semibold">PRP Separation</span> – The blood sample is placed in a centrifuge that separates platelets and plasma from other blood components</li>
+                <li><span className="font-semibold">PRP Application</span> – The concentrated platelet-rich plasma, containing growth factors and bioactive proteins, is injected into targeted areas of the scalp</li>
               </ul>
 
-              <h3 className="text-xl font-semibold mt-6 mb-3">Our Standard Acne & Scar Treatments</h3>
               <p className="leading-relaxed">
-                We follow global dermatology protocols to effectively treat acne and scars with safe and proven methods:
+                These growth factors stimulate dormant hair follicles, improve blood circulation to the scalp, and extend the growth phase of the hair cycle, resulting in thicker, healthier hair growth over time.
+              </p>
+
+              <h3 className="text-xl font-semibold mt-6 mb-3">Benefits of PRP Hair Therapy</h3>
+              <ul className="list-disc pl-6 space-y-2 mb-6">
+                <li>Natural approach using your body's own healing mechanisms</li>
+                <li>Minimal downtime with no significant side effects</li>
+                <li>Stimulates inactive hair follicles to promote new growth</li>
+                <li>Strengthens existing hair and reduces further hair loss</li>
+                <li>Improves hair thickness, density, and overall quality</li>
+                <li>Can be combined with other hair restoration treatments for enhanced results</li>
+                <li>No risk of allergic reactions since it uses your own blood components</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mt-6 mb-3">Ideal Candidates for PRP Hair Therapy</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Individuals with early to moderate hair thinning or loss</li>
+                <li>Those with androgenetic alopecia (male/female pattern baldness)</li>
+                <li>Patients seeking a natural alternative to hair transplantation</li>
+                <li>People looking to enhance the results of hair transplant surgery</li>
+                <li>Those who have not responded well to medication-based treatments</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mt-6 mb-3">What to Expect</h3>
+              <p className="leading-relaxed">
+                A typical PRP hair restoration treatment plan involves 3-4 initial sessions spaced 4-6 weeks apart, followed by maintenance treatments every 4-6 months. Most patients begin to notice improvements after 2-3 months, with optimal results typically visible after 6-12 months of treatment. The procedure takes approximately 60-90 minutes per session, and you can resume normal activities immediately afterward with minimal restrictions.
               </p>
               
-              <h4 className="text-lg font-medium mt-4 mb-2">1. Advanced Laser Therapy (FDA-Approved)</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Fractional CO2 Laser & Pico Laser – Stimulates collagen for deep scar healing.</li>
-                <li>IPL (Intense Pulsed Light) Therapy – Reduces active acne, redness, and post-acne marks.</li>
-              </ul>
-              
-              <h4 className="text-lg font-medium mt-4 mb-2">2. Chemical Peels for Acne & Scarring</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Salicylic Acid Peels – Exfoliates clogged pores & controls oil production.</li>
-                <li>Glycolic Acid & TCA Peels – Improves skin texture and fades dark spots.</li>
-              </ul>
-              
-              <h4 className="text-lg font-medium mt-4 mb-2">3. Microneedling & PRP Therapy</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Microneedling with RF (Radiofrequency) – Stimulates collagen to smooth out scars.</li>
-                <li>PRP (Platelet-Rich Plasma) Therapy – Uses your body's natural healing power to rejuvenate skin.</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Why Choose Us?</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Internationally Approved Treatments – We follow global dermatology standards for acne management</li>
-                <li>Expert Dermatologists – Our specialists use evidence-based techniques for safe & effective results</li>
-                <li>Advanced Technology – We offer FDA-approved laser and skincare treatments</li>
-                <li>Personalized Care – Every treatment plan is customized based on skin type, severity, and lifestyle</li>
-                <li>Minimal Downtime – Most of our treatments have quick recovery periods with visible results</li>
-                <li>Holistic Approach – We combine dietary guidance, skincare routines, and medical treatments for the best results</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Prevention & Aftercare for Long-Lasting Results</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Daily Skincare Routine – Gentle cleansers, non-comedogenic moisturizers, and sunscreen</li>
-                <li>Proper Diet – Reducing dairy, sugar, and high-glycemic foods that can trigger acne</li>
-                <li>Avoid Picking – Never squeeze or pick at acne to prevent scarring</li>
-                <li>Regular Follow-Ups – Periodic dermatologist visits to track progress and make necessary adjustments</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mt-6 mb-3">Transform Your Skin with Us!</h3>
-              <p className="leading-relaxed">
-                Say goodbye to acne and acne scars! At Aayush Child & Skin Hospital, we are committed to helping you achieve clear, smooth, and healthy skin through scientifically backed acne treatments.
+              <p className="leading-relaxed mt-4">
+                Experience the natural rejuvenating power of PRP hair therapy at Aayush Child & Skin Hospital and rediscover the confidence that comes with a fuller head of hair.
               </p>
             </div>
           </motion.div>
@@ -177,8 +165,8 @@ const AcneTreatmentSection = () => {
           >
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Acne-Scars-Treatement.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BY25lLVNjYXJzLVRyZWF0ZW1lbnQuanBnIiwiaWF0IjoxNzQzNTEwMzg2LCJleHAiOjE5MDExOTAzODZ9.WaDGlGIUJ9wIe2m-XNGVU-iUH6b06pkdkVb3CwaMhCE"
-                alt="Acne Treatment"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/PRP-theropy-restoration.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvUFJQLXRoZXJvcHktcmVzdG9yYXRpb24uanBlZyIsImlhdCI6MTc0ODE3MzE0NSwiZXhwIjoxODQyNzgxMTQ1fQ.3zDkBtjoIPhnwE-QLZ0C39UgUCwlHWiygh1A61Gh4e0"
+                alt="PRP Hair Therapy"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />
             </div>
@@ -191,8 +179,8 @@ const AcneTreatmentSection = () => {
               className="mt-8 rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Laser-treatment-image.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9MYXNlci10cmVhdG1lbnQtaW1hZ2UucG5nIiwiaWF0IjoxNzQzNTExNTI4LCJleHAiOjE5MDExOTE1Mjh9.p4P4R43HzkkKbZ22i24J_aDO6ZGuNWHqV-M_nxFxRyc"
-                alt="Acne Before and After"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/PRP-treatment-process-image.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvUFJQLXRyZWF0bWVudC1wcm9jZXNzLWltYWdlLmpwZWciLCJpYXQiOjE3NDgxNzMzNDYsImV4cCI6MTg0Mjc4MTM0Nn0.kNyDS5xw8ORrfewcnPmHP7RH6txXcHq-xNth58jPvIc"
+                alt="PRP Treatment Process"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />
             </motion.div>
@@ -230,7 +218,7 @@ const FindDoctorSection = () => {
               Find Our Doctor
             </h2>
             <p className="text-base md:text-[16px] text-[#1b1a1b]">
-              Meet our expert dermatologist who brings years of experience in treating acne and acne scars.
+              Meet our expert hair specialist who brings years of experience in PRP hair therapy.
             </p>
           </motion.div>
 
@@ -246,11 +234,11 @@ const FindDoctorSection = () => {
                 <div className="w-24 h-24 mb-4">
                   <img
                     src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
-                    alt="Dr. G Himabindhu"
+                    alt="Dr. Himabindu Sridhar"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-               <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
                 <p className="text-base text-gray-700 mb-4">Consultant Cosmetologist, Laser & Hair Transplant Surgeon</p>
                 
                 <div className="space-y-2 mb-6">
@@ -270,7 +258,7 @@ const FindDoctorSection = () => {
                 
                 <div className="flex gap-3 w-full">
                   <button
-                   onClick={() => navigate('/doctors/dr-himabindu-sridhar')}
+                    onClick={() => navigate('/doctors/dr-himabindu-sridhar')}
                     className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-[#7a3a95] text-[#7a3a95] text-sm font-bold hover:bg-purple-50 transition-colors duration-300"
                   >
                     View Profile <ArrowRight className="w-4 h-4 ml-1" />
@@ -291,33 +279,33 @@ const FindDoctorSection = () => {
   );
 };
 
-const SkinCareBlogsSection = () => {
+const HairCareBlogsSection = () => {
   const navigate = useNavigate();
   
   const blogs = [
     {
       id: 1,
-      title: "Causes of Acne Scars on the Face in Women and Men",
-      date: "February 20",
-      link: "/blog/causes-of-acne-scars",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Acne-Scars-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvQWNuZS1TY2Fycy1pbWFnZS5qcGciLCJpYXQiOjE3NDMyNjU1NjAsImV4cCI6MTkwMDk0NTU2MH0.2qCJzxJIKWpvDx9dX_IIweiSyFtzqX9lsaMnDEFItE0",
-      excerpt: "Modern solutions for treating and minimizing acne scarring."
+      title: "Understanding Hair Loss: Causes and Modern Treatment Options",
+      link: "/blog/understanding-hair-loss",
+      date: "March 15",
+      image: "https://images.unsplash.com/photo-1626954079979-ec4f7b05e032?q=80&w=1000&auto=format&fit=crop",
+      excerpt: "Exploring the science behind hair loss and effective treatment approaches."
     },
     {
       id: 2,
-      title: "Understanding Uneven Skin Tone and Pigmentation Issues",
-      date: "February 10",
-      link: "/blog/understanding-pigmentation",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Pigmentation-Issues-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvUGlnbWVudGF0aW9uLUlzc3Vlcy1pbWFnZS5qcGciLCJpYXQiOjE3NDMyNjY4NzMsImV4cCI6MTkwMDk0Njg3M30.p7JUH-IXI6kdk95wqXuWsGeUT9PEqA2A3rzVU1Al9wY",
-      excerpt: "Discover advanced treatments to restore your skin's natural glow."
+      title: "The Role of Nutrition in Healthy Hair Growth",
+      date: "March 5",
+      link: "/blog/nutrition-for-hair-growth",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1000&auto=format&fit=crop",
+      excerpt: "How your diet affects your hair health and growth cycles."
     },
     {
       id: 3,
-      title: "Understanding Aging Face: Causes and Ways to Maintain Youthful Skin",
-      link: "/blog/understanding-aging-face",
-      date: "January 15",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/women-anti-ageing-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvd29tZW4tYW50aS1hZ2VpbmctaW1hZ2UuanBnIiwiaWF0IjoxNzQzMjY3NTA5LCJleHAiOjE5MDA5NDc1MDl9.rnd6d9uPQQr722F6PcYZR1SSXOP7SFKc3xQgPRjBE-g",
-      excerpt: "Exploring modern approaches to maintaining youthful skin."
+      title: "Stress and Hair Loss: Understanding the Connection",
+      link: "/blog/stress-and-hair-loss",
+      date: "February 25",
+      image: "https://images.unsplash.com/photo-1541199249251-f713e6145474?q=80&w=1000&auto=format&fit=crop",
+      excerpt: "The physiological relationship between stress and hair thinning."
     }
   ];
 
@@ -332,10 +320,10 @@ const SkinCareBlogsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Latest Skin Care Articles
+            Latest Hair Care Articles
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Stay informed with our expert insights on skin health and treatments
+            Stay informed with our expert insights on hair health and treatments
           </p>
         </motion.div>
 
@@ -408,7 +396,7 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Achieve Clear, Blemish-Free Skin
+            Revitalize Your Hair with PRP Therapy
           </motion.h2>
           <motion.p 
             className="text-lg text-white/90 mb-8"
@@ -417,7 +405,7 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Schedule a consultation with our acne treatment specialists today
+            Schedule a consultation with our hair restoration specialists today
           </motion.p>
           <motion.button
             className="px-8 py-3 bg-white text-purple-600 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
@@ -435,7 +423,7 @@ const CTASection = () => {
   );
 };
 
-const Acne = () => {
+const PRPHairTherapy = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -444,12 +432,12 @@ const Acne = () => {
     <div className="bg-white">
       <HeroSection />
       <Features />
-      <AcneTreatmentSection />
+      <PRPHairTherapySection />
       <FindDoctorSection />
-      <SkinCareBlogsSection />
+      <HairCareBlogsSection />
       <CTASection />
     </div>
   );
 };
 
-export default Acne;
+export default PRPHairTherapy;

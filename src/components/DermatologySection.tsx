@@ -17,6 +17,24 @@ const skinConcerns = [
     path: "/acne"
   },
   {
+    title: "Laser Hair Removal",
+    description: "Permanent hair reduction solution",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/laser-epilation-hair-removal-therapy.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvbGFzZXItZXBpbGF0aW9uLWhhaXItcmVtb3ZhbC10aGVyYXB5LmpwZyIsImlhdCI6MTc0ODE0NTIzOCwiZXhwIjoxODQyNzUzMjM4fQ.zPAC9deNuzJWSrdFKRpxqFnWVB5z9Ov-PcIjEnar0CE",
+    path: "/laser-hair-removal"
+  },
+  {
+    title: "Hair Loss Treatment",
+    description: "Restore hair growth and thickness",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Hair-loss-showing-image.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvSGFpci1sb3NzLXNob3dpbmctaW1hZ2UuanBlZyIsImlhdCI6MTc0ODE3Mjc5NSwiZXhwIjoxODQyNzgwNzk1fQ.coKWrjeDLcHr5De2vF3rn00V2Ar4bFuCnXSIGi7ADCA",
+    path: "/hair-loss-treatment"
+  },
+  {
+    title: "PRP Hair Therapy",
+    description: "Natural hair restoration solution",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/PRP-Theropy-home-image.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvUFJQLVRoZXJvcHktaG9tZS1pbWFnZS5qcGVnIiwiaWF0IjoxNzQ4MTczMDAyLCJleHAiOjE4NDI3ODEwMDJ9.bi_smLsWPzvzekqzjs0RoGV_62GIiKtm5V77PB5bFNY",
+    path: "/prp-hair-therapy"
+  },
+  {
     title: "Pigmentation",
     description: "Lighten, exfoliate, and sun-protection",
     image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/pigmantation-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvcGlnbWFudGF0aW9uLWltYWdlLmpwZyIsImlhdCI6MTc0MjgxNzcyMiwiZXhwIjoxOTAwNDk3NzIyfQ.s9t3YX4_QGTBpllZj8rbkulP5C-PLEzwCjWLGm4LuVo",
@@ -33,6 +51,36 @@ const skinConcerns = [
     description: "Hydrate, protect from sun & intense moisturization",
     image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/dry-skin-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvZHJ5LXNraW4taW1hZ2UuanBnIiwiaWF0IjoxNzQyODE5MDc0LCJleHAiOjE5MDA0OTkwNzR9.b0OCWaRaI1tKYh5Mci9fBCQd5gPoI6vbPOFnGOEL_98",
     path: "/dryness"
+  },
+  {
+    title: "Mesotherapy Treatment",
+    description: "Advanced hair rejuvenation therapy",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Mesotheropy-home-image.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvTWVzb3RoZXJvcHktaG9tZS1pbWFnZS5qcGVnIiwiaWF0IjoxNzQ4MTczNzk1LCJleHAiOjE4NDI3ODE3OTV9.UbwJtBy9tGBILYbimHIYLNkpzKa31Ygj8ErPdKqgKD4",
+    path: "/mesotherapy-treatment"
+  },
+  {
+    title: "Tattoo Removal",
+    description: "Advanced laser tattoo removal",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Tatto-Removable-issues-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvVGF0dG8tUmVtb3ZhYmxlLWlzc3Vlcy1pbWFnZS5qcGciLCJpYXQiOjE3NDgxNTYzOTcsImV4cCI6MTg0Mjc2NDM5N30.KJZ2qBKeQ3GveKNrEmB4GYg69c9V6Hx7-8h0trcU4d4",
+    path: "/tattoo-removal"
+  },
+  {
+    title: "Mole Removal",
+    description: "Safe removal of skin moles",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Mole-showing-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvTW9sZS1zaG93aW5nLWltYWdlLmpwZyIsImlhdCI6MTc0ODE1NzE4NSwiZXhwIjoxODQyNzY1MTg1fQ.-IePmjNiJsaJLkAiM-O5BDGuvsofwUxyKCv1JPSmnuM",
+    path: "/mole-removal"
+  },
+  {
+    title: "Wart Removal",
+    description: "Effective wart treatment solutions",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Wart-main-images.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvV2FydC1tYWluLWltYWdlcy5qcGVnIiwiaWF0IjoxNzQ4MTcwMTY3LCJleHAiOjE4NDI3NzgxNjd9.AAeDfGv9NxJ5hyDEWnX2MNfv1vE0t_ySJw2c6OURODE",
+    path: "/wart-removal"
+  },
+  {
+    title: "Stretch Mark Removal",
+    description: "Reduce appearance of stretch marks",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Stretch-problems-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvU3RyZXRjaC1wcm9ibGVtcy1pbWFnZS5qcGciLCJpYXQiOjE3NDgxNDQ1NjQsImV4cCI6MTg0Mjc1MjU2NH0.XZwJOovk8-ZU6b6I9m4wo7uLd1gZhMYQfOMfZMxwYnY",
+    path: "/stretch-mark-removal"
   }
 ];
 
