@@ -41,6 +41,7 @@ import MoleRemoval from './pages/MoleRemoval';
 import WartRemoval from './pages/WartRemoval';
 import AgingArticle from './pages/AgingArticle';
 import ScrollToTop from '@/components/ScrollToTop';
+import BookAppointment from './pages/BookAppointment';
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
             <Route path="/tattoo-removal" element={<TattooRemoval />} />
             <Route path="/mole-removal" element={<MoleRemoval />} />
             <Route path="/wart-removal" element={<WartRemoval />} />
+            <Route path="/book-appointment" element={<BookAppointment />} />
             <Route path="/acne" element={<Acne />} />
               <Route path="/blog/understanding-ear-infections" element={<BlogArticle />} />
               <Route path="/blog/nutritional-deficiencies-impact" element={<NutritionArticle />} />

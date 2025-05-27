@@ -295,6 +295,7 @@ const FindDoctorSection = () => {
                   <button
                     onClick={handleContactClick}
                     className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-full bg-[#7a3a95] text-white text-sm font-semibold hover:bg-[#7a3a95]/90 transition-colors duration-300"
+                    onClick={() => navigate('/book-appointment')}
                   >
                     Book Appointment
                   </button>

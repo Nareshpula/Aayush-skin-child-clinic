@@ -57,11 +57,7 @@ const DoctorCard = ({ doctor }: { doctor: {
           View Profile <ArrowRight className="w-4 h-4 ml-1 text-[#cab1d5] stroke-[2.5]" />
         </Link>
         <Link
-          to="#contact-form"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
-          }}
+          to="/book-appointment"
           className="flex-1 inline-flex items-center justify-center px-3 py-2 rounded-full bg-[#7a3a95] text-white text-sm font-semibold hover:bg-[#7a3a95]/90 transition-colors duration-300"
         >
           Book Appointment

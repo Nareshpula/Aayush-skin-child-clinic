@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Book Appointment Page Specific Styles */
+.book-appointment-container {
+  padding-top: 0; /* Reset this as we'll use the class below */
+}
+
 /* Fix for mobile menu visibility */
 @media (max-width: 768px) {
   .fixed.z-[9999] {
@@ -307,3 +312,40 @@ label {
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+/* Time Slot Styling for Mobile */
+@media (max-width: 640px) {
+  .grid-cols-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .grid-cols-4 button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+  }
+  
+  .grid-cols-4 button.bg-\[\#7a3a95\] {
+    box-shadow: 0 2px 4px rgba(122, 58, 149, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+/* Navbar Fixed Positioning */
+
+/* Book Appointment Page Styles */
+@media (min-width: 768px) {
+  .book-appointment-page {
+    padding-top: 140px; /* Increased desktop-specific top padding */
+  }
+}
+
+@media (max-width: 767px) {
+  .book-appointment-page {
+    padding-top: 120px; /* Increased mobile-specific top padding */
+  }
+}
+
+/* Extra small screen adjustments */

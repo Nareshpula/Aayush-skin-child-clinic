@@ -197,8 +197,8 @@ const Navbar = () => {
                 <Phone className="w-4 h-4" />
                 <span>Contact Us</span>
               </a>
-              <a 
-                href="tel:9676079516"
+              <Link 
+                to="/book-appointment"
                 className="flex items-center space-x-2 bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 whitespace-nowrap"
               >
                 <img 
@@ -206,8 +206,8 @@ const Navbar = () => {
                   alt="Emergency"
                   className="w-6 h-6 animate-pulse"
                 />
-                <span>Pediatric Emergency</span>
-              </a>
+                <span>Book Appointment</span>
+              </Link>
             </div>
             {/* Mobile icons */}
             <div className="md:hidden flex items-center space-x-3">
@@ -377,8 +377,8 @@ const Navbar = () => {
                 Contact Us
               </span>
             </a>
-            <a 
-              href="tel:9676079516" 
+            <Link 
+              to="/book-appointment" 
               className="block w-full bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 shadow-md text-center"
             >
               <span className="flex items-center justify-center">
@@ -387,9 +387,9 @@ const Navbar = () => {
                   alt="Emergency"
                   className="w-6 h-6 mr-2 animate-pulse"
                 />
-                <span className="whitespace-normal">Pediatric Emergency</span>
+                <span className="whitespace-normal">Book Appointment</span>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
