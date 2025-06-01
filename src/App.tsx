@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CustomFooter from './components/CustomFooter';
+import Login from './pages/Login';
 import Home from './pages/Home';
 import About from './pages/About';
 import Doctors from './pages/Doctors';
@@ -40,6 +42,9 @@ import TattooRemoval from './pages/TattooRemoval';
 import MoleRemoval from './pages/MoleRemoval';
 import WartRemoval from './pages/WartRemoval';
 import AgingArticle from './pages/AgingArticle';
+import AdminDashboard from './pages/AdminDashboard';
+import AppointmentsDashboard from './pages/AppointmentsDashboard';
+import Unauthorized from './pages/Unauthorized';
 import ScrollToTop from '@/components/ScrollToTop';
 import BookAppointment from './pages/BookAppointment';
 
@@ -85,6 +90,18 @@ function App() {
             <Route path="/mole-removal" element={<MoleRemoval />} />
             <Route path="/wart-removal" element={<WartRemoval />} />
             <Route path="/book-appointment" element={<BookAppointment />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/unauthorized" element={<Unauthorized />} />
+            <Route path="/admin-dashboard" element={
+              <ProtectedRoute requiredRoles="admin">
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/appointments-dashboard" element={
+              <ProtectedRoute requiredRoles={['admin', 'reception']}>
+                <AppointmentsDashboard />
+              </ProtectedRoute>
+            } />
             <Route path="/acne" element={<Acne />} />
               <Route path="/blog/understanding-ear-infections" element={<BlogArticle />} />
               <Route path="/blog/nutritional-deficiencies-impact" element={<NutritionArticle />} />

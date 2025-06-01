@@ -7,13 +7,21 @@ const HeroSection = () => {
   
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Background Image with Gradient Overlay */}
+      {/* Background Video with Gradient Overlay */}
       <div className="absolute inset-0">
-        <img
-          src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Team-Image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1UZWFtLUltYWdlLmpwZyIsImlhdCI6MTc0Mjg5NDIzMiwiZXhwIjoxOTAwNTc0MjMyfQ.qlX0wTgH-P1cS3BnoZxXRtTUTW9K9mgPB9USTWf6cPw"
-          alt="Aayush Hospital Team"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover"
-        />
+          style={{ transform: 'translate3d(0, 0, 0)' }}
+        >
+          <source 
+            src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hospital-Vedio/aayush-hospital-1.mp4?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSG9zcGl0YWwtVmVkaW8vYWF5dXNoLWhvc3BpdGFsLTEubXA0IiwiaWF0IjoxNzQ4Njg2NjU2LCJleHAiOjE5MDYzNjY2NTZ9.BU1O-QyVPOii7IkMZRjtYB4kLuHiQY_gXqjWC2FEEkg" 
+            type="video/mp4" 
+          />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></div>
       </div>
 
@@ -32,23 +40,6 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="inline-block drop-shadow-lg"
             >
-              AAYUSH
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block drop-shadow-lg"
-            >
-              Child & Skin
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="inline-block drop-shadow-lg"
-            >
-              Hospital
             </motion.span>
           </div>
           <motion.p
@@ -57,7 +48,6 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-8 text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-lg"
           >
-            Pioneering Excellence in Child Care and Skin Care with Specialized Expertise and Compassionate Treatment
           </motion.p>
         </motion.div>
 

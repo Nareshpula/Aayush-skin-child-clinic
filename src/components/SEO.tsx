@@ -10,14 +10,14 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = "Jyothi Diagnostics - No.1 Diagnostic Center in Madanapalle | Best Medical Testing Services",
-  description = "Jyothi Diagnostics - Leading diagnostic center in Madanapalle offering 3.0 Tesla MRI, CT scan, digital X-ray, ultrasound & pregnancy scans. Best pathology lab in Annamayya district with expert radiologists.",
-  keywords = "best diagnostics center in Madanapalle, radiology services in Madanapalle, digital X-ray center in Madanapalle, top diagnostic lab, MRI scan center near me in Madanapalle, ultrasound scan center in Madanapalle, blood test lab in Madanapalle, full body checkup in Madanapalle, 3.0 Tesla MRI scan in Madanapalle, health checkup packages in Madanapalle, trusted pathology lab in Madanapalle, best pregnancy scan center in Madanapalle, CT scan center in Madanapalle, best diagnostic center in Annamayya district",
-  canonicalUrl = "https://www.jyothidiagnosticsmpl.com",
-  ogImage = "https://www.jyothidiagnosticsmpl.com/og-image.jpg",
+  title = "Aayush Child & Skin Hospital - No.1 Specialized Healthcare in Madanapalle | Pediatrics & Dermatology",
+  description = "Aayush Child & Skin Hospital - Leading healthcare provider in Madanapalle offering specialized pediatric care, dermatology treatments, NICU, PICU, skin care, hair treatments, and cosmetic procedures with expert doctors.",
+  keywords = "best child hospital in Madanapalle, skin specialist in Madanapalle, pediatric care in Madanapalle, dermatology clinic Madanapalle, NICU PICU services, children's healthcare, acne treatment, pigmentation treatment, hair loss treatment, laser hair removal, cosmetic procedures, child specialist doctor, skin doctor in Madanapalle, Annamayya district hospital",
+  canonicalUrl = "https://www.aayushhospitalmpl.com",
+  ogImage = "https://www.aayushhospitalmpl.com/og-image.jpg",
   noindex = false,
 }: SEOProps) {
-  const siteTitle = `${title} | Jyothi Diagnostics`;
+  const siteTitle = `${title} | Aayush Child & Skin Hospital`;
 
   return (
     <Helmet>
@@ -26,7 +26,7 @@ export default function SEO({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonicalUrl} />
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {noindex && <meta name="robots\" content="noindex,nofollow" />}
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
@@ -47,7 +47,7 @@ export default function SEO({
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
-      <meta name="author" content="Jyothi Diagnostics" />
+      <meta name="author" content="Aayush Child & Skin Hospital" />
       <meta name="geo.region" content="IN-AP" />
       <meta name="geo.placename" content="Madanapalle, Annamayya District" />
       <meta name="geo.position" content="13.558638427265453;78.50818108762539" />

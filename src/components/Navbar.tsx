@@ -178,16 +178,6 @@ const Navbar = () => {
           </Link>
           
           <div className="flex items-center space-x-4">
-            <div className="relative hidden md:block">
-              <input
-                type="text"
-                placeholder="Search Scan's, Services"
-                className={`pl-10 pr-4 py-2 rounded-full w-44 focus:w-56 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#6f42c1] ${
-                  'bg-white shadow-sm border border-gray-200 text-black placeholder-gray-500'
-                }`}
-              />
-              <Search className="absolute left-3 top-2.5 w-5 h-5 text-[#6f42c1]" />
-            </div>
             {/* Desktop buttons */}
             <div className="hidden md:flex items-center space-x-3">
               <a 
@@ -197,8 +187,8 @@ const Navbar = () => {
                 <Phone className="w-4 h-4" />
                 <span>Contact Us</span>
               </a>
-              <Link 
-                to="/book-appointment"
+              <a 
+                href="tel:9676079516"
                 className="flex items-center space-x-2 bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 whitespace-nowrap"
               >
                 <img 
@@ -206,7 +196,13 @@ const Navbar = () => {
                   alt="Emergency"
                   className="w-6 h-6 animate-pulse"
                 />
-                <span>Book Appointment</span>
+                <span>Pediatric Emergency</span>
+              </a>
+              <Link
+                to="/login"
+                className="flex items-center space-x-2 bg-[#783b94] text-white px-6 py-2.5 rounded-full hover:bg-[#6a2a85] transition duration-300"
+              >
+                <span>Login</span>
               </Link>
             </div>
             {/* Mobile icons */}
@@ -377,8 +373,8 @@ const Navbar = () => {
                 Contact Us
               </span>
             </a>
-            <Link 
-              to="/book-appointment" 
+            <a 
+              href="tel:9676079516" 
               className="block w-full bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 shadow-md text-center"
             >
               <span className="flex items-center justify-center">
@@ -387,10 +383,18 @@ const Navbar = () => {
                   alt="Emergency"
                   className="w-6 h-6 mr-2 animate-pulse"
                 />
-                <span className="whitespace-normal">Book Appointment</span>
+                <span className="whitespace-normal">Pediatric Emergency</span>
+              </span>
+            </a>
+            <Link
+              to="/login"
+              className="block w-full bg-[#783b94] text-white px-6 py-2.5 rounded-full hover:bg-[#6a2a85] transition duration-300 shadow-md text-center"
+            >
+              <span className="flex items-center justify-center">
+                Login
               </span>
             </Link>
-          </div>
+           </div>
         </div>
       </div>
     </nav>

@@ -1,9 +1,9 @@
-# www.jyothidiagnosticsmpl.com robots.txt
+# www.aayushhospitalmpl.com robots.txt
 User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://www.jyothidiagnosticsmpl.com/sitemap.xml
+Sitemap: https://www.aayushhospitalmpl.com/sitemap.xml
 
 # Optimize crawling
 Crawl-delay: 1

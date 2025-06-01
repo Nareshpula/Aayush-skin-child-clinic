@@ -174,7 +174,7 @@ const CentersOfExcellence = () => {
           >
             <div className="aspect-[3/2] w-full max-w-sm h-48 overflow-hidden">
               <img
-                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Hair-care-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvSGFpci1jYXJlLWltYWdlLmpwZyIsImlhdCI6MTc0ODA4MjI1NSwiZXhwIjoxODQyNjkwMjU1fQ.JR3n6aW1FMiEY7mtIAO2_B80DP9j0lx0txp4FIp_gY0"
+                src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Hair-loss-treatment.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvSGFpci1sb3NzLXRyZWF0bWVudC5qcGVnIiwiaWF0IjoxNzQ4NjYwMTA5LCJleHAiOjE4NDMyNjgxMDl9.GLwo7ctBuDexMq4c4OqA5qLClrQFzUu-O2XyCnmttzc"
                 alt="Hair Care"
                 className="w-full h-full object-cover image-rendering-crisp transform-gpu will-change-transform transition-transform duration-700 group-hover:scale-110"
                 loading="eager"

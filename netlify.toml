@@ -28,20 +28,20 @@
 
 # Primary domain redirects (301)
 [[redirects]]
-  from = "http://jyothidiagnosticsmpl.com/*"
-  to = "https://www.jyothidiagnosticsmpl.com/:splat"
+  from = "http://aayushhospitalmpl.com/*"
+  to = "https://www.aayushhospitalmpl.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://jyothidiagnosticsmpl.com/*"
-  to = "https://www.jyothidiagnosticsmpl.com/:splat"
+  from = "https://aayushhospitalmpl.com/*"
+  to = "https://www.aayushhospitalmpl.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://www.jyothidiagnosticsmpl.com/*"
-  to = "https://www.jyothidiagnosticsmpl.com/:splat"
+  from = "http://www.aayushhospitalmpl.com/*"
+  to = "https://www.aayushhospitalmpl.com/:splat"
   status = 301
   force = true
 
@@ -63,12 +63,12 @@
     Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     Content-Security-Policy = """
       default-src 'self';
-      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://voaxktqgbljtsattacbn.supabase.co;
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gatgyhxtgqmzwjatbmzk.supabase.co;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       img-src 'self' data: https: blob:;
       font-src 'self' data: https://fonts.gstatic.com;
-      connect-src 'self' https://voaxktqgbljtsattacbn.supabase.co;
-      media-src 'self' https://voaxktqgbljtsattacbn.supabase.co;
+      connect-src 'self' https://gatgyhxtgqmzwjatbmzk.supabase.co;
+      media-src 'self' https://gatgyhxtgqmzwjatbmzk.supabase.co https://voaxktqgbljtsattacbn.supabase.co;
       frame-src 'self' https://www.google.com;
       worker-src 'self' blob:;
       """
