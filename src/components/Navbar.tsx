@@ -150,34 +150,34 @@ const Navbar = () => {
     } transition-colors duration-300`}>
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className={`flex justify-between items-center h-24 ${
+        <div className={`flex justify-between items-center h-16 md:h-24 ${
           isScrolled ? 'border-b border-gray-200/50' : 'border-b border-black/50'
         }`}>
-          <Link to="/" className="flex items-center gap-1 md:gap-4 flex-1 group">
-            <div className="relative w-auto h-10 md:h-16 flex items-center">
+          <Link to="/" className="flex items-center gap-1 md:gap-4 flex-shrink-1 group">
+            <div className="relative w-auto h-8 md:h-16 flex items-center">
               <img 
                 src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Aayush-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BYXl1c2gtbG9nby5wbmciLCJpYXQiOjE3NDM2OTk3MzAsImV4cCI6MTkwMTM3OTczMH0.pg25T9SRSiXE0jn46_vxVzTK_vlJGURYwbeRpbjnIF0"
                 alt="Aayush Logo"
-                className="h-full w-auto object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-500 max-h-10 md:max-h-16 min-w-[32px]"
+                className="h-full w-auto object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-500 max-h-8 md:max-h-16 min-w-[28px]"
               />
             </div>
-            <div className="flex items-center">
-              <h1 className="font-['Montserrat'] text-sm md:text-2xl font-extrabold tracking-wider text-[#685392] drop-shadow-sm">
+            <div className="flex items-center overflow-hidden">
+              <h1 className="font-['Montserrat'] text-xs md:text-2xl font-extrabold tracking-wider text-[#685392] drop-shadow-sm whitespace-nowrap">
                 AAYUSH
               </h1>
-              <div className="mx-2 h-8 md:h-12 w-0.5 bg-[#685392]/70 rounded-full"></div>
-              <div className="flex flex-col">
-                <span className="font-['Montserrat'] text-xs md:text-lg font-extrabold text-[#7e3a93] tracking-wide">
+              <div className="mx-1 md:mx-2 h-6 md:h-12 w-0.5 bg-[#685392]/70 rounded-full"></div>
+              <div className="flex flex-col overflow-hidden">
+                <span className="font-['Montserrat'] text-[10px] md:text-lg font-extrabold text-[#7e3a93] tracking-wide truncate">
                   Child & Skin
                 </span>
-                <span className="font-['Montserrat'] text-xs md:text-base font-bold text-[#7e3a93]/90 tracking-wide">
+                <span className="font-['Montserrat'] text-[9px] md:text-base font-bold text-[#7e3a93]/90 tracking-wide truncate">
                   Hospital
                 </span>
               </div>
             </div>
           </Link>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             {/* Desktop buttons */}
             <div className="hidden md:flex items-center space-x-3">
               <a 
@@ -199,19 +199,19 @@ const Navbar = () => {
                 <span>Pediatric Emergency</span>
               </a>
               <Link
-                to="/login"
-                className="flex items-center space-x-2 bg-[#783b94] text-white px-6 py-2.5 rounded-full hover:bg-[#6a2a85] transition duration-300"
+                to="/login" 
+                className="flex items-center space-x-2 bg-[#783b94] text-white px-6 py-2.5 rounded-full hover:bg-[#6a2a85] transition duration-300" 
               >
                 <span>Login</span>
               </Link>
             </div>
             {/* Mobile icons */}
-            <div className="md:hidden flex items-center space-x-3">
-              <div className="relative z-20 hidden xs:block">
+            <div className="md:hidden flex items-center space-x-2">
+              <div className="relative z-20 xs:block hidden">
                 <button 
                   onMouseEnter={() => setShowScanTooltip(true)}
                   onMouseLeave={() => setShowScanTooltip(false)}
-                  className="flex items-center justify-center w-8 h-8 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300 visible"
+                  className="flex items-center justify-center w-8 h-8 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300"
                 >
                   <ScanLine className="w-4 h-4 text-white" />
                 </button>
@@ -223,11 +223,14 @@ const Navbar = () => {
               </div>
               <a 
                 href="tel:9676079516"
-                className="flex items-center justify-center w-8 h-8 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300 z-20"
+                className="flex items-center justify-center w-9 h-9 bg-[#6f42c1] rounded-full hover:bg-[#5a359d] transition-colors duration-300 z-20"
               >
                 <Phone className="w-4 h-4 text-white" />
               </a>
-              <button onClick={() => setIsOpen(!isOpen)} className="p-1 z-20 visible">
+              <button 
+                onClick={() => setIsOpen(!isOpen)} 
+                className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-300 z-20"
+              >
                 {isOpen ? <X className="w-5 h-5 text-gray-900" /> : <Menu className="w-5 h-5 text-gray-900" />}
               </button>
             </div>
@@ -235,7 +238,7 @@ const Navbar = () => {
         </div>
         
         {/* Navigation Menu */}
-        <div className={`hidden md:block py-4 transition-all duration-300 ${
+        <div className={`hidden md:block py-2 md:py-4 transition-all duration-300 ${
           isScrolled ? 'py-2' : 'py-4'
         } ${isScrolled ? 'border-t border-gray-200/50' : 'border-t border-black/50'}`}>
           <ul className="flex justify-center space-x-8">
@@ -303,10 +306,10 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden fixed top-24 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300 ease-in-out z-10 ${
+      <div className={`md:hidden fixed top-16 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300 ease-in-out z-10 ${
         isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
       }`}>
-        <div className="px-2 pt-2 pb-20 space-y-1 sm:px-3 max-h-[calc(100vh-96px)] overflow-y-auto border-t border-gray-200">
+        <div className="px-2 pt-2 pb-20 space-y-1 sm:px-3 max-h-[calc(100vh-64px)] overflow-y-auto border-t border-gray-200">
             {menuItems.map((item, index) => {
               if (item.dropdown) {
                 return (
@@ -341,7 +344,7 @@ const Navbar = () => {
                 );
               }
               return (
-                <Link
+                <Link 
                   key={index}
                   to={item.path}
                   className={`block px-3 py-2.5 hover:bg-gray-100/80 rounded-lg transition-colors duration-200 ${
@@ -363,10 +366,10 @@ const Navbar = () => {
                 >{item.label}</Link>
               );
             })}
-            <div className="mt-4 space-y-2 relative z-10">
+            <div className="mt-6 space-y-3 relative z-10">
             <a 
               href="tel:9676079516"
-              className="block w-full bg-purple-600 text-white px-6 py-2.5 rounded-full hover:bg-purple-700 transition duration-300 text-center shadow-md"
+              className="block w-full bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition duration-300 text-center shadow-md"
             >
               <span className="flex items-center justify-center">
                 <Phone className="w-4 h-4 mr-2" />
@@ -375,7 +378,7 @@ const Navbar = () => {
             </a>
             <a 
               href="tel:9676079516" 
-              className="block w-full bg-teal-500 text-white px-6 py-2.5 rounded-full hover:bg-teal-600 transition duration-300 shadow-md text-center"
+              className="block w-full bg-teal-500 text-white px-6 py-3 rounded-full hover:bg-teal-600 transition duration-300 shadow-md text-center"
             >
               <span className="flex items-center justify-center">
                 <img 
@@ -388,7 +391,7 @@ const Navbar = () => {
             </a>
             <Link
               to="/login"
-              className="block w-full bg-[#783b94] text-white px-6 py-2.5 rounded-full hover:bg-[#6a2a85] transition duration-300 shadow-md text-center"
+              className="block w-full bg-[#783b94] text-white px-6 py-3 rounded-full hover:bg-[#6a2a85] transition duration-300 shadow-md text-center"
             >
               <span className="flex items-center justify-center">
                 Login

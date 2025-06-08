@@ -2,68 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Book Appointment Page Specific Styles */
-.book-appointment-container {
-  padding-top: 0; /* Reset this as we'll use the class below */
-}
-
-/* Fix for mobile menu visibility */
-@media (max-width: 768px) {
-  .fixed.z-[9999] {
-    z-index: 9999 !important;
-  }
-  
-  button, a {
-    -webkit-tap-highlight-color: transparent;
-  }
-}
-
-/* Extra small screen adjustments */
-@media (max-width: 375px) {
-  .xs\:block {
-    display: block;
-  }
-  
-  .xs\:hidden {
-    display: none;
-  }
-}
-
-/* Image Rendering Optimizations */
-.image-rendering-crisp {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  perspective: 1000;
-  -webkit-font-smoothing: subpixel-antialiased;
-  will-change: transform;
-  filter: contrast(1.02);
-}
-
-.backface-hidden {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  perspective: 1000px;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-
-/* Performance optimizations */
-@layer utilities {
-  .gpu-accelerated {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-  
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/* Base styles for better text rendering */
+/* -------------------- Base Styles -------------------- */
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
@@ -75,7 +14,6 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Force hardware acceleration and prevent text blur */
   body {
     min-height: 100vh;
     background: #ffffff;
@@ -83,157 +21,213 @@
     font-synthesis: none;
   }
 
-  /* Prevent blurry text during scroll */
   * {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Text Mask Effect Optimizations */
-  .masked-letter {
-    display: inline-block;
-    position: relative;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000;
-    -webkit-font-smoothing: subpixel-antialiased;
+  :focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
   }
 
-  .masked-letter::after {
-    content: attr(data-letter);
-    position: absolute;
-    inset: 0;
-    -webkit-text-stroke: 1px rgba(0,0,0,0.1);
-    color: transparent;
-    pointer-events: none;
+  :focus:not(:focus-visible) {
+    outline: none;
   }
 
-  /* Text Mask Effect Optimizations */
-  .text-mask {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000;
-    -webkit-font-smoothing: subpixel-antialiased;
-  }
-
-  /* Responsive text sizing for MILLIONS section */
-  @media (max-width: 1280px) {
-    .text-[140px] {
-      font-size: 120px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .text-[120px] {
-      font-size: 100px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .text-[90px] {
-      font-size: 75px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .text-[70px] {
-      font-size: 55px;
-    }
-  }
-
-  /* Improve text clarity on mobile */
-  @media (max-width: 768px) {
-    body {
-      font-size: 16px;
-      line-height: 1.6;
-      text-size-adjust: 100%;
-      -webkit-text-size-adjust: 100%;
-    }
+  :focus-visible {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
   }
 }
 
-/* Mobile Logo Adjustments */
+/* -------------------- Utility Layer -------------------- */
+@layer utilities {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* -------------------- Components Layer -------------------- */
+@layer components {
+  .skip-link {
+    @apply sr-only focus:sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black;
+  }
+
+  .loading-skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  button,
+  [role="button"],
+  a {
+    @apply cursor-pointer transition-all duration-200 ease-in-out;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-200;
+  }
+
+  label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+}
+
+/* -------------------- Custom Media Queries -------------------- */
+
+/* Book Appointment Page Specific Styles */
+.book-appointment-container {
+  padding-top: 0;
+}
+
+@media (max-width: 768px) {
+  .fixed.z-\[9999\] {
+    z-index: 9999 !important;
+  }
+
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+@media (max-width: 375px) {
+  .xs\:block {
+    display: block;
+  }
+
+  .xs\:hidden {
+    display: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  .text-\[140px\] {
+    font-size: 120px;
+  }
+}
+@media (max-width: 1024px) {
+  .text-\[120px\] {
+    font-size: 100px;
+  }
+}
+@media (max-width: 768px) {
+  .text-\[90px\] {
+    font-size: 75px;
+  }
+}
+@media (max-width: 640px) {
+  .text-\[70px\] {
+    font-size: 55px;
+  }
+
+  .grid-cols-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid-cols-4 button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+  }
+
+  .grid-cols-4 button.bg-\[\#7a3a95\] {
+    box-shadow: 0 2px 4px rgba(122, 58, 149, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .book-appointment-page button,
+  .book-appointment-page input,
+  .book-appointment-page select {
+    min-height: 44px;
+  }
+}
+
 @media (max-width: 767px) {
   .h-24 {
-    height: 4rem;
+    height: 3.5rem;
   }
-  
+
   .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .book-appointment-page {
+    padding-top: 90px;
   }
 }
 
-/* Extra small screen adjustments */
+@media (max-width: 480px) {
+  .book-appointment-page {
+    padding-top: 80px;
+  }
+
+  .book-appointment-page .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
 @media (max-width: 374px) {
   .container {
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
   }
-  
+
   .h-10 {
     height: 2rem !important;
   }
-  
+
   .text-sm {
     font-size: 0.75rem !important;
   }
-  
+
   .text-xs {
     font-size: 0.65rem !important;
   }
-}
 
-/* Accessibility Improvements */
-@layer base {
-  :focus {
-    outline: 2px solid #4f46e5;
-    outline-offset: 2px;
+  .font-\['Montserrat'\].text-xs {
+    font-size: 0.6rem !important;
   }
-  
-  :focus:not(:focus-visible) {
-    outline: none;
+
+  .font-\['Montserrat'\].text-\[10px\] {
+    font-size: 9px !important;
   }
-  
-  :focus-visible {
-    outline: 2px solid #4f46e5;
-    outline-offset: 2px;
-  }
-  
-  /* Skip to main content link */
-  .skip-link {
-    @apply sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black;
+
+  .font-\['Montserrat'\].text-\[9px\] {
+    font-size: 8px !important;
   }
 }
 
-/* Loading States */
-.loading-skeleton {
-  @apply animate-pulse bg-gray-200 rounded;
+@media (min-width: 768px) {
+  .book-appointment-page {
+    padding-top: 140px;
+  }
 }
 
-/* Responsive Images */
-img {
-  @apply max-w-full h-auto;
-}
-
-/* Interactive Elements */
-button, 
-[role="button"],
-a {
-  @apply cursor-pointer transition-all duration-200 ease-in-out;
-}
-
-/* Form Elements */
-input,
-textarea,
-select {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-200;
-}
-
-label {
-  @apply block text-sm font-medium text-gray-700 mb-1;
-}
+/* -------------------- Animation Keyframes -------------------- */
 
 @keyframes fade-in {
   from { opacity: 0; }
@@ -241,31 +235,8 @@ label {
 }
 
 @keyframes scale-in {
-  from { 
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
-  to { 
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 150ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.animate-scale-in {
-  animation: scale-in 150ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ZoomBox Animation */
-@keyframes zoomInOut {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-  animation: zoomInOut 4s infinite ease-in-out;
-  transform: translateZ(0);
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 @keyframes fadeIn {
@@ -274,14 +245,23 @@ label {
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomInOut {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* -------------------- Animation Utility Classes -------------------- */
+.animate-fade-in {
+  animation: fade-in 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-scale-in {
+  animation: scale-in 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .animate-fadeIn {
@@ -292,60 +272,76 @@ label {
   animation: slideUp 1s ease-out;
 }
 
-/* Zoom Box Animation */
-@keyframes zoomInOut {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+.zoom-box {
+  animation: zoomInOut 4s infinite ease-in-out;
+  transform: translateZ(0);
 }
 
-.zoom-box {
-  animation: zoomInOut 4s ease-in-out infinite;
+/* -------------------- Image Rendering Optimizations -------------------- */
+.image-rendering-crisp {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  perspective: 1000;
+  -webkit-font-smoothing: subpixel-antialiased;
   will-change: transform;
+  filter: contrast(1.02) brightness(1.01);
+}
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* -------------------- Lazy Loading Utilities -------------------- */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-loaded {
+  opacity: 1;
+}
+
+/* -------------------- Content Visibility Optimizations -------------------- */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reduce-motion {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* -------------------- Masked Letter Styling -------------------- */
+.masked-letter {
+  display: inline-block;
+  position: relative;
   transform: translateZ(0);
   backface-visibility: hidden;
-  perspective: 1000px;
+  perspective: 1000;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/* Time Slot Styling for Mobile */
-@media (max-width: 640px) {
-  .grid-cols-4 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  
-  .grid-cols-4 button {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-  }
-  
-  .grid-cols-4 button.bg-\[\#7a3a95\] {
-    box-shadow: 0 2px 4px rgba(122, 58, 149, 0.4);
-    transform: translateY(-1px);
-  }
+.masked-letter::after {
+  content: attr(data-letter);
+  position: absolute;
+  inset: 0;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+  color: transparent;
+  pointer-events: none;
 }
 
-/* Navbar Fixed Positioning */
-
-/* Book Appointment Page Styles */
-@media (min-width: 768px) {
-  .book-appointment-page {
-    padding-top: 140px; /* Increased desktop-specific top padding */
-  }
+.text-mask {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
-
-@media (max-width: 767px) {
-  .book-appointment-page {
-    padding-top: 120px; /* Increased mobile-specific top padding */
-  }
-}
-
-/* Extra small screen adjustments */

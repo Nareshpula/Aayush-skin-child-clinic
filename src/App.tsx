@@ -5,15 +5,13 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CustomFooter from './components/CustomFooter';
+import PerformanceMonitor from './components/PerformanceMonitor';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import About from './pages/About';
 import Doctors from './pages/Doctors';
-import CTScan from './pages/CTScan';
-import DigitalXrays from './pages/DigitalXrays.tsx';
-import UltrasoundPregnancyScanning from './pages/UltrasoundPregnancyScanning';
-import UltrasoundScanning from './pages/UltrasoundScanning';
-import TeslaMriScan from './pages/TeslaMriScan';
+import DrGSridharProfile from './pages/doctors/dr-g-sridhar';
+import DrHimabinduSridharProfile from './pages/doctors/dr-himabindu-sridhar';
 import BlogArticle from './pages/BlogArticle';
 import NutritionArticle from './pages/NutritionArticle';
 import FeverArticle from './pages/FeverArticle';
@@ -57,17 +55,15 @@ function App() {
             Skip to main content
           </a>
           <ScrollToTop />
+         <PerformanceMonitor />
           <Navbar />
           <main id="main-content" className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/doctors" element={<Doctors />} />
-              <Route path="/ct-scan" element={<CTScan />} />
-              <Route path="/digital-xrays" element={<DigitalXrays />} />
-              <Route path="/ultrasound-pregnancy-scanning" element={<UltrasoundPregnancyScanning />} />
-              <Route path="/ultrasound-scanning" element={<UltrasoundScanning />} />
-              <Route path="/tesla-mri-scan" element={<TeslaMriScan />} />
+              <Route path="/doctors/dr-g-sridhar" element={<DrGSridharProfile />} />
+              <Route path="/doctors/dr-himabindu-sridhar" element={<DrHimabinduSridharProfile />} />
               <Route path="/general-pediatrics" element={<GeneralPediatrics />} />
               <Route path="/childrens-nutrition" element={<ChildrensNutrition />} />
              <Route path="/pediatric-infectious-diseases" element={<PediatricInfectiousDiseases />} />

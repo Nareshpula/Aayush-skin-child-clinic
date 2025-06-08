@@ -39,6 +39,7 @@ const StatisticsSection = () => {
           backgroundImage: 'url("https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/childrens-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvY2hpbGRyZW5zLWltYWdlLmpwZyIsImlhdCI6MTc0Mjg0MzA1OCwiZXhwIjoxOTAwNTIzMDU4fQ.pls1SZZrmICnohKUya153nK-NJRHnXfE7dR0qtNx11k")',
           filter: 'brightness(1.1) contrast(1.05)'
         }}
+       aria-hidden="true"
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center backdrop-blur-[2px] bg-white/10 py-16 rounded-3xl mx-4 shadow-lg">

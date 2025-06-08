@@ -137,6 +137,8 @@ const BlogSection = () => {
                   loading="eager"
                   decoding="async"
                   fetchpriority="high"
+                 width="380"
+                 height="200"
                   style={{
                     imageRendering: '-webkit-optimize-contrast',
                     transform: 'translateZ(0)',

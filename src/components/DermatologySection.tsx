@@ -143,6 +143,9 @@ const DermatologySection = () => {
                   )}
                   loading="eager"
                   decoding="async"
+                 width="160"
+                 height="160"
+                 fetchpriority={index < 5 ? "high" : "low"}
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300" />
               </motion.div>

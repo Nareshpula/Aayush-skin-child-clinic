@@ -9,17 +9,17 @@ const features = [
     description: "Specialized doctors providing compassionate care for children's health and advanced skin treatments."
   },
   {
-    icon: <ScanLine className="w-8 h-8 text-pink-600" aria-label="MRI Scan Icon" />, 
+    icon: <ScanLine className="w-8 h-8 text-pink-600\" aria-label="MRI Scan Icon" />, 
     title: "State-of-the-Art Technology",
     description: "Modern medical equipment ensuring precise diagnosis and effective treatment for pediatric and skin conditions."
   },
   {
-    icon: <HeartPulse className="w-8 h-8 text-red-600" aria-label="Patient-Centric Approach Icon" />,
+    icon: <HeartPulse className="w-8 h-8 text-red-600\" aria-label="Patient-Centric Approach Icon" />,
     title: "Patient-Centric Approach",
     description: "Personalized treatment plans with a warm and friendly approach, ensuring comfort for both kids and adults."
   },
   {
-    icon: <FileText className="w-8 h-8 text-green-600" aria-label="Rapid Reporting Icon" />,
+    icon: <FileText className="w-8 h-8 text-green-600\" aria-label="Rapid Reporting Icon" />,
     title: "Fast & Accurate Diagnosis",
     description: "Quick and reliable test results for early intervention and effective treatment planning."
   }
@@ -99,6 +99,8 @@ const WhyChooseUs = () => {
                 alt="Medical team providing diagnostic services"
                 className="w-full h-full object-cover image-rendering-crisp transform-gpu will-change-transform"
                 loading="eager"
+               width="600"
+               height="450"
                 decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent backdrop-filter backdrop-brightness-105 backdrop-contrast-105"></div>

@@ -11,10 +11,27 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
       },
+     output: {
+       manualChunks: {
+         'vendor': ['react', 'react-dom', 'react-router-dom'],
+         'ui': ['framer-motion', 'lucide-react'],
+         'utils': ['@supabase/supabase-js'],
+       }
+     }
     },
     outDir: 'dist',
     emptyOutDir: true,
     copyPublicDir: true,
+   cssCodeSplit: true,
+   sourcemap: false,
+   minify: 'terser',
+   terserOptions: {
+     compress: {
+       drop_console: true,
+       drop_debugger: true
+     }
+   },
+   reportCompressedSize: false
   },
   resolve: {
     alias: {

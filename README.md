@@ -1,2 +1,2 @@
-# Jyothi-Diagnostics-center
-#Leading Diagnostic Center in Madanapalle
+# Aayush Child & Skin Hospital
+#Aayush Child & Skin Hospital- Madanapalle

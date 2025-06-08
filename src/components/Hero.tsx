@@ -11,9 +11,8 @@ const Hero = () => {
           loop
           muted
           playsInline
-          loading="eager"
-          style={{ transform: 'translate3d(0, 0, 0)' }}
           className="w-full h-full object-cover"
+          style={{ transform: 'translate3d(0, 0, 0)' }}
         >
           <source
             src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/playing-with-kids.mp4?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvcGxheWluZy13aXRoLWtpZHMubXA0IiwiaWF0IjoxNzQyNjU5MzM4LCJleHAiOjE5MDAzMzkzMzh9.a4f48hJOPjPHxMVHkwjKE9HCm6p0NbgvEgBJLoauuJU"

@@ -33,10 +33,10 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     emailjs.send(
-      "service_lf5iahp",
-      "template_qsqmb1l",
+      "service_qfvy7h9",
+      "template_hb630kp",
       {
-        to_name: "Jyothi Diagnostics",
+        to_name: "Aayush Child & Skin Hospital-Madanapalle",
         from_name: formData.name,
         name: formData.name,
         email: formData.email,
@@ -76,6 +76,9 @@ export default function ContactForm() {
             src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Enquiry-image.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRW5xdWlyeS1pbWFnZS5zdmciLCJpYXQiOjE3NDMyNzE4MzQsImV4cCI6MTkwMDk1MTgzNH0.BLwyWfjifLrq2S_A081xHulZOJkZanc6f7xS1sP0JBo"
             alt="Customer Support"
             className="w-full h-auto max-h-[80%] object-contain transform scale-110"
+            width="600"
+            height="400"
+            loading="lazy"
             style={{
               filter: 'contrast(1.05) brightness(1.02)',
               imageRendering: '-webkit-optimize-contrast'

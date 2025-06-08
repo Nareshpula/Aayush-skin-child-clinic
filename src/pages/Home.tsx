@@ -11,6 +11,12 @@ import VisitUs from '../components/VisitUs';
 import BlogSection from '../components/BlogSection';
 import SEO from '../components/SEO';
 import FindDoctor from '../components/FindDoctor';
+import { Suspense, lazy } from 'react';
+
+// Lazy load components that are below the fold
+const LazyGoogleReviews = lazy(() => import('../components/GoogleReviews'));
+const LazyBlogSection = lazy(() => import('../components/BlogSection'));
+const LazyVisitUs = lazy(() => import('../components/VisitUs'));
 
 const Home = () => {
   return (
@@ -24,9 +30,15 @@ const Home = () => {
       <StatisticsSection />
       <WhyChooseUs />
       <ContactForm />
-      <GoogleReviews />
-      <VisitUs />
-      <BlogSection />
+      <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
+        <LazyGoogleReviews />
+      </Suspense>
+      <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
+        <LazyVisitUs />
+      </Suspense>
+      <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
+        <LazyBlogSection />
+      </Suspense>
     </>
   );
 };

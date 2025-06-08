@@ -94,6 +94,7 @@ const GoogleReviews = () => {
       {/* Background Image */}
       <div 
         className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-[0.05]"
+       aria-hidden="true"
         style={{
           backgroundImage: 'url("https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/sahasra-hospital-images/Jyothi-Diagnosis/Google-review-image.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzYWhhc3JhLWhvc3BpdGFsLWltYWdlcy9KeW90aGktRGlhZ25vc2lzL0dvb2dsZS1yZXZpZXctaW1hZ2Uud2VicCIsImlhdCI6MTc0MDIzNDUyMCwiZXhwIjoxODk3OTE0NTIwfQ.zlK4_YmWm-qQ7IqNfkufYOyi7eQLwWXVF7Cczf004rg")'
         }}

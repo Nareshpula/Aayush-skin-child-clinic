@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
   functions = "netlify/functions"
 
@@ -25,6 +25,27 @@
 
 [build.processing.images]
   compress = true
+  
+# Image optimization
+[[plugins]]
+  package = "netlify-plugin-image-optim"
+
+# Preload critical assets
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  [plugins.inputs]
+    output_path = "reports/lighthouse.html"
+
+# Brotli compression
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Content-Encoding = "br"
 
 # Primary domain redirects (301)
 [[redirects]]

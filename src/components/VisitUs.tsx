@@ -137,8 +137,10 @@ const VisitUs = () => {
               className="absolute inset-0 w-full h-full rounded-xl"
               style={{ border: 0 }}
               allowFullScreen
-              loading="lazy"
+             loading="lazy" 
+             fetchpriority="low"
               referrerPolicy="no-referrer-when-downgrade"
+             title="Aayush Child & Skin Hospital Location"
             />
           </div>
         </motion.div>

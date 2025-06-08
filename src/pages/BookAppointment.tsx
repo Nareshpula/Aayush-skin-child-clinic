@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ChevronRight, ChevronLeft, Check, Loader2, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 import { 
   fetchDoctors, 
   bookAppointment, 
@@ -47,6 +48,9 @@ const generateTimeSlots = (startHour: number, startMinute: number, endHour: numb
 // Morning time slots (9:30 AM to 4:00 PM)
 const morningSlots = generateTimeSlots(9, 30, 16, 0);
 
+// Sunday morning time slots (9:30 AM to 1:00 PM)
+const sundayMorningSlots = generateTimeSlots(9, 30, 13, 0);
+
 // Evening time slots (6:00 PM to 9:00 PM)
 const eveningSlots = generateTimeSlots(18, 0, 21, 0);
 
@@ -91,21 +95,19 @@ const BookAppointment = () => {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
       
-      // Skip Sundays (0 is Sunday in getDay())
-      if (date.getDay() !== 0) {
-        const formattedDate = date.toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric'
-        });
-        
-        const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
-        
-        dates.push({
-          date: formattedDate,
-          day: dayName
-        });
-      }
+      // Include all days including Sundays
+      const formattedDate = date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+      
+      const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+      
+      dates.push({
+        date: formattedDate,
+        day: dayName
+      });
     }
     
     return dates;
@@ -125,7 +127,7 @@ const BookAppointment = () => {
             qualifications: "MBBS, MD Pediatrics",
             experience: "15+ Years Experience",
             specialties: ["General Pediatrics", "Child Care", "Vaccinations"],
-            image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Dinesh-Kumar-Chirla.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1EaW5lc2gtS3VtYXItQ2hpcmxhLmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
+            image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Doctor-Sridhar.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9Eb2N0b3ItU3JpZGhhci5qcGciLCJpYXQiOjE3NDkzODg5MzMsImV4cCI6MTkwNzA2ODkzM30.0V-xvTUKOzRKRxfLE79t-9r273NWMt6Sj6dINpoEKQE"
           },
           {
             id: 2,
@@ -134,7 +136,7 @@ const BookAppointment = () => {
             qualifications: "MBBS, MD Dermatology",
             experience: "15+ Years Experience",
             specialties: ["Dermatology", "Skin Care", "Cosmetic Procedures"],
-            image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/doctors/Dr-Himabindhu.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvZG9jdG9ycy9Eci1IaW1hYmluZGh1LmpwZyIsImlhdCI6MTc0MjY2MjE5MCwiZXhwIjoxOTAwMzQyMTkwfQ.YXqBF9_HYVilPmvFWGXPX_7mUh-kHQqp_kK_qJ_xQhE"
+            image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Himabindu-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9IaW1hYmluZHUtSW1hZ2UuanBnIiwiaWF0IjoxNzQ5Mzg2MjE5LCJleHAiOjE5MDcwNjYyMTl9.HRPdQ9iVMSV-lYXMzmXdPgyZ4Gf2pQQQGwARZ4CVS7g"
           }
         ];
         setDoctors(doctorsData);
@@ -154,6 +156,10 @@ const BookAppointment = () => {
     if (selectedDoctor && selectedDate) {
       const fetchSlots = async () => {
         try {
+          // Check if the selected date is a Sunday
+          const selectedDateObj = new Date(selectedDate);
+          const isSunday = selectedDateObj.getDay() === 0;
+          
           // Get booked slots
           // Simulate some booked slots
           const simulatedBookedSlots = [];
@@ -161,7 +167,10 @@ const BookAppointment = () => {
           
           // Get available slots
           // Generate simulated available slots
-          const simulatedAvailableSlots = morningSlots.concat(eveningSlots).map((time, index) => {
+          // Use only morning slots up to 1:00 PM for Sundays
+          const timeSlots = isSunday ? sundayMorningSlots : morningSlots.concat(eveningSlots);
+          
+          const simulatedAvailableSlots = timeSlots.map((time, index) => {
             // Convert time from "09:30 AM" format to "09:30:00" format
             const [hourMin, period] = time.split(' ');
             const [hour, minute] = hourMin.split(':');
@@ -182,6 +191,11 @@ const BookAppointment = () => {
             };
           });
           setAvailableSlots(simulatedAvailableSlots);
+          
+          // If it's Sunday, force the morning tab
+          if (isSunday) {
+            setActiveTab('morning');
+          }
         } catch (err) {
           console.error('Failed to check availability:', err);
         }
@@ -433,32 +447,59 @@ const BookAppointment = () => {
   return (
     <div className="min-h-screen bg-gray-50 book-appointment-page pb-12 z-0">
       <div className="container mx-auto px-4">
-        <div 
+        <motion.div 
           ref={contentRef} 
-          className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-6"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-6 sm:mt-8"
         >
           {/* Progress Steps */}
-          <div className="bg-[#7a3a95] p-6">
-            <div className="flex justify-between items-center">
+          <div className="bg-[#7a3a95] p-4 sm:p-6">
+            {/* Mobile Stepper (Visible on small screens) */}
+            <div className="flex sm:hidden items-center justify-center mb-2">
+              <span className="text-white font-medium">
+                Step {step} of 5: {
+                  step === 1 ? 'Select Doctor' : 
+                  step === 2 ? 'Date & Time' : 
+                  step === 3 ? 'Your Details' : 
+                  step === 4 ? 'Verification' : 'Confirmation'
+                }
+              </span>
+            </div>
+            
+            {/* Progress bar for mobile */}
+            <div className="w-full h-2 bg-white/30 rounded-full mb-2 sm:hidden">
+              <div 
+                className="h-2 bg-white rounded-full transition-all duration-300"
+                style={{ width: `${(step / 5) * 100}%` }}
+              ></div>
+            </div>
+            
+            {/* Desktop Stepper (Hidden on small screens) */}
+            <div className="hidden sm:flex justify-between items-center">
               {[1, 2, 3, 4, 5].map((s) => (
                 <div key={s} className="flex flex-col items-center relative z-10">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${
-                    step === s ? 'bg-white text-[#7a3a95]' : 
-                    step > s ? 'bg-white text-[#7a3a95]' : 
-                    'bg-white/30 text-white'
-                  } mb-2`}>
+                  <div className={cn(
+                    "w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold mb-2",
+                    step === s ? "bg-white text-[#7a3a95]" : 
+                    step > s ? "bg-white text-[#7a3a95]" : 
+                    "bg-white/30 text-white"
+                  )}>
                     {step > s ? <Check className="w-5 h-5" /> : s}
                   </div>
                   <span className={`text-xs font-medium text-center ${step >= s ? 'text-white' : 'text-white/70'}`}>
                     {s === 1 ? 'Select Doctor' : 
                      s === 2 ? 'Date & Time' : 
-                     s === 3 ? 'Your Details' : 'Confirmation'}
+                     s === 3 ? 'Your Details' : 
+                     s === 4 ? 'Verification' : 'Confirmation'}
                   </span>
                 </div>
               ))}
             </div>
           </div>          
-          <div className="p-6">
+          
+          <div className="p-4 sm:p-6">
             {/* Error message */}
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
@@ -480,7 +521,7 @@ const BookAppointment = () => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Select Doctor</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Select Doctor</h2>
                 
                 <div className="space-y-4">
                   {doctors.length === 0 && !loading ? (
@@ -490,14 +531,15 @@ const BookAppointment = () => {
                     <div 
                       key={doctor.id}
                       onClick={() => setSelectedDoctor(doctor.id)}
-                      className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
+                      className={cn(
+                        "border rounded-lg p-4 cursor-pointer transition-all duration-200",
                         selectedDoctor === doctor.id 
-                          ? 'border-[#7a3a95] bg-purple-50 shadow-md' 
-                          : 'border-gray-200 hover:border-[#7a3a95] hover:bg-purple-50/50'
-                      }`}
+                          ? "border-[#7a3a95] bg-purple-50 shadow-md" 
+                          : "border-gray-200 hover:border-[#7a3a95] hover:bg-purple-50/50"
+                      )}
                     >
-                      <div className="flex items-start gap-4">
-                        <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0 mx-auto sm:mx-0">
                           <img 
                             src={doctor.image_url} 
                             alt={doctor.name}
@@ -505,8 +547,8 @@ const BookAppointment = () => {
                           />
                         </div>
                         
-                        <div className="flex-1">
-                          <div className="flex justify-between">
+                        <div className="flex-1 text-center sm:text-left">
+                          <div className="flex flex-col sm:flex-row sm:justify-between">
                             <div>
                               <h3 className="text-lg font-bold text-gray-900">{doctor.name}</h3>
                               <p className="text-[#7a3a95] font-medium">{doctor.title}</p>
@@ -514,13 +556,13 @@ const BookAppointment = () => {
                             </div>
                             
                             {selectedDoctor === doctor.id && (
-                              <div className="w-6 h-6 bg-[#7a3a95] rounded-full flex items-center justify-center">
+                              <div className="w-6 h-6 bg-[#7a3a95] rounded-full flex items-center justify-center mx-auto sm:mx-0 mt-2 sm:mt-0">
                                 <Check className="w-4 h-4 text-white" />
                               </div>
                             )}
                           </div>
                           
-                          <div className="mt-3 flex flex-wrap gap-2">
+                          <div className="mt-3 flex flex-wrap justify-center sm:justify-start gap-2">
                             {doctor.specialties.map((specialty, index) => (
                               <span 
                                 key={index}
@@ -549,10 +591,10 @@ const BookAppointment = () => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Select Date & Time</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Select Date & Time</h2>
                 
-                <div className="mb-8">
-                  <label className="flex items-center text-lg font-medium text-gray-700 mb-2">
+                <div className="mb-6 sm:mb-8">
+                  <label className="flex items-center text-base sm:text-lg font-medium text-gray-700 mb-2">
                     <Calendar className="w-5 h-5 mr-2 text-[#7a3a95]" />
                     Preferred Date
                   </label>
@@ -569,39 +611,49 @@ const BookAppointment = () => {
                   </div>
                 </div>
                 
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-gray-700 mb-4 flex items-center">
+                <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-700 mb-4 flex items-center">
                     <Clock className="w-5 h-5 mr-2 text-[#7a3a95]" />
                     Select Time
+                    {selectedDate && new Date(selectedDate).getDay() === 0 && (
+                      <span className="ml-2 text-xs text-orange-600 font-normal">
+                        (Sunday hours: 9:30 AM - 1:00 PM only)
+                      </span>
+                    )}
                   </h3>
                   
                   {/* Tabs */}
-                  <div className="flex mb-4">
+                  <div className={`flex mb-4 ${new Date(selectedDate).getDay() === 0 ? 'opacity-50' : ''}`}>
                     <button
                       onClick={() => setActiveTab('morning')}
-                      className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
+                      className={cn(
+                        "flex-1 py-2 px-4 rounded-lg font-medium transition-colors",
                         activeTab === 'morning' 
-                          ? 'bg-[#7a3a95] text-white' 
-                          : 'bg-white text-gray-700 hover:bg-gray-100'
-                      }`}
+                          ? "bg-[#7a3a95] text-white" 
+                          : "bg-white text-gray-700 hover:bg-gray-100"
+                      )}
                     >
                       Morning
                     </button>
                     <button
+                      disabled={selectedDate && new Date(selectedDate).getDay() === 0}
                       onClick={() => setActiveTab('evening')}
-                      className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
+                      className={cn(
+                        "flex-1 py-2 px-4 rounded-lg font-medium transition-colors",
                         activeTab === 'evening' 
-                          ? 'bg-[#7a3a95] text-white' 
-                          : 'bg-white text-gray-700 hover:bg-gray-100'
-                      }`}
+                          ? "bg-[#7a3a95] text-white" 
+                          : "bg-white text-gray-700 hover:bg-gray-100"
+                      )}
                     >
                       Evening
                     </button>
                   </div>
                   
                   {/* Time slots grid */}
-                  <div className="grid grid-cols-4 gap-3 max-h-[300px] overflow-y-auto p-2">
-                    {(activeTab === 'morning' ? morningSlots : eveningSlots).map((time, index) => {
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3 max-h-[300px] overflow-y-auto p-2">
+                    {(activeTab === 'morning' 
+                      ? (selectedDate && new Date(selectedDate).getDay() === 0 ? sundayMorningSlots : morningSlots) 
+                      : eveningSlots).map((time, index) => {
                       const isBooked = bookedSlots.includes(time);
                       // Find the slot object if it exists in availableSlots
                       const slot = availableSlots.find(s => {
@@ -628,12 +680,14 @@ const BookAppointment = () => {
                           }
                         }}
                         disabled={isBooked}
-                        className={`py-2 px-1 text-center rounded-md transition-all 
-                        ${isBooked ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 
-                          selectedTime === time && selectedSlot?.id === slot?.id
-                            ? 'bg-[#7a3a95] text-white font-medium'
-                            : 'bg-white hover:bg-gray-100 text-gray-800'
-                       } border border-gray-200 shadow-sm hover:shadow md:py-2 md:px-1 py-3 px-2`}
+                        className={cn(
+                          "py-2 px-1 text-center rounded-md transition-all border border-gray-200 shadow-sm hover:shadow text-sm",
+                          isBooked 
+                            ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+                            : selectedTime === time && selectedSlot?.id === slot?.id
+                              ? "bg-[#7a3a95] text-white font-medium"
+                              : "bg-white hover:bg-gray-100 text-gray-800"
+                        )}
                       >
                         {time}
                         {isBooked && <span className="block text-xs mt-1">(Booked)</span>}
@@ -652,7 +706,7 @@ const BookAppointment = () => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Your Details</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Your Details</h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -661,6 +715,7 @@ const BookAppointment = () => {
                         Full Name <span className="text-red-500">*</span>
                       </label>
                       <input
+                
                         type="text"
                         id="name"
                         name="name"
@@ -769,7 +824,7 @@ const BookAppointment = () => {
                 transition={{ duration: 0.3 }}
                 className="text-center"
               >
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Verify Your Phone Number</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Verify Your Phone Number</h2>
                 
                 <div className="max-w-md mx-auto">
                   <div className="bg-blue-50 p-4 rounded-lg mb-6 text-left">
@@ -789,7 +844,7 @@ const BookAppointment = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number
                     </label>
-                    <div className="flex items-center">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                       <input
                         type="text"
                         value={formData.phone}
@@ -800,7 +855,7 @@ const BookAppointment = () => {
                         <button
                           onClick={handleSendOTP}
                           disabled={sendingOtp}
-                          className="ml-2 px-4 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 whitespace-nowrap flex items-center"
+                          className="w-full sm:w-auto px-4 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 whitespace-nowrap flex items-center justify-center"
                         >
                           {sendingOtp ? (
                             <>
@@ -815,7 +870,7 @@ const BookAppointment = () => {
                         <button
                           onClick={handleSendOTP}
                           disabled={sendingOtp}
-                          className="ml-2 px-4 py-2 border border-[#7a3a95] text-[#7a3a95] rounded-lg hover:bg-purple-50 transition-colors duration-200 whitespace-nowrap flex items-center"
+                          className="w-full sm:w-auto px-4 py-2 border border-[#7a3a95] text-[#7a3a95] rounded-lg hover:bg-purple-50 transition-colors duration-200 whitespace-nowrap flex items-center justify-center"
                         >
                           {sendingOtp ? (
                             <>
@@ -885,14 +940,14 @@ const BookAppointment = () => {
                 transition={{ duration: 0.3 }}
                 className="text-center"
               >
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Check className="w-10 h-10 text-green-600" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Check className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
                 </div>
                 
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Appointment Confirmed!</h2>
-                <p className="text-gray-600 mb-8">Your appointment has been successfully scheduled.</p>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Appointment Confirmed!</h2>
+                <p className="text-gray-600 mb-6 sm:mb-8">Your appointment has been successfully scheduled.</p>
                 
-                <div className="bg-purple-50 rounded-lg p-6 max-w-md mx-auto mb-8">
+                <div className="bg-purple-50 rounded-lg p-4 sm:p-6 max-w-md mx-auto mb-6 sm:mb-8">
                   <div className="text-left space-y-3">
                     <div>
                       <p className="text-sm text-gray-500">Patient ID</p>
@@ -954,11 +1009,11 @@ const BookAppointment = () => {
           
           {/* Navigation Buttons */}
           {step < 5 && step !== 4 && (
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-between">
+            <div className="px-4 sm:px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-between">
               {step > 1 ? (
                 <button
                   onClick={handleBack}
-                  className="px-4 py-2 flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                  className="px-3 sm:px-4 py-2 flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
                 >
                   <ChevronLeft className="w-5 h-5 mr-1" />
                   Back
@@ -970,7 +1025,7 @@ const BookAppointment = () => {
               {step < 3 ? (
                 <button
                   onClick={handleNext}
-                  className="px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 flex items-center"
+                  className="px-4 sm:px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 flex items-center"
                 >
                   Next
                   <ChevronRight className="w-5 h-5 ml-1" />
@@ -978,7 +1033,7 @@ const BookAppointment = () => {
               ) : (
                 <button
                   onClick={handleSubmit}
-                  className="px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200"
+                  className="px-4 sm:px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200"
                   disabled={bookingInProgress}
                 >
                   {bookingInProgress ? (
@@ -993,7 +1048,7 @@ const BookAppointment = () => {
               )}
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

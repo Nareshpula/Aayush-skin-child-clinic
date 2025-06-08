@@ -125,6 +125,9 @@ const CentersOfExcellence = () => {
                 className="w-full h-full object-cover image-rendering-crisp transform-gpu will-change-transform transition-transform duration-700 group-hover:scale-110"
                 loading="eager"
                 decoding="async"
+               width="300"
+               height="200"
+               fetchpriority="high"
               />
             </div>
             <div className={`absolute bottom-0 left-0 right-0 bg-[#7E42A2] py-3 px-4 ${
@@ -152,6 +155,9 @@ const CentersOfExcellence = () => {
                 className="w-full h-full object-cover object-center image-rendering-crisp transform-gpu will-change-transform transition-transform duration-700 group-hover:scale-110"
                 loading="eager"
                 decoding="async"
+               width="300"
+               height="200"
+               fetchpriority="high"
               />
             </div>
             <div className={`absolute bottom-0 left-0 right-0 bg-[#EBDCFB] py-3 px-4 ${
@@ -179,6 +185,9 @@ const CentersOfExcellence = () => {
                 className="w-full h-full object-cover image-rendering-crisp transform-gpu will-change-transform transition-transform duration-700 group-hover:scale-110"
                 loading="eager"
                 decoding="async"
+               width="300"
+               height="200"
+               fetchpriority="high"
               />
             </div>
             <div className={`absolute bottom-0 left-0 right-0 bg-[#D8BFD8] py-3 px-4 ${
