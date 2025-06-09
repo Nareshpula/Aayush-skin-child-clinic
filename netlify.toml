@@ -37,15 +37,15 @@
     output_path = "reports/lighthouse.html"
 
 # Brotli compression
-[[headers]]
-  for = "*.js"
-  [headers.values]
-    Content-Encoding = "br"
+#[[headers]]
+#  for = "*.js"
+#  [headers.values]
+#    Content-Encoding = "br"
 
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    Content-Encoding = "br"
+#[[headers]]
+#  for = "*.css"
+#  [headers.values]
+#    Content-Encoding = "br"
 
 # Primary domain redirects (301)
 [[redirects]]
