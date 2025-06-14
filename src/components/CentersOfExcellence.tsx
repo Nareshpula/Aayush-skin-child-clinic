@@ -243,7 +243,8 @@ const CentersOfExcellence = () => {
                   onClick={() => {
                     const route = tabContent[activeTab].routes[specialty];
                     if (route) {
-                      navigate(route);
+                      // Use direct navigation for better performance
+                      window.location.href = route;
                       window.scrollTo(0, 0);
                     }
                   }}

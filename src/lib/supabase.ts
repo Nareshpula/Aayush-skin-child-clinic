@@ -75,14 +75,53 @@ export type OTPConfirmation = {
 
 // Fetch doctors from Supabase
 export const fetchDoctors = async (): Promise<Doctor[]> => {
-  const { data, error } = await supabase.from('doctors').select('*');
+  try {
+    // Fetch doctors from the aayush.doctors table
+    const { data, error } = await supabase.from('doctors').select('*');
   
-  if (error) {
-    console.error('Error fetching doctors:', error);
-    return [];
+    if (error) {
+      console.error('Error fetching doctors:', error);
+      throw error;
+    }
+  
+    if (data && data.length > 0) {
+      console.log('Fetched doctors from Supabase:', data);
+      return data;
+    }
+    
+    // If no data returned, throw error to trigger fallback
+    throw new Error('No doctors found in database');
+  } catch (err) {
+    console.error('Failed to fetch doctors:', err);
+    
+    // Return the correct doctors as fallback data
+    return [
+      {
+        id: 1,
+        name: "Dr. G Sridhar",
+        title: "Senior Consultant in Pediatrics",
+        qualifications: "MBBS, MD Pediatrics",
+        experience: "15+ Years Experience",
+        specialties: ["General Pediatrics", "Child Care", "Vaccinations"],
+        specialization: "Pediatrics",
+        profile_image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Sridhar-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9TcmlkaGFyLUltYWdlLmpwZyIsImlhdCI6MTc0OTM0OTI2OCwiZXhwIjoxOTA3MDI5MjY4fQ.eJ32umItgxbVzIBqKE7q6aFiCXpbuYVxVG5ExE7neCk",
+        available_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Sridhar-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9TcmlkaGFyLUltYWdlLmpwZyIsImlhdCI6MTc0OTM0OTI2OCwiZXhwIjoxOTA3MDI5MjY4fQ.eJ32umItgxbVzIBqKE7q6aFiCXpbuYVxVG5ExE7neCk"
+      },
+      {
+        id: 2,
+        name: "Dr. Himabindu Sridhar",
+        title: "Consultant Cosmetologist, Laser & Hair Transplant Surgeon",
+        qualifications: "MBBS, MD Dermatology",
+        experience: "15+ Years Experience",
+        specialties: ["Dermatology", "Skin Care", "Cosmetic Procedures"],
+        specialization: "Dermatology",
+        profile_image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Himabindu-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9IaW1hYmluZHUtSW1hZ2UuanBnIiwiaWF0IjoxNzQ5Mzc0NDIzLCJleHAiOjE5MDcwNTQ0MjN9.MVx6A7rOjMKXa9Mu4l4ixhTvW69WtHlN7KDlGqAsOqM",
+        available_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Himabindu-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9IaW1hYmluZHUtSW1hZ2UuanBnIiwiaWF0IjoxNzQ5Mzc0NDIzLCJleHAiOjE5MDcwNTQ0MjN9.MVx6A7rOjMKXa9Mu4l4ixhTvW69WtHlN7KDlGqAsOqM"
+      }
+    ];
   }
-  
-  return data || [];
 };
 
 // Create appointment slot

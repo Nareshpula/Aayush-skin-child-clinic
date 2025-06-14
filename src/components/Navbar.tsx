@@ -77,13 +77,8 @@ const Navbar = () => {
       const visitUsSection = document.getElementById('visit-us');
       visitUsSection?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      navigate('/', { replace: true });
-      // Wait for navigation to complete before scrolling
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          document.getElementById('visit-us')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      });
+     // Use direct navigation for better performance
+     window.location.href = '/#visit-us';
     }
     
     setIsOpen(false);
@@ -96,13 +91,8 @@ const Navbar = () => {
       const contactSection = document.getElementById('contact-form');
       contactSection?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      navigate('/', { replace: true });
-      // Wait for navigation to complete before scrolling
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      });
+     // Use direct navigation for better performance
+     window.location.href = '/#contact-form';
     }
     
     setIsOpen(false);

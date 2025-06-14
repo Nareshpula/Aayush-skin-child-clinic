@@ -35,7 +35,8 @@ const Hero = () => {
               href="#contact-form"
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                // Navigate to the book appointment page instead of scrolling to contact form
+                window.location.href = '/book-appointment';
               }}
               className="group bg-[#dfdad6]/60 backdrop-blur-[10px] px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-4"
             >

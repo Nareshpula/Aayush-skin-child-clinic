@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CustomFooter from './components/CustomFooter';
+import { Suspense, lazy } from 'react';
 import PerformanceMonitor from './components/PerformanceMonitor';
 import Login from './pages/Login';
 import Home from './pages/Home';
@@ -44,7 +45,20 @@ import AdminDashboard from './pages/AdminDashboard';
 import AppointmentsDashboard from './pages/AppointmentsDashboard';
 import Unauthorized from './pages/Unauthorized';
 import ScrollToTop from '@/components/ScrollToTop';
-import BookAppointment from './pages/BookAppointment';
+
+// Lazy load the BookAppointment page to improve initial load time
+const BookAppointmentV2 = lazy(() => import('./pages/BookAppointmentV2'));
+
+// Loading component for Suspense
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center pt-24 md:pt-36">
+    <div className="text-center">
+      <div className="w-12 h-12 border-4 border-[#7a3a95] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-gray-600">Loading appointment page...</p>
+    </div>
+  </div>
+);
+import DoctorExceptions from './pages/DoctorExceptions';
 
 function App() {
   return (
@@ -85,7 +99,11 @@ function App() {
             <Route path="/tattoo-removal" element={<TattooRemoval />} />
             <Route path="/mole-removal" element={<MoleRemoval />} />
             <Route path="/wart-removal" element={<WartRemoval />} />
-            <Route path="/book-appointment" element={<BookAppointment />} />
+            <Route path="/book-appointment" element={
+              <Suspense fallback={<LoadingFallback />}>
+                <BookAppointmentV2 />
+              </Suspense>
+            } />
             <Route path="/login" element={<Login />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="/admin-dashboard" element={
@@ -96,6 +114,11 @@ function App() {
             <Route path="/appointments-dashboard" element={
               <ProtectedRoute requiredRoles={['admin', 'reception']}>
                 <AppointmentsDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/doctor-exceptions" element={
+              <ProtectedRoute requiredRoles={['admin', 'reception']}>
+                <DoctorExceptions />
               </ProtectedRoute>
             } />
             <Route path="/acne" element={<Acne />} />

@@ -58,14 +58,14 @@ const DoctorAvatar = ({
 const DrHimabinduSridharProfile = () => {
   const doctor = {
     name: "Dr. Himabindu Sridhar",
-    designation: "Consultant Cosmetologist, Laser & Hair Transplant Surgeon",
+    designation: "Consultant Dermatologist, Cosmetologist, Laser & Hair Transplant Surgeon",
     specialization: "Cosmetology, Dermatology, Laser & Hair Transplant Surgery",
     experience: "15+ Years Experience",
     location: "Madanapalle",
     languages: "Telugu, English, Hindi",
     /* original signed Supabase URL (do NOT add width/quality here) */
     image:
-      "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Himabindu-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9IaW1hYmluZHUtSW1hZ2UuanBnIiwiaWF0IjoxNzQ5Mzg2MjE5LCJleHAiOjE5MDcwNjYyMTl9.HRPdQ9iVMSV-lYXMzmXdPgyZ4Gf2pQQQGwARZ4CVS7g",
+      "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Dr-Himabindu-image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9Eci1IaW1hYmluZHUtaW1hZ2UuanBnIiwiaWF0IjoxNzQ5ODg5NzcwLCJleHAiOjE5MDc1Njk3NzB9.6gJZWdZJ6PvX_gtxzcOqYcdQvI8FOjkcmFffN5tJA2g",
     education: [
       "M.B.B.S – Kurnool Medical College",
       "M.D – AIIMS New Delhi",

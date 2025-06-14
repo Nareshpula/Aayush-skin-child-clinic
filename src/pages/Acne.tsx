@@ -251,7 +251,7 @@ const FindDoctorSection = () => {
                   />
                 </div>
                <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Himabindu Sridhar</h3>
-                <p className="text-base text-gray-700 mb-4">Consultant Cosmetologist, Laser & Hair Transplant Surgeon</p>
+                <p className="text-base text-gray-700 mb-4">Consultant Dermatologist, Cosmetologist, Laser & Hair Transplant Surgeon</p>
                 
                 <div className="space-y-2 mb-6">
                   <div className="flex items-center justify-center gap-2 text-gray-600 text-sm">

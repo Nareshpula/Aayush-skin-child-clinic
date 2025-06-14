@@ -16,9 +16,9 @@ const DoctorPage = () => {
     {
       id: 2,
       name: "Dr. Himabindu Sridhar",
-      designation: "Consultant Cosmetologist, Laser & Hair Transplant Surgeon",
-      specialization: "Cosmetology, Dermatology, Laser & Hair Transplant Surgery",
-      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Himabindu-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9IaW1hYmluZHUtSW1hZ2UuanBnIiwiaWF0IjoxNzQ5Mzc0NDIzLCJleHAiOjE5MDcwNTQ0MjN9.MVx6A7rOjMKXa9Mu4l4ixhTvW69WtHlN7KDlGqAsOqM",
+      designation: "Consultant Dermatologist, Cosmetologist, Laser & Hair Transplant Surgeon",
+      specialization: "Dermatology, Cosmetology, Dermatology, Laser & Hair Transplant Surgery",
+      image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Dr-Himabindu-image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9Eci1IaW1hYmluZHUtaW1hZ2UuanBnIiwiaWF0IjoxNzQ5ODg5NzcwLCJleHAiOjE5MDc1Njk3NzB9.6gJZWdZJ6PvX_gtxzcOqYcdQvI8FOjkcmFffN5tJA2g",
       slug: "dr-himabindu-sridhar"
     }
   ];

@@ -1,0 +1,46 @@
+@@ .. @@
+   is_sunday := EXTRACT(DOW FROM p_date) = 0;
+   
+   -- Morning slots
+-  slot_time := '10:00:00'::TIME;
++  slot_time := '10:00:00'::TIME;  -- Start at 10:00 AM
+   
+   -- For Sundays, only check until 3 PM
+   IF is_sunday THEN
+     WHILE slot_time < '15:00:00'::TIME LOOP
+       time_slot := slot_time;
+       is_available := aayush.is_doctor_available(p_doctor_id, p_date, slot_time);
+       RETURN NEXT;
+       
+-      -- Increment by 30 minutes
+-      slot_time := slot_time + INTERVAL '30 minutes';
++      -- Increment by 15 minutes
++      slot_time := slot_time + INTERVAL '15 minutes';
+     END LOOP;
+   ELSE
+     -- Regular day - Morning slots (10 AM to 3 PM)
+     WHILE slot_time < '15:00:00'::TIME LOOP
+       time_slot := slot_time;
+       is_available := aayush.is_doctor_available(p_doctor_id, p_date, slot_time);
+       RETURN NEXT;
+       
+-      -- Increment by 30 minutes
+-      slot_time := slot_time + INTERVAL '30 minutes';
++      -- Increment by 15 minutes
++      slot_time := slot_time + INTERVAL '15 minutes';
+     END LOOP;
+     
+     -- Evening slots (6 PM to 9 PM)
+     slot_time := '18:00:00'::TIME;
+     WHILE slot_time < '21:00:00'::TIME LOOP
+       time_slot := slot_time;
+       is_available := aayush.is_doctor_available(p_doctor_id, p_date, slot_time);
+       RETURN NEXT;
+       
+-      -- Increment by 30 minutes
+-      slot_time := slot_time + INTERVAL '30 minutes';
++      -- Increment by 15 minutes
++      slot_time := slot_time + INTERVAL '15 minutes';
+     END LOOP;
+   END IF;
+ END;

@@ -54,14 +54,14 @@ const skinConcerns = [
   },
   {
     title: "Mesotherapy Treatment",
-    description: "Advanced hair rejuvenation therapy",
+    description: "skin rejuvenate and tighten it solutions",
     image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Mesotheropy-home-image.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvTWVzb3RoZXJvcHktaG9tZS1pbWFnZS5qcGVnIiwiaWF0IjoxNzQ4MTczNzk1LCJleHAiOjE4NDI3ODE3OTV9.UbwJtBy9tGBILYbimHIYLNkpzKa31Ygj8ErPdKqgKD4",
     path: "/mesotherapy-treatment"
   },
   {
     title: "Tattoo Removal",
     description: "Advanced laser tattoo removal",
-    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Hair%20-care-images/Tatto-Removable-issues-image.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzA2ZGNhMjEzLTk5ZjQtNDI2ZC05Y2M0LTJmMDBiMmE3NDQxZiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvSGFpciAtY2FyZS1pbWFnZXMvVGF0dG8tUmVtb3ZhYmxlLWlzc3Vlcy1pbWFnZS5qcGciLCJpYXQiOjE3NDgxNTYzOTcsImV4cCI6MTg0Mjc2NDM5N30.KJZ2qBKeQ3GveKNrEmB4GYg69c9V6Hx7-8h0trcU4d4",
+    image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Tattoo-Removal-Image.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9UYXR0b28tUmVtb3ZhbC1JbWFnZS5wbmciLCJpYXQiOjE3NDk4ODkwNjYsImV4cCI6MTg0NDQ5NzA2Nn0.DUMvKtPZnuYMZ_JW6Wx1iyZs0_6im3DHNBdwTe9bkXU",
     path: "/tattoo-removal"
   },
   {
@@ -110,9 +110,8 @@ const DermatologySection = () => {
             <motion.div
               onClick={() => {
                 if (concern.path) {
-                  navigate(concern.path);
-                  window.scrollTo(0, 0);
-                  window.scrollTo(0, 0);
+                 // Use direct navigation for better performance
+                 window.location.href = concern.path;
                 }
               }}
               key={concern.title}
