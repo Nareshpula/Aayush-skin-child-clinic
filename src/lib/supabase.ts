@@ -77,7 +77,7 @@ export type OTPConfirmation = {
 export const fetchDoctors = async (): Promise<Doctor[]> => {
   try {
     // Fetch doctors from the aayush.doctors table
-    const { data, error } = await supabase.from('doctors').select('*');
+    const { data, error } = await supabase.from('aayush.doctors').select('*');
   
     if (error) {
       console.error('Error fetching doctors:', error);
@@ -97,7 +97,7 @@ export const fetchDoctors = async (): Promise<Doctor[]> => {
     // Return the correct doctors as fallback data
     return [
       {
-        id: 1,
+        id: 1, 
         name: "Dr. G Sridhar",
         title: "Senior Consultant in Pediatrics",
         qualifications: "MBBS, MD Pediatrics",
@@ -109,7 +109,7 @@ export const fetchDoctors = async (): Promise<Doctor[]> => {
         image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Sridhar-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9TcmlkaGFyLUltYWdlLmpwZyIsImlhdCI6MTc0OTM0OTI2OCwiZXhwIjoxOTA3MDI5MjY4fQ.eJ32umItgxbVzIBqKE7q6aFiCXpbuYVxVG5ExE7neCk"
       },
       {
-        id: 2,
+        id: 2, 
         name: "Dr. Himabindu Sridhar",
         title: "Consultant Cosmetologist, Laser & Hair Transplant Surgeon",
         qualifications: "MBBS, MD Dermatology",

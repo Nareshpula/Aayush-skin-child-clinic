@@ -109,11 +109,12 @@ const DoctorAvailabilityCalendar: React.FC<DoctorAvailabilityCalendarProps> = ({
     };
 
     // Check if the doctor is available on this day
-    if (!doctor || !doctor.available_days) {
+    if (!doctor) {
       return false;
     }
     
-    return doctor.available_days.includes(dayName);
+    // Check if available_days exists and includes the day name
+    return doctor.available_days ? doctor.available_days.includes(dayName) : false;
   };
 
   // Format time from "HH:MM:SS" to "HH:MM AM/PM"

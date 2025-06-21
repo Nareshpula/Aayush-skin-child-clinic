@@ -48,7 +48,7 @@ const BookAppointmentV2 = () => {
       setLoading(true);
       try {
         const doctorsData = await fetchDoctors();
-        console.log('Loaded doctors:', doctorsData);
+        console.log('Fetched doctors from Supabase:', doctorsData);
         setDoctors(doctorsData);
       } catch (err) {
         console.error('Failed to fetch doctors:', err);
@@ -375,7 +375,7 @@ const BookAppointmentV2 = () => {
                       <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                         <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0 mx-auto sm:mx-0">
                           <img 
-                            src={doctor.profile_image || doctor.image_url} 
+                            src={doctor.profile_image || doctor.image_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(doctor.name)}&background=7a3a95&color=fff`} 
                             alt={doctor.name}
                             className="w-full h-full object-cover"
                           />
@@ -385,8 +385,8 @@ const BookAppointmentV2 = () => {
                           <div className="flex flex-col sm:flex-row sm:justify-between">
                             <div>
                               <h3 className="text-lg font-bold text-gray-900">{doctor.name}</h3>
-                              <p className="text-[#7a3a95] font-medium">{doctor.specialization || doctor.title}</p>
-                              <p className="text-gray-600 text-sm mt-1">{doctor.qualifications}</p>
+                              <p className="text-[#7a3a95] font-medium">{doctor.specialization || doctor.title || "Specialist"}</p>
+                              <p className="text-gray-600 text-sm mt-1">{doctor.qualifications || ""}</p>
                             </div>
                             
                             {selectedDoctor === doctor.id && (
@@ -397,17 +397,17 @@ const BookAppointmentV2 = () => {
                           </div>
                           
                           <div className="mt-3 flex flex-wrap justify-center sm:justify-start gap-2">
-                            {doctor.specialties?.map((specialty, index) => (
+                            {doctor.specialties ? doctor.specialties.map((specialty, index) => (
                               <span 
                                 key={index}
                                 className="px-2 py-1 bg-purple-100 text-[#7a3a95] text-xs rounded-full"
                               >
                                 {specialty}
                               </span>
-                            ))}
+                            )) : null}
                           </div>
                           
-                          <p className="text-gray-500 text-sm mt-2">{doctor.experience}</p>
+                          <p className="text-gray-500 text-sm mt-2">{doctor.experience || ""}</p>
                         </div>
                       </div>
                     </div>
