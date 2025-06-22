@@ -4,7 +4,8 @@ import { Calendar, Clock, ChevronRight, ChevronLeft, Check, Loader2, AlertCircle
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import DoctorAvailabilityCalendar from '@/components/DoctorAvailabilityCalendar';
-import { 
+import {
+  supabase,
   fetchDoctors, 
   bookAppointment, 
   generateOTP,
@@ -45,11 +46,40 @@ const BookAppointmentV2 = () => {
   // Fetch doctors on component mount
   useEffect(() => {
     const loadDoctors = async () => {
-      setLoading(true);
+      setLoading(true); 
+      console.log('Loading doctors from Supabase...');
       try {
-        const doctorsData = await fetchDoctors();
-        console.log('Fetched doctors from Supabase:', doctorsData);
-        setDoctors(doctorsData);
+        // Call the RPC function directly to ensure we get data from aayush schema
+        const { data: doctorsData, error } = await supabase.rpc('get_doctors_from_aayush');
+        
+        if (error) {
+          console.error('Error fetching doctors from aayush schema:', error);
+          throw error;
+        }
+        
+        if (doctorsData) {
+          console.log('Successfully fetched doctors from aayush schema:', doctorsData.length);
+          
+          // Transform the data to match the expected Doctor type
+          const transformedData = doctorsData.map(doctor => ({
+            id: doctor.id,
+            name: doctor.name,
+            title: doctor.specialization,
+            specialization: doctor.specialization,
+            profile_image: doctor.profile_image,
+            available_days: doctor.available_days,
+            // Add any other required fields with defaults
+            qualifications: "",
+            experience: "15+ Years Experience",
+            specialties: [doctor.specialization],
+            image_url: doctor.profile_image
+          }));
+          
+          setDoctors(transformedData);
+        } else {
+          console.error('No doctors returned from aayush schema');
+          throw new Error('No doctors found');
+        }
       } catch (err) {
         console.error('Failed to fetch doctors:', err);
         setError('Failed to load doctors. Please try again later.');
@@ -195,7 +225,7 @@ const BookAppointmentV2 = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!selectedDoctor || !selectedDate || !selectedTime) {
+    if (!selectedDoctor || !selectedDate || !selectedTime || !doctors.length) {
       setError('Please complete all previous steps before booking an appointment.');
       return;
     }
@@ -204,33 +234,44 @@ const BookAppointmentV2 = () => {
     setBookingInProgress(true);
     
     try {
+      // First, check if a slot exists for this doctor, date, and time
+      const doctor = doctors.find(d => d.id === selectedDoctor);
+      if (!doctor) {
+        throw new Error('Selected doctor not found');
+      }
+
       // Format the time to match the expected format (HH:MM:SS)
       const formattedTime = selectedTime.includes(':') ? selectedTime : `${selectedTime}:00`;
+
+      // Call the bookAppointment function with parameters in the correct order
+      const { success, data: bookingData, error: bookingError } = await bookAppointment(
+        selectedDoctor,
+        formData.name,
+        formData.phone,
+        selectedDate,
+        formattedTime,
+        formData.email || undefined,
+        parseInt(formData.age) || 0,
+        formData.gender || 'Not specified',
+        formData.reason || undefined
+      );
       
-      // Book the appointment
-      const { success, data, error: bookingError } = await bookAppointment({
-        slot_id: 0, // This will be ignored by the book_appointment function
-        patient_name: formData.name,
-        email: formData.email || undefined,
-        phone_number: formData.phone,
-        age: parseInt(formData.age),
-        gender: formData.gender,
-        reason: formData.reason || undefined
-      });
+      console.log('Booking result:', { success, bookingData, bookingError });
       
-      if (!success || !data) {
-        throw new Error(bookingError || 'Failed to book appointment');
+      if (!success || !bookingData) {
+        setError(bookingError || 'Failed to book appointment. Please try again.');
+        return;
       }
       
-      setAppointmentId(data.id);
-      setPatientId(data.patient_id || null);
+      setAppointmentId(bookingData.id);
+      setPatientId(bookingData.patient_id || null);
       
       // Move to OTP verification step
       setStep(4);
       scrollToTop();
-    } catch (err) {
-      console.error('Error booking appointment:', err);
-      setError('An unexpected error occurred. Please try again later.');
+    } catch (err: any) {
+      console.error('Error in handleSubmit:', err);
+      setError(err.message || 'An unexpected error occurred. Please try again later.');
     } finally {
       setBookingInProgress(false);
     }
@@ -375,7 +416,7 @@ const BookAppointmentV2 = () => {
                       <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                         <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0 mx-auto sm:mx-0">
                           <img 
-                            src={doctor.profile_image || doctor.image_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(doctor.name)}&background=7a3a95&color=fff`} 
+                            src={doctor.profile_image || doctor.image_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(doctor.name)}&background=7a3a95&color=fff`}
                             alt={doctor.name}
                             className="w-full h-full object-cover"
                           />
@@ -564,6 +605,14 @@ const BookAppointmentV2 = () => {
                 transition={{ duration: 0.3 }}
                 className="text-center"
               >
+                {/* OTP Timer */}
+                {otpSent && !otpVerified && !verifyingOtp && (
+                  <OTPTimer 
+                    initialSeconds={600} 
+                    onExpire={() => setOtpError("OTP expired. Please request a new one.")} 
+                  />
+                )}
+                
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Verify Your Phone Number</h2>
                 
                 <div className="max-w-md mx-auto">
@@ -749,6 +798,31 @@ const BookAppointmentV2 = () => {
             {/* Navigation Buttons */}
             {step < 5 && (
               <div className="mt-8 flex justify-between">
+                {step > 1 && step !== 3 && (
+                  <button
+                    onClick={handleBack}
+                    className="flex items-center px-4 py-2 text-[#7a3a95] hover:text-[#6a2a85] transition-colors duration-200"
+                  >
+                    <ChevronLeft className="w-5 h-5 mr-1" />
+                    Back
+                  </button>
+                )}
+                
+                {step < 3 && (
+                  <button
+                    onClick={handleNext}
+                    className="flex items-center px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 ml-auto"
+                  >
+                    Next
+                    <ChevronRight className="w-5 h-5 ml-1" />
+                  </button>
+                )}
+              </div>
+            )}
+            
+            {/* Step 3 specific navigation */}
+            {step === 3 && (
+              <div className="mt-8 flex justify-between">
                 {step > 1 && (
                   <button
                     onClick={handleBack}
@@ -759,39 +833,70 @@ const BookAppointmentV2 = () => {
                   </button>
                 )}
                 
-                {step < 4 && (
-                  <button
-                    onClick={handleNext}
-                    className="flex items-center px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 ml-auto"
-                  >
-                    Next
-                    <ChevronRight className="w-5 h-5 ml-1" />
-                  </button>
-                )}
-                
-                {step === 3 && (
-                  <button
-                    onClick={handleSubmit}
-                    disabled={bookingInProgress}
-                    className="flex items-center px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                  >
-                    {bookingInProgress ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Booking...
-                      </>
-                    ) : (
-                      <>
-                        Book Appointment
-                        <ChevronRight className="w-5 h-5 ml-1" />
-                      </>
-                    )}
-                  </button>
-                )}
+                <button
+                  onClick={handleSubmit}
+                  disabled={bookingInProgress}
+                  className="flex items-center px-6 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 disabled:bg-gray-300 disabled:cursor-not-allowed ml-auto"
+                >
+                  {bookingInProgress ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Booking...
+                    </>
+                  ) : (
+                    <>
+                      Next
+                      <ChevronRight className="w-5 h-5 ml-1" />
+                    </>
+                  )}
+                </button>
               </div>
             )}
           </div>
         </motion.div>
+      </div>
+    </div>
+  );
+};
+
+// OTP Timer Component
+interface OTPTimerProps {
+  initialSeconds: number; // Initial time in seconds
+  onExpire: () => void;   // Callback when timer expires
+}
+
+const OTPTimer: React.FC<OTPTimerProps> = ({ initialSeconds, onExpire }) => {
+  const [seconds, setSeconds] = useState(initialSeconds);
+  
+  useEffect(() => {
+    // Set up the interval
+    const interval = setInterval(() => {
+      setSeconds(prevSeconds => {
+        if (prevSeconds <= 1) {
+          clearInterval(interval);
+          onExpire();
+          return 0;
+        }
+        return prevSeconds - 1;
+      });
+    }, 1000);
+    
+    // Clean up the interval on unmount
+    return () => clearInterval(interval);
+  }, [onExpire]); // Only depend on onExpire to avoid recreating the interval
+  
+  // Format the time as MM:SS
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  const formattedTime = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  
+  return (
+    <div className="mb-4 text-center">
+      <div className={`inline-block px-4 py-2 rounded-lg ${
+        seconds < 60 ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'
+      }`}>
+        <span className="font-medium">Time remaining: </span>
+        <span className="font-bold">{formattedTime}</span>
       </div>
     </div>
   );

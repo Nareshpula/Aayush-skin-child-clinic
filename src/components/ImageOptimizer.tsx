@@ -1,4 +1,5 @@
 import React from 'react';
+import { optimizeSupabaseImage, generateSrcSet, generateSizes } from '@/utils/imageOptimization';
 
 interface ImageOptimizerProps {
   src: string;
@@ -37,48 +38,20 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
   // Check if this is a Supabase URL
   const isSupabaseUrl = src.includes('supabase.co/storage/v1/object/sign');
   
-  // Function to optimize Supabase URLs
-  const optimizeUrl = (url: string, imgWidth?: number): string => {
-    if (!isSupabaseUrl) return url;
-    
-    // Convert to render/image endpoint
-    const baseUrl = url.replace('/object/', '/render/image/');
-    const separator = baseUrl.includes('?') ? '&' : '?';
-    
-    // Add optimization parameters
-    let optimizedUrl = baseUrl;
-    if (imgWidth) optimizedUrl += `${separator}width=${imgWidth}`;
-    optimizedUrl += `${optimizedUrl.includes('?') ? '&' : '?'}format=${format}&quality=${quality}`;
-    
-    return optimizedUrl;
-  };
-  
-  // Generate srcSet for responsive images
-  const generateSrcSet = (): string | undefined => {
-    if (!isSupabaseUrl || !width) return undefined;
-    
-    // Generate multiple sizes for different screen densities
-    const widths = [
+  // Generate srcSet and sizes
+  const srcSet = isSupabaseUrl && width ? 
+    generateSrcSet(src, [
       Math.round(width * 0.5), // Small screens
       width,                    // Normal screens
       Math.round(width * 1.5),  // Retina screens
       Math.round(width * 2)     // High-DPI screens
-    ].filter(w => w >= 100);    // Filter out very small sizes
-    
-    return widths
-      .map(w => `${optimizeUrl(src, w)} ${w}w`)
-      .join(', ');
-  };
+    ].filter(w => w >= 100), quality, format) : 
+    undefined;
   
-  // Generate sizes attribute
-  const generateSizes = (): string | undefined => {
-    if (!width) return undefined;
-    return `(max-width: 768px) 100vw, ${width}px`;
-  };
-  
-  const srcSet = generateSrcSet();
-  const sizes = generateSizes();
-  const optimizedSrc = optimizeUrl(src, width);
+  const sizes = width ? generateSizes(`${width}px`) : undefined;
+  const optimizedSrc = isSupabaseUrl ? 
+    optimizeSupabaseImage(src, width, quality, format) : 
+    src;
   
   return (
     <img
@@ -96,6 +69,9 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
         objectFit,
         objectPosition,
         imageRendering: '-webkit-optimize-contrast',
+        transform: 'translateZ(0)', 
+        perspective: '1000px',
+        WebkitFontSmoothing: 'subpixel-antialiased'
       }}
     />
   );

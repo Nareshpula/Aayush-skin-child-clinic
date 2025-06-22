@@ -12,6 +12,7 @@ interface OptimizedVideoProps {
   controls?: boolean;
   playsInline?: boolean;
   priority?: boolean;
+  preload?: 'auto' | 'metadata' | 'none';
   onLoad?: () => void;
   objectFit?: 'cover' | 'contain' | 'fill' | 'none';
 }
@@ -38,6 +39,7 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
   controls = false,
   playsInline = true,
   priority = false,
+  preload = 'metadata',
   onLoad,
   objectFit = 'cover',
 }) => {
@@ -57,7 +59,7 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
       },
       {
         root: null,
-        rootMargin: '200px', // Load video when it's 200px from viewport
+        rootMargin: '300px', // Load video when it's 300px from viewport
         threshold: 0,
       }
     );
@@ -76,7 +78,7 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
     if (!videoRef.current) return;
 
     if (priority || isVisible) {
-      videoRef.current.preload = priority ? 'auto' : 'metadata';
+      videoRef.current.preload = priority ? 'auto' : preload;
       
       if (autoPlay) {
         // Try to play the video when it becomes visible
@@ -86,6 +88,14 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         if (playPromise !== undefined) {
           playPromise.catch(error => {
             console.warn('Auto-play was prevented:', error);
+            // Try to play on user interaction
+            const playOnInteraction = () => {
+              videoRef.current?.play();
+              document.removeEventListener('click', playOnInteraction);
+              document.removeEventListener('touchstart', playOnInteraction);
+            };
+            document.addEventListener('click', playOnInteraction, { once: true });
+            document.addEventListener('touchstart', playOnInteraction, { once: true });
           });
         }
       }
@@ -96,6 +106,21 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
     setIsLoaded(true);
     if (onLoad) onLoad();
   };
+
+  // Function to optimize Supabase video URLs
+  const optimizeVideoUrl = (url: string): string => {
+    // Check if this is a Supabase URL
+    if (!url.includes('supabase.co/storage/v1/object/sign')) {
+      return url;
+    }
+    
+    // For videos, we don't transform the URL as Supabase doesn't support video transformations
+    // But we can ensure the URL is properly signed
+    return url;
+  };
+
+  const optimizedSrc = optimizeVideoUrl(src);
+  const optimizedPoster = poster ? optimizeVideoUrl(poster) : undefined;
 
   return (
     <div 
@@ -119,8 +144,8 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
       
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
+        src={optimizedSrc}
+        poster={optimizedPoster}
         width={width}
         height={height}
         autoPlay={priority ? autoPlay : false}
@@ -128,7 +153,7 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         muted={muted}
         controls={controls}
         playsInline={playsInline}
-        preload={priority ? "auto" : "none"}
+        preload={priority ? "auto" : preload}
         onLoadedData={handleLoadedData}
         className={`
           ${isLoaded ? 'opacity-100' : 'opacity-0'} 
@@ -140,7 +165,10 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
           objectFit,
           transform: 'translate3d(0, 0, 0)', // Force hardware acceleration
         }}
-      />
+      >
+        <source src={optimizedSrc} type="video/mp4" />
+        <p>Your browser doesn't support HTML5 video. Here is a <a href={optimizedSrc}>link to the video</a> instead.</p>
+      </video>
     </div>
   );
 };

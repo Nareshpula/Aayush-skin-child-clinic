@@ -1,0 +1,80 @@
+/*
+  # Fix Appointment Booking System
+
+  1. Changes
+    - Creates a new function that accepts parameters in the exact order expected by the frontend
+    - Ensures compatibility with the RPC call from the client
+    - Adds better error handling and logging
+*/
+
+-- Create a function that matches the exact parameter order used by the frontend
+CREATE OR REPLACE FUNCTION public.book_appointment(
+  p_age INTEGER,
+  p_date DATE,
+  p_email TEXT,
+  p_gender TEXT,
+  p_reason TEXT,
+  p_time TIME,
+  p_doctor_id INTEGER DEFAULT NULL,
+  p_patient_name TEXT DEFAULT NULL,
+  p_patient_phone TEXT DEFAULT NULL
+)
+RETURNS JSONB AS $$
+DECLARE
+  result JSONB;
+BEGIN
+  -- Log the parameters for debugging
+  RAISE NOTICE 'Booking appointment with parameters (frontend order): doctor_id=%, name=%, phone=%, date=%, time=%, email=%, age=%, gender=%, reason=%',
+    p_doctor_id, p_patient_name, p_patient_phone, p_date, p_time, p_email, p_age, p_gender, p_reason;
+  
+  -- Validate required parameters
+  IF p_doctor_id IS NULL THEN
+    RETURN jsonb_build_object(
+      'success', false,
+      'message', 'Doctor ID is required'
+    );
+  END IF;
+  
+  IF p_patient_name IS NULL THEN
+    RETURN jsonb_build_object(
+      'success', false,
+      'message', 'Patient name is required'
+    );
+  END IF;
+  
+  IF p_patient_phone IS NULL THEN
+    RETURN jsonb_build_object(
+      'success', false,
+      'message', 'Patient phone number is required'
+    );
+  END IF;
+  
+  -- Call the fix_book_appointment function with the parameters in the correct order
+  SELECT * INTO result FROM public.fix_book_appointment(
+    p_doctor_id,
+    p_patient_name,
+    p_patient_phone,
+    p_date,
+    p_time,
+    p_email,
+    p_age,
+    p_gender,
+    p_reason
+  );
+  
+  -- Return the result
+  RETURN result;
+EXCEPTION WHEN OTHERS THEN
+  -- Return error information if the function fails
+  RETURN jsonb_build_object(
+    'success', false,
+    'message', SQLERRM,
+    'detail', SQLSTATE
+  );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Grant execute permissions on the function
+GRANT EXECUTE ON FUNCTION public.book_appointment(
+  INTEGER, DATE, TEXT, TEXT, TEXT, TIME, INTEGER, TEXT, TEXT
+) TO anon, authenticated, service_role;

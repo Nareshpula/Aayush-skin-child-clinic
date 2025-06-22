@@ -76,8 +76,11 @@ export type OTPConfirmation = {
 // Fetch doctors from Supabase
 export const fetchDoctors = async (): Promise<Doctor[]> => {
   try {
-    // Fetch doctors from the aayush.doctors table
-    const { data, error } = await supabase.from('aayush.doctors').select('*');
+    // Fetch doctors using the correct schema reference
+    console.log('Fetching doctors from database...');
+    
+    // Call the function that fetches from aayush schema
+    const { data, error } = await supabase.rpc('get_doctors_from_aayush');
   
     if (error) {
       console.error('Error fetching doctors:', error);
@@ -85,7 +88,7 @@ export const fetchDoctors = async (): Promise<Doctor[]> => {
     }
   
     if (data && data.length > 0) {
-      console.log('Fetched doctors from Supabase:', data);
+      console.log('Successfully fetched doctors:', data);
       return data;
     }
     
@@ -95,9 +98,10 @@ export const fetchDoctors = async (): Promise<Doctor[]> => {
     console.error('Failed to fetch doctors:', err);
     
     // Return the correct doctors as fallback data
+    console.log('Using fallback doctor data');
     return [
       {
-        id: 1, 
+        id: 1,
         name: "Dr. G Sridhar",
         title: "Senior Consultant in Pediatrics",
         qualifications: "MBBS, MD Pediatrics",
@@ -109,16 +113,16 @@ export const fetchDoctors = async (): Promise<Doctor[]> => {
         image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Sridhar-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9TcmlkaGFyLUltYWdlLmpwZyIsImlhdCI6MTc0OTM0OTI2OCwiZXhwIjoxOTA3MDI5MjY4fQ.eJ32umItgxbVzIBqKE7q6aFiCXpbuYVxVG5ExE7neCk"
       },
       {
-        id: 2, 
+        id: 2,
         name: "Dr. Himabindu Sridhar",
         title: "Consultant Cosmetologist, Laser & Hair Transplant Surgeon",
         qualifications: "MBBS, MD Dermatology",
         experience: "15+ Years Experience",
         specialties: ["Dermatology", "Skin Care", "Cosmetic Procedures"],
         specialization: "Dermatology",
-        profile_image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Himabindu-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9IaW1hYmluZHUtSW1hZ2UuanBnIiwiaWF0IjoxNzQ5Mzc0NDIzLCJleHAiOjE5MDcwNTQ0MjN9.MVx6A7rOjMKXa9Mu4l4ixhTvW69WtHlN7KDlGqAsOqM",
+        profile_image: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Dr-Himabindu-image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9Eci1IaW1hYmluZHUtaW1hZ2UuanBnIiwiaWF0IjoxNzQ5ODg5NzcwLCJleHAiOjE5MDc1Njk3NzB9.6gJZWdZJ6PvX_gtxzcOqYcdQvI8FOjkcmFffN5tJA2g",
         available_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Himabindu-Image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9IaW1hYmluZHUtSW1hZ2UuanBnIiwiaWF0IjoxNzQ5Mzc0NDIzLCJleHAiOjE5MDcwNTQ0MjN9.MVx6A7rOjMKXa9Mu4l4ixhTvW69WtHlN7KDlGqAsOqM"
+        image_url: "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Doctors-Image/Dr-Himabindu-image.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNmRjYTIxMy05OWY0LTQyNmQtOWNjNC0yZjAwYjJhNzQ0MWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvRG9jdG9ycy1JbWFnZS9Eci1IaW1hYmluZHUtaW1hZ2UuanBnIiwiaWF0IjoxNzQ5ODg5NzcwLCJleHAiOjE5MDc1Njk3NzB9.6gJZWdZJ6PvX_gtxzcOqYcdQvI8FOjkcmFffN5tJA2g"
       }
     ];
   }
@@ -144,22 +148,30 @@ export const createAppointmentSlot = async (slotData: Omit<AppointmentSlot, 'id'
 
 // Book an appointment
 export const bookAppointment = async (appointmentData: Omit<Appointment, 'id' | 'created_at' | 'updated_at'>): Promise<{ success: boolean; data?: Appointment; error?: string }> => {
-  const { data, error } = await supabase.rpc('insert_appointment', {
-    slot_id: appointmentData.slot_id,
-    patient_name: appointmentData.patient_name,
-    email: appointmentData.email || null,
-    phone_number: appointmentData.phone_number,
-    age: appointmentData.age,
-    gender: appointmentData.gender,
-    reason: appointmentData.reason || null
-  });
+  try {
+    // Use the book_appointment RPC function which handles slot creation
+    const { data, error } = await supabase.rpc('book_appointment', {
+      p_doctor_id: appointmentData.doctor_id,
+      p_patient_name: appointmentData.patient_name,
+      p_patient_phone: appointmentData.phone_number,
+      p_date: appointmentData.date,
+      p_time: appointmentData.time,
+      p_email: appointmentData.email || null,
+      p_age: appointmentData.age,
+      p_gender: appointmentData.gender,
+      p_reason: appointmentData.reason || null
+    });
   
-  if (error) {
-    console.error('Error booking appointment:', error);
-    return { success: false, error: error.message };
+    if (error) {
+      console.error('Error booking appointment:', error);
+      return { success: false, error: error.message };
+    }
+  
+    return { success: true, data };
+  } catch (err) {
+    console.error('Error in bookAppointment:', err);
+    return { success: false, error: err instanceof Error ? err.message : 'Unknown error' };
   }
-  
-  return { success: true, data };
 };
 
 // Generate and store OTP for appointment confirmation

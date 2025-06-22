@@ -55,6 +55,12 @@ export const bookAppointment = async (
   reason?: string
 ): Promise<{ success: boolean; data?: any; error?: string }> => {
   try {
+    // Log the parameters for debugging
+    console.log('Booking appointment with parameters:', {
+      doctorId, patientName, patientPhone, date, time, email, age, gender, reason
+    });
+
+    // Create a payload object with all parameters
     const { data, error } = await supabase.rpc('book_appointment', {
       p_doctor_id: doctorId,
       p_patient_name: patientName,
@@ -62,20 +68,42 @@ export const bookAppointment = async (
       p_date: date,
       p_time: time,
       p_email: email || null,
-      p_age: age || null,
+      p_age: age || 0,
       p_gender: gender || null,
       p_reason: reason || null
     });
 
     if (error) {
-      console.error('Error booking appointment:', error);
+      console.error('Error booking appointment via RPC:', error);
       return { success: false, error: error.message };
     }
 
-    return { success: true, data };
+    console.log('Appointment booking response:', data);
+
+    if (!data || !data.success) {
+      return {
+        success: false,
+        error: data?.message || 'Failed to book appointment. Please try again.'
+      };
+    }
+    
+    return {
+      success: true,
+      data: {
+        id: data.appointment_id,
+        patient_id: data.patient_id,
+        doctor_id: data.doctor_id,
+        date: data.date,
+        time: data.time,
+        slot_id: data.slot_id
+      }
+    };
   } catch (err) {
-    console.error('Error booking appointment:', err);
-    return { success: false, error: 'An unexpected error occurred' };
+    console.error('Exception in bookAppointment function:', err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'An unexpected error occurred'
+    };
   }
 };
 
@@ -91,19 +119,35 @@ export const getAvailableSlots = async (
   date: string
 ): Promise<{ success: boolean; data?: AvailableSlot[]; error?: string }> => {
   try {
+    console.log(`Fetching available slots for doctor ${doctorId} on ${date}`);
+    
+    // Call the RPC function to get available slots
     const { data, error } = await supabase.rpc('get_available_slots', {
       p_doctor_id: doctorId,
       p_date: date
     });
 
     if (error) {
-      console.error('Error fetching available slots:', error);
+      console.error('Error fetching available slots from RPC:', error);
       return { success: false, error: error.message };
     }
 
-    return { success: true, data };
+    if (!data || !Array.isArray(data)) {
+      console.error('Invalid data returned from get_available_slots:', data);
+      return { success: false, error: 'Invalid data returned from server' };
+    }
+    
+    console.log(`Received ${data.length} slots for doctor ${doctorId} on ${date}`);
+    
+    // Transform the data to match the AvailableSlot interface
+    const transformedData: AvailableSlot[] = data.map((slot: any) => ({
+      time_slot: slot.time_slot,
+      is_available: slot.is_available
+    }));
+    
+    return { success: true, data: transformedData };
   } catch (err) {
-    console.error('Error fetching available slots:', err);
+    console.error('Exception in getAvailableSlots:', err);
     return { success: false, error: 'An unexpected error occurred' };
   }
 };
@@ -260,5 +304,79 @@ export const getAppointments = async (
   } catch (err) {
     console.error('Error fetching appointments:', err);
     return { success: false, error: 'An unexpected error occurred' };
+  }
+};
+
+export const sendConfirmation = async (phoneNumber: string): Promise<{ success: boolean; error?: string }> => {
+  try {
+    console.log('Sending confirmation via Edge Function to:', phoneNumber);
+    
+    // Get the latest appointment for this phone number
+    const { data: appointments, error: appointmentsError } = await supabase
+      .from('appointments')
+      .select(`
+        id, 
+        patient_name,
+        slot_id,
+        slot:appointment_slots(
+          date,
+          time,
+          doctor_id,
+          doctor:doctors(name)
+        )
+      `)
+      .eq('phone_number', phoneNumber)
+      .order('created_at', { ascending: false })
+      .limit(1);
+    
+    if (appointmentsError) {
+      console.error('Error fetching appointment details:', appointmentsError);
+      return { success: false, error: 'Failed to fetch appointment details' };
+    }
+    
+    if (!appointments || appointments.length === 0) {
+      console.error('No appointment found for this phone number');
+      return { success: false, error: 'No appointment found' };
+    }
+    
+    const appointment = appointments[0];
+    const appointmentDetails = {
+      patientName: appointment.patient_name,
+      appointmentDate: appointment.slot?.date,
+      appointmentTime: appointment.slot?.time
+    };
+    
+    // Call Supabase Edge Function instead of direct API call
+    const response = await fetch(`${supabaseUrl}/functions/v1/send-sms`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${supabaseAnonKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phoneNumber,
+        messageType: 'confirmation',
+        appointmentDetails
+      })
+    });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Edge Function error response:', errorText);
+      return { success: false, error: 'Failed to send confirmation' };
+    }
+    
+    const result = await response.json();
+    console.log('Edge Function response:', result);
+    
+    if (!result.success) {
+      console.error('SMS sending error:', result);
+      return { success: false, error: result.error || 'Failed to send confirmation' };
+    }
+    
+    return { success: true };
+  } catch (err) {
+    console.error('Error sending confirmation:', err);
+    return { success: false, error: 'Failed to send confirmation' };
   }
 };

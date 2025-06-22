@@ -33,7 +33,8 @@ export const AppointmentProvider: React.FC<AppointmentProviderProps> = ({ childr
   const refreshDoctors = async () => {
     setLoadingDoctors(true);
     try {
-      const doctorsData = await fetchDoctors();
+      const doctorsData = await fetchDoctors(); 
+      console.log('AppointmentContext: Fetched doctors count:', doctorsData?.length || 0);
       setDoctors(doctorsData);
     } catch (error) {
       console.error('Error fetching doctors:', error);
@@ -57,7 +58,7 @@ export const AppointmentProvider: React.FC<AppointmentProviderProps> = ({ childr
   // Initial data loading
   useEffect(() => {
     refreshDoctors();
-    refreshAppointments();
+    refreshAppointments(); 
     
     // Subscribe to real-time changes
     const appointmentsSubscription = supabase
