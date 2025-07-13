@@ -16,6 +16,7 @@ export default defineConfig({
          'vendor': ['react', 'react-dom', 'react-router-dom'],
          'ui': ['framer-motion', 'lucide-react'],
          'utils': ['@supabase/supabase-js'],
+         'appointment': ['@emailjs/browser'],
        }
      }
     },
@@ -29,6 +30,9 @@ export default defineConfig({
      compress: {
        drop_console: true,
        drop_debugger: true
+     },
+     format: {
+       comments: false
      }
    },
    reportCompressedSize: false
@@ -39,6 +43,12 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', '@supabase/supabase-js'],
+    exclude: []
+  },
+  server: {
+    headers: {
+      'Cache-Control': 'public, max-age=31536000',
+    }
   }
 });

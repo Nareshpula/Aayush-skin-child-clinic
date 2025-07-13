@@ -149,7 +149,9 @@ export const createAppointmentSlot = async (slotData: Omit<AppointmentSlot, 'id'
 // Book an appointment
 export const bookAppointment = async (appointmentData: Omit<Appointment, 'id' | 'created_at' | 'updated_at'>): Promise<{ success: boolean; data?: Appointment; error?: string }> => {
   try {
-    // Use the book_appointment RPC function which handles slot creation
+    console.log('Booking appointment with data:', appointmentData);
+
+    // Use the book_appointment RPC function
     const { data, error } = await supabase.rpc('book_appointment', {
       p_doctor_id: appointmentData.doctor_id,
       p_patient_name: appointmentData.patient_name,
@@ -167,6 +169,7 @@ export const bookAppointment = async (appointmentData: Omit<Appointment, 'id' | 
       return { success: false, error: error.message };
     }
   
+    // Extract the appointment data from the response
     return { success: true, data };
   } catch (err) {
     console.error('Error in bookAppointment:', err);
@@ -302,9 +305,33 @@ export const sendOTP = async (phoneNumber: string, otpCode: string): Promise<{ s
 };
 
 // Send appointment confirmation via SMS
-export const sendConfirmation = async (phoneNumber: string): Promise<{ success: boolean; error?: string }> => {
+export const sendConfirmation = async (
+  phoneNumber: string, 
+  appointmentDetails: {
+    patientName: string;
+    appointmentDate: string;
+    appointmentTime: string;
+  }
+): Promise<{ success: boolean; error?: string }> => {
   try {
     console.log('Sending confirmation via Edge Function to:', phoneNumber);
+    console.log('With appointment details:', appointmentDetails);
+    console.log('Appointment details:', appointmentDetails);
+    
+    if (!appointmentDetails) {
+      console.error('Missing appointment details for confirmation SMS');
+      return { success: false, error: 'Appointment details are required for confirmation message' };
+    }
+    
+    if (!appointmentDetails.patientName || !appointmentDetails.appointmentDate || !appointmentDetails.appointmentTime) {
+      console.error('Incomplete appointment details:', appointmentDetails);
+      return { success: false, error: 'Patient name, appointment date, and time are required' };
+    }
+
+    // Ensure the time is properly formatted
+    if (!appointmentDetails.appointmentTime.includes(':')) {
+      appointmentDetails.appointmentTime = `${appointmentDetails.appointmentTime}:00`;
+    }
     
     // Call Supabase Edge Function instead of direct API call
     const response = await fetch(`${supabaseUrl}/functions/v1/send-sms`, {
@@ -315,7 +342,8 @@ export const sendConfirmation = async (phoneNumber: string): Promise<{ success: 
       },
       body: JSON.stringify({
         phoneNumber,
-        messageType: 'confirmation'
+        messageType: 'confirmation',
+        appointmentDetails
       })
     });
     
@@ -340,6 +368,12 @@ export const sendConfirmation = async (phoneNumber: string): Promise<{ success: 
     
     const result = await response.json();
     console.log('Edge Function response:', result);
+
+    // Check if the Fast2SMS API returned an authentication error
+    if (result.data && result.data.status_code === 412) {
+      console.error('Fast2SMS authentication error:', result.data.message);
+      return { success: false, error: `SMS service authentication error: ${result.data.message}` };
+    }
     
     if (!result.success) {
       console.error('SMS sending error:', result);
@@ -431,6 +465,68 @@ export const getAppointments = async (): Promise<Appointment[]> => {
   } catch (error) {
     console.error('Error fetching appointments:', error);
     return [];
+  }
+};
+
+// Book an appointment
+export const bookAppointmentDirect = async (
+  doctorId: number,           // Doctor ID
+  patientName: string,        // Patient name
+  phoneNumber: string,        // Phone number
+  date: string,               // Appointment date (YYYY-MM-DD)
+  time: string,               // Appointment time (HH:MM:SS)
+  email?: string,             // Optional email
+  age?: number,               // Optional age
+  gender?: string,            // Optional gender
+  reason?: string             // Optional reason
+): Promise<{ success: boolean; data?: any; error?: string }> => {
+  try {
+    console.log('Booking appointment directly with params:', {
+      doctorId, patientName, phoneNumber, date, time, email, age, gender, reason
+    });
+
+    // Use the book_appointment_v6 RPC function with fixed patient ID generation
+    const { data, error } = await supabase.rpc('book_appointment_v6', {
+      p_doctor_id: doctorId,
+      p_patient_name: patientName,
+      p_patient_phone: phoneNumber,
+      p_date: date,
+      p_time: time,
+      p_email: email || null,
+      p_age: age || null,
+      p_gender: gender || null,
+      p_reason: reason || null
+    });
+  
+    if (error) {
+      console.error('Error booking appointment with book_appointment_v6:', error);
+      return { success: false, error: error.message };
+    }
+  
+    console.log('Booking response from book_appointment_v6:', data);
+    
+    // Check if the response has the expected structure
+    if (data && data.success && data.appointment) {
+      return { 
+        success: true, 
+        data: data.appointment
+      };
+    } else if (data && !data.success && data.error) {
+      // Return the specific error from the function
+      return { 
+        success: false, 
+        error: data.error
+      };
+    } else {
+      console.error('Unexpected response format from book_appointment_v5:', data);
+      return { 
+        success: false, 
+        error: 'Unexpected response format from book_appointment_v6:' 
+      };
+    }
+  } catch (err) {
+    console.error('Error in bookAppointmentDirect:', err);
+    return { success: false, error: err instanceof Error ? err.message : 'Unknown error' };
   }
 };
 

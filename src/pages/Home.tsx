@@ -14,22 +14,30 @@ import FindDoctor from '../components/FindDoctor';
 import { Suspense, lazy } from 'react';
 
 // Preload the BookAppointment page when on the home page
-const preloadBookAppointmentPage = () => {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'script';
-  link.href = '/src/pages/BookAppointment.tsx';
-  document.head.appendChild(link);
-};
+const preloadCriticalResources = () => {
+  const resources = [
+    { path: '/src/components/FindDoctor.tsx', as: 'script' },
+    { path: '/src/components/CentersOfExcellence.tsx', as: 'script' }
+  ];
+  
+  resources.forEach(resource => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = resource.as;
+    link.href = resource.path;
+    document.head.appendChild(link);
+  });
+}
+
 // Lazy load components that are below the fold
 const LazyGoogleReviews = lazy(() => import('../components/GoogleReviews'));
 const LazyBlogSection = lazy(() => import('../components/BlogSection'));
 const LazyVisitUs = lazy(() => import('../components/VisitUs'));
 
 const Home = () => {
-  // Preload the BookAppointment page
+  // Preload critical resources
   React.useEffect(() => {
-    preloadBookAppointmentPage();
+    preloadCriticalResources();
   }, []);
 
   return (
@@ -43,13 +51,13 @@ const Home = () => {
       <StatisticsSection />
       <WhyChooseUs />
       <ContactForm />
-      <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
+      <Suspense fallback={<div className="h-96 flex items-center justify-center content-visibility-auto">Loading...</div>}>
         <LazyGoogleReviews />
       </Suspense>
-      <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
+      <Suspense fallback={<div className="h-96 flex items-center justify-center content-visibility-auto">Loading...</div>}>
         <LazyVisitUs />
       </Suspense>
-      <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
+      <Suspense fallback={<div className="h-96 flex items-center justify-center content-visibility-auto">Loading...</div>}>
         <LazyBlogSection />
       </Suspense>
     </>

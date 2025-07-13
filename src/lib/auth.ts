@@ -56,10 +56,13 @@ export const logout = (): void => {
 // Get current user from local storage
 export const getCurrentUser = (): User | null => {
   const userJson = localStorage.getItem('aayush_user');
+  console.log('User JSON from localStorage:', userJson);
   if (!userJson) return null;
   
   try {
-    return JSON.parse(userJson) as User;
+    const user = JSON.parse(userJson) as User;
+    console.log('Parsed user object:', user);
+    return user;
   } catch (err) {
     console.error('Error parsing user from localStorage:', err);
     return null;
@@ -74,6 +77,7 @@ export const isAuthenticated = (): boolean => {
 // Check if user has a specific role
 export const hasRole = (role: UserRole | UserRole[]): boolean => {
   const user = getCurrentUser();
+  console.log('Checking role:', role, 'for user:', user);
   if (!user) return false;
   
   if (Array.isArray(role)) {

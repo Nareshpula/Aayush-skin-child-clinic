@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { getAvailableSlots, getDoctorExceptions, AvailableSlot, DoctorException } from '@/lib/appointment';
-import { Doctor, supabase } from '@/lib/supabase';
-
-// Define format function at the top level to avoid "Cannot access before initialization" error
-const format = (date: Date, formatStr: string) => {
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  return days[date.getDay()];
-};
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, AlertCircle } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { supabase, Doctor } from '@/lib/supabase';
+import { 
+  isSunday, 
+  formatTime, 
+  formatDateForDisplay, 
+  isDateTodayOrPast, 
+  isDateFuture,
+  parseDateInIST,
+  getDayName
+} from '@/utils/timeZoneUtils';
+import { DateTime } from 'luxon';
 
 interface DoctorAvailabilityCalendarProps {
   doctor: Doctor;
   onSelectSlot: (date: string, time: string) => void;
-  selectedDate?: string;
-  selectedTime?: string;
+  selectedDate: string;
+  selectedTime: string;
 }
 
 const DoctorAvailabilityCalendar: React.FC<DoctorAvailabilityCalendarProps> = ({
@@ -23,383 +27,410 @@ const DoctorAvailabilityCalendar: React.FC<DoctorAvailabilityCalendarProps> = ({
   selectedDate,
   selectedTime
 }) => {
-  // State variables
-  const [availableSlots, setAvailableSlots] = useState<AvailableSlot[]>([]);
-  const [exceptions, setExceptions] = useState<DoctorException[]>([]);
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [loading, setLoading] = useState<boolean>(false);
+  const [currentMonth, setCurrentMonth] = useState(DateTime.now().setZone('Asia/Kolkata').toJSDate());
+  const [availableDates, setAvailableDates] = useState<Date[]>([]);
+  const [timeSlots, setTimeSlots] = useState<{ time: string; available: boolean }[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'morning' | 'evening'>('morning');
-
-  // Load doctor exceptions
+  const [isSundaySelected, setIsSundaySelected] = useState(false);
+  
+  // Generate calendar days for the current month
+  const getDaysInMonth = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    const days = [];
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    
+    // Add empty days for the start of the month
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(null);
+    }
+    
+    // Add days of the month
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push(new Date(year, month, i));
+    }
+    
+    return days;
+  };
+  
+  // Get available dates for the doctor
   useEffect(() => {
-    const loadExceptions = async () => {
-      const startDate = new Date(currentMonth);
-      startDate.setDate(1);
+    const getAvailableDates = () => {
+      // Get all days in the current month
+      const days = getDaysInMonth(currentMonth);
       
-      const endDate = new Date(currentMonth);
-      endDate.setMonth(endDate.getMonth() + 1);
-      endDate.setDate(0);
+      // Filter out past dates and get available dates
+      const today = DateTime.now().setZone('Asia/Kolkata').startOf('day');
       
-      const { success, data } = await getDoctorExceptions(
-        doctor.id,
-        startDate.toISOString().split('T')[0],
-        endDate.toISOString().split('T')[0]
-      );
+      const availableDays = days.filter(day => {
+        if (!day) return false;
+        
+        // Convert to Luxon DateTime for proper timezone handling
+        const dayLuxon = DateTime.fromJSDate(day).setZone('Asia/Kolkata');
+        
+        // Check if the day is in the future
+        if (dayLuxon < today) return false;
+        
+        // Check if the doctor is available on this day of the week
+        const dayOfWeek = dayLuxon.weekday;
+        const dayName = dayLuxon.toFormat('EEEE'); // Full day name
+        
+        return doctor.available_days?.includes(dayName);
+      });
       
-      if (success && data) {
-        setExceptions(data);
+      setAvailableDates(availableDays);
+    };
+    
+    getAvailableDates();
+  }, [currentMonth, doctor]);
+  
+  // Get time slots for the selected date
+  useEffect(() => {
+    const getTimeSlots = async () => {
+      if (!selectedDate) {
+        setTimeSlots([]);
+        return;
+      }
+      
+      setLoading(true);
+      setError(null);
+      
+      try {
+        console.log(`Fetching time slots for doctor ${doctor.id} on ${selectedDate}`);
+        
+        // Call the get_available_slots_simple function
+        const { data, error } = await supabase.rpc('get_available_slots_simple', {
+          p_doctor_id: doctor.id,
+          p_date: selectedDate
+        });
+        
+        if (error) {
+          console.error('Error fetching time slots:', error);
+          setError('Failed to load available time slots');
+          return;
+        }
+        
+        console.log(`Received ${data?.length || 0} time slots:`, data);
+        
+        if (data?.length === 0) {
+          console.log('No time slots available for this date');
+        }
+        
+        // Transform the data
+        const slots = data.map((slot: any) => ({
+          time: slot.time_slot,
+          available: slot.is_available
+        }));
+        
+        setTimeSlots(slots);
+        
+        // Set active tab based on first available slot
+        if (slots.length > 0) {
+          const firstSlotHour = parseInt(slots[0].time.split(':')[0]);
+          setActiveTab(firstSlotHour < 16 ? 'morning' : 'evening');
+        }
+        
+        // Check if the selected date is a Sunday
+        const selectedDateObj = parseDateInIST(selectedDate);
+        const isSundayDate = isSunday(selectedDateObj);
+        console.log('Selected date is Sunday:', isSundayDate);
+        setIsSundaySelected(isSundayDate);
+        
+      } catch (err) {
+        console.error('Error in getTimeSlots:', err);
+        setError('An unexpected error occurred');
+      } finally {
+        setLoading(false);
       }
     };
     
-    loadExceptions();
-  }, [doctor.id, currentMonth]);
-
-  // Load available slots when a date is selected
-  useEffect(() => {
-    if (selectedDate) {
-      const loadAvailableSlots = async () => { 
-        setLoading(true);
-        try {
-          console.log(`Fetching available slots for doctor ${doctor.id} on ${selectedDate}`);
-          
-          // Direct RPC call to get available slots
-          const { data, error } = await supabase.rpc('get_available_slots', {
-            p_doctor_id: doctor.id,
-            p_date: selectedDate
-          });
-          
-          if (error) {
-            console.error('Error fetching available slots:', error);
-            setAvailableSlots([]);
-          } else if (data) {
-            console.log('Available slots data:', data);
-            
-            // Transform the data to match the AvailableSlot interface
-            const transformedSlots: AvailableSlot[] = data.map((slot: any) => ({
-              time_slot: slot.time_slot,
-              is_available: slot.is_available
-            }));
-            
-            setAvailableSlots(transformedSlots);
-          }
-        } catch (error) {
-          console.error('Error in loadAvailableSlots:', error);
-          setAvailableSlots([]);
-        } finally {
-          setLoading(false);
-        }
-      };
-      
-      loadAvailableSlots();
-    }
-  }, [doctor.id, selectedDate]);
-
-  // Check if a date is available (not in exceptions)
-  const isDateAvailable = (date: Date) => {
-    const dayName = format(date, 'EEEE');
-    // Check if the doctor is available on this day
-    if (!doctor) {
+    getTimeSlots();
+  }, [selectedDate, doctor.id]);
+  
+  // Navigate to previous month
+  const goToPreviousMonth = () => {
+    setCurrentMonth(prev => {
+      const prevMonth = DateTime.fromJSDate(prev).setZone('Asia/Kolkata').minus({ months: 1 }).toJSDate();
+      return prevMonth;
+    });
+  };
+  
+  // Navigate to next month
+  const goToNextMonth = () => {
+    setCurrentMonth(prev => {
+      const nextMonth = DateTime.fromJSDate(prev).setZone('Asia/Kolkata').plus({ months: 1 }).toJSDate();
+      return nextMonth;
+    });
+  };
+  
+  // Format date as YYYY-MM-DD
+  const formatDate = (date: Date) => {
+    return DateTime.fromJSDate(date).setZone('Asia/Kolkata').toFormat('yyyy-MM-dd');
+  };
+  
+  // Check if a date is selected
+  const isDateSelected = (date: Date) => {
+    if (!selectedDate) return false;
+    
+    // Format both dates to YYYY-MM-DD for comparison
+    const formattedSelectedDate = selectedDate;
+    const formattedDate = formatDate(date);
+    
+    return formattedSelectedDate === formattedDate;
+  };
+  
+  // Check if a date is available
+  const isDateAvailable = (date: Date | null) => {
+    if (!date) return false;
+    
+    // Convert to Luxon DateTime for proper timezone handling
+    const dateLuxon = DateTime.fromJSDate(date).setZone('Asia/Kolkata');
+    const todayLuxon = DateTime.now().setZone('Asia/Kolkata').startOf('day');
+    
+    // Check if date is today
+    if (dateLuxon.hasSame(todayLuxon, 'day')) {
       return false;
     }
     
-    // Check if available_days exists and includes the day name
-    return doctor.available_days ? doctor.available_days.includes(dayName) : false;
+    return availableDates.some(availableDate => 
+      availableDate.getDate() === date.getDate() &&
+      availableDate.getMonth() === date.getMonth() &&
+      availableDate.getFullYear() === date.getFullYear()
+    );
   };
+  
+  // Handle date selection
+  const handleDateSelect = (date: Date) => {
+    if (!isDateAvailable(date)) return;
 
-  // Format time from "HH:MM:SS" to "HH:MM AM/PM"
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours, 10);
-    const minute = parseInt(minutes, 10);
+    console.log('Selected date:', date);
     
-    const period = hour >= 12 ? 'PM' : 'AM';
-    const hour12 = hour % 12 || 12; // Convert 0 to 12 for 12 AM
+    // Format the date as YYYY-MM-DD for the API
+    const formattedDate = formatDate(date);
+    console.log('Formatted date:', formattedDate);
     
-    return `${hour12}:${minute.toString().padStart(2, '0')} ${period}`;
+    // Clear any previously selected time
+    onSelectSlot(formattedDate, '');
+    
+    // Check if the selected date is a Sunday using Luxon
+    const dateLuxon = DateTime.fromJSDate(date).setZone('Asia/Kolkata');
+    const isSundayDate = dateLuxon.weekday === 7; // In Luxon, 7 is Sunday
+    console.log('Is Sunday (Luxon):', isSundayDate);
+    setIsSundaySelected(isSundayDate);
   };
-
-  // Handle date click
-  const handleDateClick = (date: Date) => {
-    if (isDateAvailable(date)) {
-      const formattedDate = date.toISOString().split('T')[0];
-      onSelectSlot(formattedDate, '');
-    }
+  
+  // Handle time slot selection
+  const handleTimeSelect = (time: string, available: boolean) => {
+    if (!available) return;
+    
+    onSelectSlot(selectedDate, time);
   };
-
-  // Handle time slot click
-  const handleTimeSlotClick = (time: string) => {
-    if (selectedDate) {
-      onSelectSlot(selectedDate, time);
-    }
-  };
-
-  // Navigate to previous month
-  const goToPreviousMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
-  };
-
-  // Navigate to next month
-  const goToNextMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
-  };
-
-  // Generate time slots based on the day of week
-  const generateTimeSlots = (date: string): string[] => {
-    const selectedDay = new Date(date).getDay(); // 0 = Sunday, 1 = Monday, etc.
-    const isSunday = selectedDay === 0;
-    
-    // Morning slots (10:00 AM to 3:00 PM)
-    const morningSlots: string[] = [];
-    let currentTime = new Date();
-    currentTime.setHours(10, 0, 0); // Start at 10:00 AM
-    
-    const morningEndTime = new Date();
-    morningEndTime.setHours(isSunday ? 13 : 15, 0, 0); // End at 1:00 PM for Sunday, 3:00 PM otherwise
-    
-    while (currentTime < morningEndTime) {
-      const hours = currentTime.getHours();
-      const minutes = currentTime.getMinutes();
-      const period = hours >= 12 ? 'PM' : 'AM';
-      const hour12 = hours % 12 || 12;
-      
-      morningSlots.push(`${hour12}:${minutes.toString().padStart(2, '0')} ${period}`);
-      
-      // Increment by 15 minutes
-      currentTime.setMinutes(currentTime.getMinutes() + 15);
-    }
-    
-    // Evening slots (6:00 PM to 9:00 PM) - only for non-Sundays
-    const eveningSlots: string[] = [];
-    if (!isSunday) {
-      currentTime = new Date();
-      currentTime.setHours(18, 0, 0); // Start at 6:00 PM
-      
-      const eveningEndTime = new Date();
-      eveningEndTime.setHours(21, 0, 0); // End at 9:00 PM
-      
-      while (currentTime < eveningEndTime) {
-        const hours = currentTime.getHours();
-        const minutes = currentTime.getMinutes();
-        const period = 'PM';
-        const hour12 = hours % 12 || 12;
-        
-        eveningSlots.push(`${hour12}:${minutes.toString().padStart(2, '0')} ${period}`);
-        
-        // Increment by 15 minutes
-        currentTime.setMinutes(currentTime.getMinutes() + 15);
-      }
-    }
-    
-    return activeTab === 'morning' ? morningSlots : eveningSlots;
-  };
-
-  // Filter slots based on active tab
-  const getFilteredSlots = () => {
-    if (!selectedDate) return [];
-    
-    // Generate time slots based on the day
-    const allTimeSlots = generateTimeSlots(selectedDate);
-    
-    // Check which slots are available based on the availableSlots data
-    return allTimeSlots.map(timeStr => {
-      // Convert from "10:00 AM" format to "10:00:00" format for comparison
-      const [time, period] = timeStr.split(' ');
-      const [hour, minute] = time.split(':');
-      let hour24 = parseInt(hour);
-      
-      // Convert to 24-hour format
-      if (period === 'PM' && hour24 < 12) hour24 += 12;
-      if (period === 'AM' && hour24 === 12) hour24 = 0;
-      
-      const timeFormatted = `${hour24.toString().padStart(2, '0')}:${minute}:00`;
-      
-      // Find if this slot exists in availableSlots
-      const slot = availableSlots.find(s => s.time_slot === timeFormatted);
-      
-      return {
-        time: timeStr,
-        is_available: slot ? slot.is_available : true // Default to available if not found
-      };
-    });
-  };
-
-  // Generate dates for the current month
-  const generateDates = () => {
-    const year = currentMonth.getFullYear();
-    const month = currentMonth.getMonth();
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    
-    const dates: Date[] = [];
-    
-    // Add dates from previous month to fill the first week
-    const firstDayOfWeek = firstDay.getDay();
-    for (let i = firstDayOfWeek; i > 0; i--) {
-      const date = new Date(year, month, 1 - i);
-      dates.push(date);
-    }
-    
-    // Add dates from current month
-    for (let i = 1; i <= lastDay.getDate(); i++) {
-      const date = new Date(year, month, i);
-      dates.push(date);
-    }
-    
-    // Add dates from next month to fill the last week
-    const lastDayOfWeek = lastDay.getDay();
-    for (let i = 1; i < 7 - lastDayOfWeek; i++) {
-      const date = new Date(year, month + 1, i);
-      dates.push(date);
-    }
-    
-    return dates;
-  };
-
-  // Filter slots based on active tab
-  const filteredSlots = availableSlots.filter(slot => {
-    const hour = parseInt(slot.time_slot.split(':')[0]);
-    return activeTab === 'morning' ? (hour >= 9 && hour < 15) : hour >= 18;
+  
+  // Filter time slots based on active tab
+  const filteredTimeSlots = timeSlots.filter(slot => {
+    const hour = parseInt(slot.time.split(':')[0]);
+    return activeTab === 'morning' ? hour < 16 : hour >= 16;
   });
-
+  
+  // Get day names for calendar header
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  
+  // Get days for the current month
+  const days = getDaysInMonth(currentMonth);
+  
+  // Get the selected date object for proper day name display
+  const selectedDateObj = selectedDate ? parseDateInIST(selectedDate) : null;
+  
+  // Debug output
+  React.useEffect(() => {
+    if (selectedDate) {
+      const dateObj = parseDateInIST(selectedDate);
+      console.log('Selected date object:', dateObj);
+      console.log('Day of week (Luxon):', DateTime.fromJSDate(dateObj).setZone('Asia/Kolkata').weekday);
+      console.log('Is Sunday (Luxon):', DateTime.fromJSDate(dateObj).setZone('Asia/Kolkata').weekday === 7);
+      console.log('Formatted display:', formatDateForDisplay(dateObj));
+    }
+  }, [selectedDate]);
+  
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
-      {/* Calendar Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-800">Select Date</h3>
-        <div className="flex items-center space-x-2">
+    <div className="space-y-6">
+      {/* Date Selector */}
+      <div className="bg-white rounded-lg shadow-md p-4">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Select Date</h3>
+        
+        {/* Calendar Header */}
+        <div className="flex items-center justify-between mb-4">
           <button
             onClick={goToPreviousMonth}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
           >
             <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
+          
           <span className="text-gray-700 font-medium">
-            {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+            {DateTime.fromJSDate(currentMonth).setZone('Asia/Kolkata').toFormat('LLLL yyyy')}
           </span>
+          
           <button
             onClick={goToNextMonth}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
           >
             <ChevronRight className="w-5 h-5 text-gray-600" />
           </button>
         </div>
-      </div>
-
-      {/* Calendar Grid */}
-      <div className="mb-6">
-        {/* Day names */}
-        <div className="grid grid-cols-7 mb-2">
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-            <div key={day} className="text-center text-gray-500 text-sm font-medium">
+        
+        {/* Calendar Grid */}
+        <div className="grid grid-cols-7 gap-1">
+          {/* Day names */}
+          {dayNames.map((day) => (
+            <div key={day} className="text-center text-xs font-medium text-gray-500 py-1">
               {day}
             </div>
           ))}
+          
+          {/* Calendar days */}
+          {days.map((day, index) => (
+            <div key={index} className="aspect-square">
+              {day ? (
+                <button
+                  onClick={() => handleDateSelect(day)}
+                  disabled={!isDateAvailable(day)}
+                  className={cn(
+                    "w-full h-full flex items-center justify-center rounded-lg text-sm transition-colors",
+                    isDateSelected(day) 
+                      ? "bg-[#7a3a95] text-white" 
+                      : isDateAvailable(day)
+                        ? "hover:bg-purple-100 text-gray-700"
+                        : "text-gray-300 cursor-not-allowed"
+                  )}
+                >
+                  {day.getDate()}
+                </button>
+              ) : (
+                <div className="w-full h-full"></div>
+              )}
+            </div>
+          ))}
         </div>
-
-        {/* Calendar days */}
-        <div className="grid grid-cols-7 gap-1">
-          {generateDates().map((date, index) => {
-            const isCurrentMonth = date.getMonth() === currentMonth.getMonth();
-            const isToday = date.toDateString() === new Date().toDateString();
-            const isSelected = selectedDate === date.toISOString().split('T')[0];
-            const available = isDateAvailable(date);
-            
-            return (
-              <motion.button
-                key={index}
-                whileHover={{ scale: available ? 1.1 : 1 }}
-                whileTap={{ scale: available ? 0.95 : 1 }}
-                onClick={() => available && handleDateClick(date)}
-                disabled={!available}
-                className={`
-                  h-10 rounded-full flex items-center justify-center text-sm
-                  ${isCurrentMonth ? 'text-gray-800' : 'text-gray-400'}
-                  ${isToday ? 'border border-[#7a3a95]' : ''}
-                  ${isSelected ? 'bg-[#7a3a95] text-white' : ''}
-                  ${available && !isSelected ? 'hover:bg-purple-100' : ''}
-                  ${!available ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
-                  transition-colors duration-200
-                `}
-              >
-                {date.getDate()}
-              </motion.button>
-            );
-          })}
-        </div>
+        
+        {/* Selected Date Info */}
+        {selectedDate && selectedDateObj && (
+          <div className="mt-4 p-3 bg-purple-50 rounded-lg">
+            <div className="flex items-center text-[#7a3a95] flex-wrap break-words">
+              <CalendarIcon className="w-5 h-5 mr-2 flex-shrink-0" />
+              <span className="font-medium break-words">
+                Selected Date: {formatDateForDisplay(selectedDateObj)}
+              </span>
+            </div>
+          </div>
+        )}
+        
+        {/* Today's date warning */}
+        {selectedDate && isDateTodayOrPast(parseDateInIST(selectedDate)) && (
+          <div className="mt-4 p-3 bg-red-50 rounded-lg">
+            <div className="flex items-start">
+              <AlertCircle className="w-5 h-5 text-red-500 mt-0.5 mr-2 flex-shrink-0" />
+              <span className="text-red-700 text-sm">
+                Same-day appointments are not allowed. Please select a future date.
+              </span>
+            </div>
+          </div>
+        )}
       </div>
-
+      
       {/* Time Slots */}
-      {selectedDate && (
-        <div>
-          <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center flex-wrap">
-            <Clock className="w-5 h-5 mr-2 text-[#7a3a95]" />
-            Select Time
-            <span className="ml-2 text-xs text-orange-600 font-normal whitespace-normal">
-              {new Date(selectedDate).getDay() === 0 
-                ? "(Sunday hours: 10:00 AM - 1:00 PM only)" 
-                : "(Morning: 10:00 AM - 3:00 PM, Evening: 6:00 PM - 9:00 PM)"}
-            </span>
-          </h3>
-
-          {/* Tabs */}
-          <div className="flex mb-4">
+      {selectedDate && isDateFuture(parseDateInIST(selectedDate)) && (
+        <div className="bg-white rounded-lg shadow-md p-4 mt-4">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Select Time</h3>
+          
+          {/* Morning/Evening Tabs */}
+          <div className="flex flex-wrap border-b border-gray-200 mb-4">
             <button
               onClick={() => setActiveTab('morning')}
-              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
-                activeTab === 'morning' 
-                  ? "bg-[#7a3a95] text-white" 
-                  : "bg-white text-gray-700 hover:bg-gray-100"
+              className={`flex-1 py-2 px-4 text-center font-medium transition-colors ${
+                activeTab === 'morning'
+                  ? "text-[#7a3a95] border-b-2 border-[#7a3a95]"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              Morning
-              <span className="hidden sm:inline"> (10:00 AM - {new Date(selectedDate).getDay() === 0 ? '1:00 PM' : '3:00 PM'})</span>
+              Morning (10 AM to {isSundaySelected ? '1 PM' : '3 PM'})
             </button>
-            <button
-              onClick={() => setActiveTab('evening')}
-              disabled={new Date(selectedDate).getDay() === 0}
-              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
-                new Date(selectedDate).getDay() === 0 ? 'opacity-50 cursor-not-allowed ' : ''
-              }${
-                activeTab === 'evening' 
-                  ? "bg-[#7a3a95] text-white" 
-                  : "bg-white text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              Evening
-              <span className="hidden sm:inline"> (6:00 PM - 9:00 PM)</span>
-            </button>
+            
+            {/* Only show evening tab if not Sunday */}
+            {!isSundaySelected && (
+              <button
+                onClick={() => setActiveTab('evening')}
+                className={`flex-1 py-2 px-4 text-center font-medium transition-colors ${
+                  activeTab === 'evening'
+                    ? "text-[#7a3a95] border-b-2 border-[#7a3a95]"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Evening (6 PM to 9 PM)
+              </button>
+            )}
           </div>
-
+          
           {loading ? (
-            <div className="flex justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#7a3a95]"></div>
+            <div className="flex items-center justify-center py-8">
+              <div className="w-8 h-8 border-4 border-[#7a3a95] border-t-transparent rounded-full animate-spin"></div>
             </div>
-          ) : getFilteredSlots().length === 0 ? (
+          ) : error ? (
+            <div className="text-center py-8 text-red-500">{error}</div>
+          ) : filteredTimeSlots.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              No available slots for this date and time range. Please try another date.
+              No available time slots for the {activeTab} session.
+              {isSundaySelected && activeTab === 'evening' && (
+                <p className="mt-2 text-sm text-blue-600">
+                  Note: Evening slots are not available on Sundays.
+                </p>
+              )}
             </div>
           ) : (
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-              {getFilteredSlots().map((slot, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ scale: slot.is_available ? 1.05 : 1 }}
-                  whileTap={{ scale: slot.is_available ? 0.95 : 1 }}
-                  onClick={() => slot.is_available && handleTimeSlotClick(slot.time)}
-                  disabled={!slot.is_available}
-                  className={`
-                    py-2 px-1 text-center rounded-md transition-all border shadow-sm text-sm
-                    ${!slot.is_available 
-                      ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
-                      : selectedTime === slot.time
-                        ? "bg-[#7a3a95] text-white font-medium"
-                        : "bg-white hover:bg-gray-100 text-gray-800"
-                    }
-                  `}
-                >
-                  {slot.time}
-                </motion.button>
-              ))}
+            <div className="mt-2">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                {filteredTimeSlots.map((slot, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTimeSelect(slot.time, slot.available)}
+                    disabled={!slot.available}
+                    className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                      selectedTime === slot.time
+                        ? "bg-[#7a3a95] text-white shadow-md"
+                        : slot.available
+                          ? "bg-purple-50 text-[#7a3a95] hover:bg-purple-100 hover:shadow-sm"
+                          : "bg-gray-100 text-gray-400 cursor-not-allowed opacity-60"
+                    }`}
+                  >
+                    {formatTime(slot.time)}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Note about Sunday hours */}
+              {selectedDate && isSundaySelected && (
+                <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-blue-700 break-words">
+                    <strong>Note:</strong> On Sundays, Dr. {doctor.name} is available only from 10:00 AM to 1:00 PM.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Selected Time Info */}
+          {selectedTime && (
+            <div className="mt-4 p-3 bg-purple-50 rounded-lg">
+              <div className="flex items-center text-[#7a3a95]">
+                <Clock className="w-5 h-5 mr-2" />
+                <span className="font-medium">
+                  Selected Time: {formatTime(selectedTime)}
+                </span>
+              </div>
             </div>
           )}
         </div>

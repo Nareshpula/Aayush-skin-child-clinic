@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Trash2, Plus, X, Loader2 } from 'lucide-react';
+import { Calendar, Clock, Trash2, Plus, X, Loader2, ArrowLeft } from 'lucide-react';
 import { fetchDoctors, Doctor } from '@/lib/supabase';
 import { getDoctorExceptions, addDoctorException, removeDoctorException, DoctorException } from '@/lib/appointment';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 const DoctorExceptions = () => {
+  const navigate = useNavigate();
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [exceptions, setExceptions] = useState<DoctorException[]>([]);
   const [loading, setLoading] = useState(true);
@@ -154,17 +156,28 @@ const DoctorExceptions = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-12">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">Doctor Unavailability Management</h1>
+      <div className="container mx-auto px-4 pt-4">
+        <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6 mb-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <div className="flex items-center">
+              <button 
+                onClick={() => navigate('/admin-dashboard')}
+                className="mr-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5 text-gray-600" />
+              </button>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Manage Doctor Availability</h1>
+                <p className="text-gray-600 mt-1">Set doctor's unavailable hours</p>
+              </div>
+            </div>
             
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-4 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 flex items-center"
+              className="px-4 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 flex items-center whitespace-nowrap"
             >
               <Plus className="w-5 h-5 mr-2" />
-              Add Exception
+              Update Availability
             </button>
           </div>
           
@@ -183,12 +196,12 @@ const DoctorExceptions = () => {
           {loading ? (
             <div className="bg-white rounded-lg shadow-md p-8 flex items-center justify-center">
               <Loader2 className="w-8 h-8 animate-spin text-[#7a3a95] mr-3" />
-              <p className="text-gray-600">Loading doctor exceptions...</p>
+              <p className="text-gray-600">Loading doctor availability data...</p>
             </div>
           ) : exceptions.length === 0 ? (
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
-              <p className="text-gray-600 mb-4">No exceptions found.</p>
-              <p className="text-gray-500">Add exceptions when doctors are unavailable for appointments.</p>
+              <p className="text-gray-600 mb-4">No unavailable time slots found.</p>
+              <p className="text-gray-500">Add time slots when doctors are unavailable for appointments.</p>
             </div>
           ) : (
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -199,10 +212,10 @@ const DoctorExceptions = () => {
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Doctor
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
                         Date
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
                         Time Range
                       </th>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -222,7 +235,7 @@ const DoctorExceptions = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900">{formatDate(exception.date)}</div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
                           <div className="text-sm text-gray-900">
                             {formatTime(exception.start_time)} - {formatTime(exception.end_time)}
                           </div>
@@ -256,18 +269,18 @@ const DoctorExceptions = () => {
       {/* Add Exception Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className="bg-white rounded-lg shadow-xl max-w-md w-full"
+            className="bg-white rounded-lg shadow-xl max-w-md w-full overflow-hidden"
           >
-            <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-lg font-semibold text-gray-900">Add Doctor Exception</h2>
+            <div className="flex justify-between items-center p-4 border-b bg-[#7a3a95] text-white">
+              <h2 className="text-lg font-semibold">Update Doctor Availability</h2>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-white/80 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -276,7 +289,7 @@ const DoctorExceptions = () => {
             <form onSubmit={handleSubmit} className="p-4 space-y-4">
               <div>
                 <label htmlFor="doctor" className="block text-sm font-medium text-gray-700 mb-1">
-                  Doctor <span className="text-red-500">*</span>
+                  Select Doctor <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="doctor"
@@ -296,7 +309,7 @@ const DoctorExceptions = () => {
               
               <div>
                 <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-                  Date <span className="text-red-500">*</span>
+                  Unavailable Date <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -316,7 +329,7 @@ const DoctorExceptions = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="startTime" className="block text-sm font-medium text-gray-700 mb-1">
-                    Start Time <span className="text-red-500">*</span>
+                    From Time <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -334,7 +347,7 @@ const DoctorExceptions = () => {
                 
                 <div>
                   <label htmlFor="endTime" className="block text-sm font-medium text-gray-700 mb-1">
-                    End Time <span className="text-red-500">*</span>
+                    To Time <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -353,7 +366,7 @@ const DoctorExceptions = () => {
               
               <div>
                 <label htmlFor="reason" className="block text-sm font-medium text-gray-700 mb-1">
-                  Reason
+                  Reason (Optional)
                 </label>
                 <textarea
                   id="reason"
@@ -361,7 +374,7 @@ const DoctorExceptions = () => {
                   value={formData.reason}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7a3a95] focus:border-[#7a3a95]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7a3a95] focus:border-[#7a3a95] resize-none"
                   placeholder="Reason for unavailability"
                 ></textarea>
               </div>
@@ -370,7 +383,7 @@ const DoctorExceptions = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200 font-medium"
                 >
                   Cancel
                 </button>
@@ -378,7 +391,7 @@ const DoctorExceptions = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 disabled:bg-purple-300 disabled:cursor-not-allowed flex items-center"
+                  className="px-4 py-2 bg-[#7a3a95] text-white rounded-lg hover:bg-[#6a2a85] transition-colors duration-200 disabled:bg-purple-300 disabled:cursor-not-allowed flex items-center font-medium"
                 >
                   {submitting ? (
                     <>
@@ -386,7 +399,7 @@ const DoctorExceptions = () => {
                       Saving...
                     </>
                   ) : (
-                    'Save Exception'
+                    'Update Availability'
                   )}
                 </button>
               </div>

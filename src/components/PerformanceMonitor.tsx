@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * PerformanceMonitor component that tracks and logs web vitals
+ * Enhanced PerformanceMonitor component that tracks, logs, and optimizes web vitals
  * This is a non-visual component that should be included once in your app
  */
 const PerformanceMonitor = () => {
@@ -10,6 +10,26 @@ const PerformanceMonitor = () => {
     if (process.env.NODE_ENV !== 'production' || !('PerformanceObserver' in window)) {
       return;
     }
+
+    // Preload critical resources
+    const preloadCriticalResources = () => {
+      const criticalUrls = [
+        '/src/components/Hero.tsx',
+        '/src/components/Navbar.tsx',
+        '/src/components/FindDoctor.tsx'
+      ];
+      
+      criticalUrls.forEach(url => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'script';
+        link.href = url;
+        document.head.appendChild(link);
+      });
+    };
+    
+    // Call preload function
+    preloadCriticalResources();
 
     // Track Largest Contentful Paint (LCP)
     try {
@@ -84,11 +104,34 @@ const PerformanceMonitor = () => {
     } catch (e) {
       console.warn('Resource monitoring not supported', e);
     }
+    
+    // Implement image lazy loading for all images
+    const implementLazyLoading = () => {
+      const images = document.querySelectorAll('img:not([loading])');
+      images.forEach(img => {
+        if (!img.hasAttribute('fetchpriority') || img.getAttribute('fetchpriority') !== 'high') {
+          img.setAttribute('loading', 'lazy');
+        }
+      });
+    };
+    
+    // Call once and set up a mutation observer to handle dynamically added images
+    implementLazyLoading();
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(mutation => {
+        if (mutation.type === 'childList') {
+          implementLazyLoading();
+        }
+      });
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       // Clean up observers if component unmounts
       // Note: PerformanceObserver doesn't have a standard way to disconnect all observers
       // This is handled automatically by the browser when the page unloads
+      observer.disconnect();
     };
   }, []);
 

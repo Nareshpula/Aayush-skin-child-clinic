@@ -3,6 +3,18 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Search, Phone, ScanLine } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// Preload critical images
+const preloadCriticalImages = () => {
+  const criticalImages = [
+    "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Aayush-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BYXl1c2gtbG9nby5wbmciLCJpYXQiOjE3NDM2OTk3MzAsImV4cCI6MTkwMTM3OTczMH0.pg25T9SRSiXE0jn46_vxVzTK_vlJGURYwbeRpbjnIF0"
+  ];
+  
+  criticalImages.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+};
+
 const menuItems = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About Us' },
@@ -61,6 +73,11 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  
+  // Preload critical images on component mount
+  useEffect(() => {
+    preloadCriticalImages();
+  }, []);
   
   const toggleMobileCategory = (category: string) => {
     if (mobileOpenCategory === category) {
@@ -146,9 +163,12 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-1 md:gap-4 flex-shrink-1 group">
             <div className="relative w-auto h-8 md:h-16 flex items-center">
               <img 
+                fetchpriority="high"
                 src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/Skin-pages-image/Aayush-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvU2tpbi1wYWdlcy1pbWFnZS9BYXl1c2gtbG9nby5wbmciLCJpYXQiOjE3NDM2OTk3MzAsImV4cCI6MTkwMTM3OTczMH0.pg25T9SRSiXE0jn46_vxVzTK_vlJGURYwbeRpbjnIF0"
                 alt="Aayush Logo"
-                className="h-full w-auto object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-500 max-h-8 md:max-h-16 min-w-[28px]"
+                className="h-full w-auto object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-500 max-h-8 md:max-h-16 min-w-[28px] gpu-accelerated"
+                width="64"
+                height="64"
               />
             </div>
             <div className="flex items-center overflow-hidden">

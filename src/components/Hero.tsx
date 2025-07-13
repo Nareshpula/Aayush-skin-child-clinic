@@ -1,18 +1,29 @@
 import React from 'react';
 
 const Hero = () => {
+  // Preload the video for faster initial load
+  React.useEffect(() => {
+    const videoUrl = "https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/playing-with-kids.mp4?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvcGxheWluZy13aXRoLWtpZHMubXA0IiwiaWF0IjoxNzQyNjU5MzM4LCJleHAiOjE5MDAzMzkzMzh9.a4f48hJOPjPHxMVHkwjKE9HCm6p0NbgvEgBJLoauuJU";
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'video';
+    link.href = videoUrl;
+    link.type = 'video/mp4';
+    document.head.appendChild(link);
+  }, []);
+
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full">
         <video
           autoPlay
-          preload="auto"
+          preload="metadata"
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
-          style={{ transform: 'translate3d(0, 0, 0)' }}
+          className="w-full h-full object-cover gpu-accelerated"
+          style={{ transform: 'translate3d(0, 0, 0)', backfaceVisibility: 'hidden' }}
         >
           <source
             src="https://voaxktqgbljtsattacbn.supabase.co/storage/v1/object/sign/aayush-hospital/Header-Bar-Images/playing-with-kids.mp4?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYXl1c2gtaG9zcGl0YWwvSGVhZGVyLUJhci1JbWFnZXMvcGxheWluZy13aXRoLWtpZHMubXA0IiwiaWF0IjoxNzQyNjU5MzM4LCJleHAiOjE5MDAzMzkzMzh9.a4f48hJOPjPHxMVHkwjKE9HCm6p0NbgvEgBJLoauuJU"
