@@ -35,7 +35,7 @@
   package = "@netlify/plugin-lighthouse"
   [plugins.inputs]
     output_path = "reports/lighthouse.html"
-    performance_budget = { speed_index = 3000, first_contentful_paint = 2000, interactive = 5000 }
+    thresholds = { speed_index = 3000, first_contentful_paint = 2000, interactive = 5000 }
 
 # Brotli compression
 [[headers]]
