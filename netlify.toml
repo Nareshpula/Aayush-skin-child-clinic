@@ -25,14 +25,10 @@
 
 [build.processing.images]
   compress = true
-  
+
 # Image optimization
 [[plugins]]
   package = "netlify-plugin-image-optim"
-  [plugins.inputs]
-    cacheDir = ".cache"
-    extensions = [".jpg", ".jpeg", ".png", ".webp"]
-    quality = 80
 
 # Preload critical assets
 [[plugins]]
@@ -162,7 +158,7 @@
 [[headers]]
   for = "/page-data/*"
   [headers.values]
-    Cache-Control = "public, max-age=600, stale-while-revalidate=3600"
+    Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
 
 # Add compression for fonts and images
 [[headers]]
