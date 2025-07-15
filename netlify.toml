@@ -26,16 +26,13 @@
 [build.processing.images]
   compress = true
 
-# Image optimization
-[[plugins]]
-  package = "netlify-plugin-image-optim"
-
 # Preload critical assets
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
   [plugins.inputs]
     output_path = "reports/lighthouse.html"
-    thresholds = { speed_index = 3000, first_contentful_paint = 2000, interactive = 5000 }
+    audit_url = "https://www.aayushhospitalmpl.com/"
+    thresholds = { audits = { speed-index = 3000, first-contentful-paint = 2000, interactive = 5000 } }
 
 # Brotli compression
 [[headers]]
@@ -71,6 +68,12 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
+  status = 200
+
+# Netlify Image CDN
+[[redirects]]
+  from = "/images/*"
+  to = "/.netlify/images/:splat"
   status = 200
 
 # Primary Security Headers
