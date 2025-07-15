@@ -1,0 +1,23 @@
+# www.aayushhospitalmpl.com robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.aayushhospitalmpl.com/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 1
+
+# Block specific paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*?*
+
+# Image optimization
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.png$
+Disallow: /*.gif$
+Disallow: /*.webp$
+Allow: /assets/images/
